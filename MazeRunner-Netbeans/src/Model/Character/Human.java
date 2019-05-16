@@ -11,4 +11,8 @@ package Model.Character;
  */
 public class Human extends Characters{
     
+    //OTHERS
+    public void move(){
+        ;
+    }
 }

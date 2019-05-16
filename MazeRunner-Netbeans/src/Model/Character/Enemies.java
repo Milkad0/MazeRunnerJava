@@ -11,4 +11,8 @@ package Model.Character;
  */
 public class Enemies extends Characters{
     
+    //ATTRIBUTS
+    protected int pause;
+    
+    //OTHERS
 }

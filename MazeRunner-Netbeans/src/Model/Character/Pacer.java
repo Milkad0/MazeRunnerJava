@@ -11,4 +11,8 @@ package Model.Character;
  */
 public class Pacer extends Enemies{
     
+    //OTHERS
+    public void move(){
+        ;
+    }
 }

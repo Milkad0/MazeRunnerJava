@@ -11,4 +11,9 @@ package Model.Character;
  */
 public class Rover extends Enemies{
     
+    
+    //OTHERS
+    public void move(){
+        ;
+    }
 }
