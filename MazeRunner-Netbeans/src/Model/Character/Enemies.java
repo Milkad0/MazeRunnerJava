@@ -9,6 +9,6 @@ package Model.Character;
  *
  * @author q95
  */
-public class Enemies {
+public class Enemies extends Characters{
     
 }
