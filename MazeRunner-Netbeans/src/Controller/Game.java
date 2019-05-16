@@ -5,6 +5,7 @@
  */
 package Controller;
 
+import Model.Level;
 import Model.Square.Square;
 
 /**
@@ -12,19 +13,24 @@ import Model.Square.Square;
  * @author Vincent
  */
 public class Game {
+    
+    Level level;
+    
     public Game(){
-        
+        level = new Level(10,10);
     }
     
     public void init(){
-        
+        level.init();
     }
     
     public void update(){
+        level.update();
         
     }
     
     public void render(){
+        level.render();
      
     }
     

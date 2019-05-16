@@ -6,6 +6,7 @@
 package Model.Square;
 
 import java.awt.Image;
+import static org.lwjgl.opengl.GL11.*;
 
 /**
  *
@@ -20,6 +21,20 @@ public class Square {
     protected Image image;
     
     public Square(){     
+    }
+    
+     public static void quadData(int x,int y,int w,int h,float[] color){
+        glColor4f(color[0],color[1],color[2],color[3]);
+        glVertex2f(x,y);
+        glVertex2f(x + w,y);
+        glVertex2f(x+w,y+h);
+        glVertex2f(x,y+h);
+    }
+    
+    public static void renderQuad(int x,int y,int w,int h, float[] color){
+        glBegin(GL_QUADS);
+        quadData(x,y,w,h,color);
+        glEnd();
     }
 
     public int getId() {
@@ -42,5 +57,7 @@ public class Square {
         this.id = _id;
         this.image = _image;
     }
+    
+    
     
 }
