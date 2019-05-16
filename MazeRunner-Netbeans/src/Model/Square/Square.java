@@ -7,8 +7,8 @@ package Model.Square;
 
 /**
  *
- * @author q95
+ * @author asus
  */
-public class Goal extends Square{
+public class Square {
     
 }

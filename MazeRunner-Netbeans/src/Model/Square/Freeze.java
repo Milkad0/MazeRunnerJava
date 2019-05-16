@@ -9,6 +9,6 @@ package Model.Square;
  *
  * @author q95
  */
-public class Freeze {
+public class Freeze extends Square{
     
 }
