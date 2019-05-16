@@ -10,8 +10,12 @@ package Model;
  * @author q95
  */
 public class Level {
+    
+    public int width,height;
    
-       public Level(){
+    public Level(int width, int height){
+        this.width = width;
+        this.height = height;
         
     }
     
