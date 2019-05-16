@@ -9,6 +9,6 @@ package Model.Square;
  *
  * @author q95
  */
-public class Ladder {
+public class Ladder extends Square{
     
 }
