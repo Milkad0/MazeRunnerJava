@@ -38,12 +38,15 @@ public class Component {
         Display.setTitle(title);
         Display.create();
         
-        initGL();
+        view2D(width,height);
       }catch (LWJGLException e){  
           e.printStackTrace();    
       }
 }
-    private void initGL(){ 
+    private void view2D(int width,int height){ 
+        
+        glViewport(0,0,width*scale,height*scale);
+        
         glMatrixMode(GL_PROJECTION);
         glLoadIdentity();
         GLU.gluOrtho2D(0,width,height,0);
@@ -81,7 +84,9 @@ public class Component {
             if(Display.isCloseRequested()){
                 stop();
             }
-            Display.update(); 
+            Display.update();
+            width = Display.getWidth()/scale;
+            height = Display.getHeight()/scale;
             tick = false;
             render = false;
             
@@ -116,11 +121,14 @@ public class Component {
     }
     
     public void render(){
+        
+        view2D(width,height);
+        
         glClear(GL_COLOR_BUFFER_BIT);
         glClearColor(0.8f,0.9f,1.0f,1.0f);
         
-        int x = 16+time;
-        int y = 16+time;
+        int x = 16+time/3;
+        int y = 16+time/3;
         int size = 16;
         
         glBegin(GL_QUADS);
