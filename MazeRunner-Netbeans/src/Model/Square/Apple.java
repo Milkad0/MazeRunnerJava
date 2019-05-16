@@ -5,10 +5,31 @@
  */
 package Model.Square;
 
+import java.awt.Image;
+
 /**
  *
  * @author q95
  */
 public class Apple extends Square{
+    
+    private boolean appleHere = true;
+    
+    public Apple(){
+        super(1, null);
+        this.setImage(image);
+    }
+    
+    public Apple(boolean _appleHere){
+        super(1, null);
+        this.setImage(image);
+        this.appleHere = _appleHere;
+    }
+
+    public void setAppleHere(boolean appleHere) {
+        this.appleHere = appleHere;
+    }
+    
+    
     
 }
