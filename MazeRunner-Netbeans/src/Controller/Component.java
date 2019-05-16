@@ -5,6 +5,7 @@
  */
 
 package Controller;
+import Model.Square.Square;
 import org.lwjgl.LWJGLException;
 import org.lwjgl.opengl.Display;
 import org.lwjgl.opengl.DisplayMode;
@@ -30,30 +31,14 @@ public class Component {
     
     DisplayMode mode = new DisplayMode(width*scale,height*scale);
     
+    Game game;
+    
       public  Component () {
-      try{  
-        Display.setDisplayMode(mode);
-        Display.setResizable(true);
-        Display.setFullscreen(false);
-        Display.setTitle(title);
-        Display.create();
-        
-        view2D(width,height);
-      }catch (LWJGLException e){  
-          e.printStackTrace();    
-      }
+      display();
+      game = new Game();
 }
-    private void view2D(int width,int height){ 
-        
-        glViewport(0,0,width*scale,height*scale);
-        
-        glMatrixMode(GL_PROJECTION);
-        glLoadIdentity();
-        GLU.gluOrtho2D(0,width,height,0);
-        glMatrixMode(GL_MODELVIEW);
-        glLoadIdentity();
-        
-    }
+      
+   
       
     public void start(){
         running = true;
@@ -70,6 +55,8 @@ public class Component {
     }
     
     public void loop(){
+        
+        game.init();
         
         long timer = System.currentTimeMillis();
         
@@ -118,30 +105,43 @@ public class Component {
     public void tick (){
       time++;  
         
+      game.update();
     }
     
     public void render(){
         
-        view2D(width,height);
-        
+        view2D(width,height);  
         glClear(GL_COLOR_BUFFER_BIT);
-        glClearColor(0.8f,0.9f,1.0f,1.0f);
         
-        int x = 16+time/3;
-        int y = 16+time/3;
-        int size = 16;
+
+        game.render();
+    }
+    
+     public void display(){
+        try{  
+        Display.setDisplayMode(mode);
+        Display.setResizable(true);
+        Display.setFullscreen(false);
+        Display.setTitle(title);
+        Display.create();
         
-        glBegin(GL_QUADS);
-        glColor3f(0.2f,0.1f,0.0f);
-        glVertex2f(x,y);
-        glVertex2f(x + size,y);
+        view2D(width,height);
+      }catch (LWJGLException e){  
+          e.printStackTrace();    
+      }    
+    }
+    private void view2D(int width,int height){ 
         
-        glColor3f(1.0f,0.0f,0.0f);
-        glVertex2f(x+size,y+size);
-        glVertex2f(x,y+size);
-        glEnd();
+        glViewport(0,0,width*scale,height*scale);
+        
+        glMatrixMode(GL_PROJECTION);
+        glLoadIdentity();
+        GLU.gluOrtho2D(0,width,height,0);
+        glMatrixMode(GL_MODELVIEW);
+        glLoadIdentity();
         
     }
+    
     public static void main(String[] args) {
         Component main = new Component();
         

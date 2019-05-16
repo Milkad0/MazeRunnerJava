@@ -9,6 +9,21 @@ package Model;
  *
  * @author q95
  */
-public class Maps {
+public class Level {
+   
+       public Level(){
+        
+    }
     
+    public void init(){
+        
+    }
+    
+    public void update(){
+        
+    }
+    
+    public void render(){
+     
+    }
 }
