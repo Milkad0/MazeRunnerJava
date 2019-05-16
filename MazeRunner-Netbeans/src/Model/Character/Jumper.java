@@ -11,4 +11,8 @@ package Model.Character;
  */
 public class Jumper extends Enemies{
     
+    //OTHERS
+    public void move(){
+        ;
+    }
 }
