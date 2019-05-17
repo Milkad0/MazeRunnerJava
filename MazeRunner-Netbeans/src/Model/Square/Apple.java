@@ -18,6 +18,7 @@ public class Apple extends Square{
     public Apple(){
         super(1, null);
         this.setImage(image);
+        this.id = 1;
     }
     
     public Apple(boolean _appleHere){

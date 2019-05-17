@@ -30,7 +30,7 @@ public class Characters {
     }
     
     //OTHERS
-    public void move(Square square){
+   /* public void move(Square square){
         switch(square.getID()){
             case 1:
                 setPowerCount();
@@ -54,5 +54,5 @@ public class Characters {
             default:
                 break;
         }
-    }
+    }*/
 }

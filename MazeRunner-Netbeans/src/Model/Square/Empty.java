@@ -10,5 +10,9 @@ package Model.Square;
  * @author q95
  */
 public class Empty extends Square{
-    
+    public Empty(){
+       
+        this.setImage(image);
+        this.id = 3;
+    }
 }

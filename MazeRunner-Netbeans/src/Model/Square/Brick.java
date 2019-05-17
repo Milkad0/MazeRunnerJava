@@ -10,5 +10,11 @@ package Model.Square;
  * @author q95
  */
 public class Brick extends Square{
+   
+    public Brick(){
+    
+        this.setImage(image);
+        this.id = 2;
+    }
     
 }

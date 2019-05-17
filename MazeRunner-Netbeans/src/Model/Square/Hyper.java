@@ -11,4 +11,9 @@ package Model.Square;
  */
 public class Hyper extends Square{
     
+    public Hyper(){
+       
+        this.setImage(image);
+        this.id = 6;
+    }
 }

@@ -11,4 +11,9 @@ package Model.Square;
  */
 public class Goal extends Square{
     
+    public Goal(){
+       
+        this.setImage(image);
+        this.id = 5;
+    }
 }

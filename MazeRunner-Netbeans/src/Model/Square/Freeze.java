@@ -11,4 +11,9 @@ package Model.Square;
  */
 public class Freeze extends Square{
     
+    public Freeze(){
+       
+        this.setImage(image);
+        this.id = 4;
+    }
 }

@@ -140,6 +140,8 @@ public class Component {
         glMatrixMode(GL_MODELVIEW);
         glLoadIdentity();
         
+        glEnable(GL_TEXTURE_2D);
+        
     }
     
     public static void main(String[] args) {

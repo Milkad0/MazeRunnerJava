@@ -11,4 +11,9 @@ package Model.Square;
  */
 public class Ladder extends Square{
     
+    public Ladder(){
+       
+        this.setImage(image);
+        this.id = 7;
+    }
 }
