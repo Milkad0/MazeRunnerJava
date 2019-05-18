@@ -26,7 +26,7 @@ public class Square {
     
     float [] color = new float []{1,1,1,1};
     
-    public int[] squareSprite = new int[]{1,1,1,1,1,1,1,1};
+    public int[] squareSprite = new int[]{0,0,0,0,0,0,0,0};
     
     public int id;
     protected Image image;
@@ -48,15 +48,18 @@ public class Square {
         this.square = square;
         
         if(square == Squares.BRICK) {
+            yo=0;
             xo = 0;
             hasSquareSet = true;
         }else if(square == Squares.EMPTY){
+            yo=0;
             xo = 1;
         }else if(square == Squares.FREEZE){
+            yo=0;
             xo = 2;
         }
         
-        if(hasSquareSet)squareSprite = new int[]{1,1,1,1,1,1,1,1};
+        if(hasSquareSet)squareSprite = new int[]{0,0,0,0,0,0,0,0};
     }
     
      public static void quadData(int x,int y,int w,int h,float[] color,int xo, int yo){
@@ -75,78 +78,79 @@ public class Square {
     
     public void setSquare(boolean vr,boolean vl,boolean vd,boolean vu,boolean vur,boolean vul,boolean vdr,boolean vdl ){
         if (!hasSquareSet) return;
-        if (vl) {
+        //if (vl) {
             squareSprite[0] = 0;
-            squareSprite[1] = 1;
-            squareSprite[6] = 0;
-            squareSprite[7] = 1;
-        }
-        if (vr) {
-            squareSprite[2] = 2;
-            squareSprite[3] = 1;
-            squareSprite[4] = 2;
-            squareSprite[5] = 1;
-        }
-        if (vu) {
-            squareSprite[0] = 1;
             squareSprite[1] = 0;
-            squareSprite[2] = 1;
+            squareSprite[2] = 0;
+            squareSprite[3] = 0;
+        //}
+       /*if (vr) {
+            squareSprite[0] = 1;
+            squareSprite[1] = 1;
+            squareSprite[2] = 0;
+            squareSprite[3] = 0;
+        }
+       if (vu) {
+            squareSprite[0] = 1;
+            squareSprite[1] = 1;
+            squareSprite[2] = 0;
             squareSprite[3] = 0;
             if (vr) { 
-                squareSprite[2] = 2; 
-                squareSprite[3] = 0;
+                squareSprite[1] = 0; 
+                //squareSprite[3] = 0;
             }
             if (vl) { 
                 squareSprite[0] = 0; 
-                squareSprite[1] = 0;
+                //squareSprite[1] = 0;
             }
        }
     if (vd) {
-        squareSprite[4] = 1;
-        squareSprite[5] = 2;
-        squareSprite[6] = 1;
-        squareSprite[7] = 2;
+        squareSprite[0] = 1;
+        squareSprite[1] = 1;
+        squareSprite[2] = 0;
+        squareSprite[3] = 0;
             if (vr) { 
-                squareSprite[4] = 2; 
-                squareSprite[5] = 2;
+               // squareSprite[4] = 2; 
+                squareSprite[2] = 0;
             }
             if (vl) { 
-                squareSprite[6] = 0; 
-                squareSprite[7] = 2;
+                squareSprite[3] = 0; 
+                //squareSprite[7] = 2;
             }
     }
 
     if (vd && vr) {
-        squareSprite[4] = 2;
-        squareSprite[5] = 2;
+        squareSprite[2] = 0;
+        //squareSprite[0] = 2;
     }
     if (vd && vl) {
-        squareSprite[6] = 0;
-        squareSprite[7] = 2;
+        squareSprite[3] = 0;
+       // squareSprite[7] = 2;
     }
 
     if (vur && !vu && !vr) {
-        squareSprite[2] = 3;
-        squareSprite[3] = 1;
+        squareSprite[2] = 0;
+        squareSprite[3] = 0;
     }
     if (vdr && !vd && !vr) {
-        squareSprite[4] = 3;
-        squareSprite[5] = 0;
+        squareSprite[2] = 2;
+        //squareSprite[3] = 0;
     }
     if (vul && !vu && !vl) {
-        squareSprite[0] = 4;
-        squareSprite[1] = 1;
+        squareSprite[3] = 0;
+        squareSprite[2] = 0;
     }
     if (vdl && !vd && !vl) {
-        squareSprite[6] = 4;
-        squareSprite[7] = 0;
-    }
+        squareSprite[3] = 2;
+        //squareSprite[7] = 0;
+    }*/
    }
     
     
     public void render(){
         float x0 = x+Game.xScroll/16;
         float y0 = y+Game.yScroll/16;
+      
         
         if (x0+1 < 0 || y0+1 < 0 || x0 > Component.width/16|| y0 > Component.height/16) return;
         Texture.squares.bind();

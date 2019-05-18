@@ -5,10 +5,13 @@
  */
 package Model;
 
+import java.awt.image.BufferedImage;
 import Model.Square.Square;
 import Model.Square.Square.Squares;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import javax.imageio.ImageIO;
 
 /**
  *
@@ -23,30 +26,52 @@ public class Level {
     Square[][] noneSolidSquare;
     
     public Level(int width, int height){
-        this.width = width;
-        this.height = height;
-        solidSquare = new Square [width][height];
-        noneSolidSquare = new Square [width][height];
+      
         
-        for(int x=0;x<width;x++){
-            for(int y=0; y<height; y++){
-                if(Math.random()>0.5f){
-                    solidSquare[x][y] = new Square (x,y, Squares.BRICK);   
-                }else {
-                    noneSolidSquare[x][y] = new Square(x,y, Squares.EMPTY);
-                }
-            }
+        
+        
+        loadLevel("Map 1");
+        
+    }
+    
+    public void loadLevel (String name){
+        
+        int[] pixels;
+        BufferedImage image = null;
+        try{
+        image = ImageIO.read(Level.class.getResource("/Levels/"+name+".png"));
+        }catch(IOException e){
+            e.printStackTrace();
         }
-        
-        setSquares();
-        
+          width = image.getWidth();
+          height = image.getHeight();
+          pixels = new int[width*height];
+          image.getRGB(0, 0, width, height, pixels, 0, width);
+          
+          solidSquare = new Square [width][height];
+          noneSolidSquare = new Square [width][height];
+          
+          for (int x=0;x<width;x++){
+              for(int y=0;y<height;y++){
+                  if(pixels[x+y*width]==0xFFffffff){
+                      solidSquare[x][y] = new Square(x,y,Squares.BRICK);
+                  }
+                  if(pixels[x+y*width]==0xFF000000){
+                      noneSolidSquare[x][y] = new Square(x,y,Squares.EMPTY);
+                  }
+              }
+          }
+          
+      setSquares();  
     }
     
     public void setSquares(){
         for(int x=0;x<width;x++){
             for(int y=0;y<height;y++){
 
-          if(x-1<0||y-1<0||x+1>=width||y+1>=height) continue;
+          if(x-1<0||y-1<0||x+1>=width||y+1>=height){
+              continue;
+          }
           boolean vu=false, vd=false, vl=false, vr=false;
           boolean vur=false, vdr=false, vul=false, vdl=false;
           
