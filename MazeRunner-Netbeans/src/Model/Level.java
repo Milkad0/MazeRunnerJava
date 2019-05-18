@@ -27,6 +27,17 @@ public class Level {
         this.height = height;
         solidSquare = new Square [width][height];
         noneSolidSquare = new Square [width][height];
+        
+        for(int x=0;x<width;x++){
+            for(int y=0; y<height; y++){
+                if(Math.random()>0.5f){
+                    solidSquare[x][y] = new Square (x,y, Squares.BRICK);   
+                }else {
+                    noneSolidSquare[x][y] = new Square(x,y, Squares.EMPTY);
+                }
+            }
+        }
+        
         setSquares();
         
     }
@@ -35,7 +46,7 @@ public class Level {
         for(int x=0;x<width;x++){
             for(int y=0;y<height;y++){
 
-          if(x-1<0||y-1<0||x+1>=width||y+1>height) continue;
+          if(x-1<0||y-1<0||x+1>=width||y+1>=height) continue;
           boolean vu=false, vd=false, vl=false, vr=false;
           boolean vur=false, vdr=false, vul=false, vdl=false;
           
@@ -67,21 +78,19 @@ public class Level {
           if(solidSquare[x][y]!=null){
               solidSquare[x][y].setSquare(vr, vl, vd, vu, vur, vul, vdr, vdl);
           }
+          addSquares(x,y);
             }
         }
-        for (int x = 0;x<width;x++){
-            for (int y = 0; y<height;y++){
-                
-                Square.add(solidSquare[x][y]);
-                //Square.add(noneSolidSquares[x][y]);
-                
-            }
-        }
+        
         
     }
     
     public void addSquares (int x, int y){
-        
+          if (solidSquare[x][y] != null){
+                Square.add(solidSquare[x][y]);
+                } else if(noneSolidSquare[x][y] != null){
+                    Square.add(noneSolidSquare[x][y]);
+                }
     }
     
     public void init(){

@@ -26,7 +26,7 @@ public class Square {
     
     float [] color = new float []{1,1,1,1};
     
-    public int[] squareSprite;// = new int[]{1,1,1,1,1,1,1,1};
+    public int[] squareSprite = new int[]{1,1,1,1,1,1,1,1};
     
     public int id;
     protected Image image;
@@ -47,15 +47,16 @@ public class Square {
         this.y = y;
         this.square = square;
         
-        squareSprite = new int [8];
-        
         if(square == Squares.BRICK) {
             xo = 0;
             hasSquareSet = true;
+        }else if(square == Squares.EMPTY){
+            xo = 1;
+        }else if(square == Squares.FREEZE){
+            xo = 2;
         }
-        if(square == Squares.EMPTY) xo = 1;
-        if(square == Squares.FREEZE)xo = 2;
         
+        if(hasSquareSet)squareSprite = new int[]{1,1,1,1,1,1,1,1};
     }
     
      public static void quadData(int x,int y,int w,int h,float[] color,int xo, int yo){
@@ -74,7 +75,73 @@ public class Square {
     
     public void setSquare(boolean vr,boolean vl,boolean vd,boolean vu,boolean vur,boolean vul,boolean vdr,boolean vdl ){
         if (!hasSquareSet) return;
+        if (vl) {
+            squareSprite[0] = 0;
+            squareSprite[1] = 1;
+            squareSprite[6] = 0;
+            squareSprite[7] = 1;
+        }
+        if (vr) {
+            squareSprite[2] = 2;
+            squareSprite[3] = 1;
+            squareSprite[4] = 2;
+            squareSprite[5] = 1;
+        }
+        if (vu) {
+            squareSprite[0] = 1;
+            squareSprite[1] = 0;
+            squareSprite[2] = 1;
+            squareSprite[3] = 0;
+            if (vr) { 
+                squareSprite[2] = 2; 
+                squareSprite[3] = 0;
+            }
+            if (vl) { 
+                squareSprite[0] = 0; 
+                squareSprite[1] = 0;
+            }
+       }
+    if (vd) {
+        squareSprite[4] = 1;
+        squareSprite[5] = 2;
+        squareSprite[6] = 1;
+        squareSprite[7] = 2;
+            if (vr) { 
+                squareSprite[4] = 2; 
+                squareSprite[5] = 2;
+            }
+            if (vl) { 
+                squareSprite[6] = 0; 
+                squareSprite[7] = 2;
+            }
     }
+
+    if (vd && vr) {
+        squareSprite[4] = 2;
+        squareSprite[5] = 2;
+    }
+    if (vd && vl) {
+        squareSprite[6] = 0;
+        squareSprite[7] = 2;
+    }
+
+    if (vur && !vu && !vr) {
+        squareSprite[2] = 3;
+        squareSprite[3] = 1;
+    }
+    if (vdr && !vd && !vr) {
+        squareSprite[4] = 3;
+        squareSprite[5] = 0;
+    }
+    if (vul && !vu && !vl) {
+        squareSprite[0] = 4;
+        squareSprite[1] = 1;
+    }
+    if (vdl && !vd && !vl) {
+        squareSprite[6] = 4;
+        squareSprite[7] = 0;
+    }
+   }
     
     
     public void render(){
@@ -84,10 +151,10 @@ public class Square {
         if (x0+1 < 0 || y0+1 < 0 || x0 > Component.width/16|| y0 > Component.height/16) return;
         Texture.squares.bind();
         glBegin(GL_QUADS);
-        quadData(this.x*size,this.y*size,this.halfsize,this.halfsize,this.color,xo+squareSprite[0],yo+squareSprite[1]);
-        quadData(this.x*size+8,this.y*size,this.halfsize,this.halfsize,this.color,xo+squareSprite[2],yo+squareSprite[3]);
-        quadData(this.x*size+8,this.y*size+8,this.halfsize,this.halfsize,this.color,xo+squareSprite[4],yo+squareSprite[5]);
-        quadData(this.x*size,this.y*size+8,this.halfsize,this.halfsize,this.color,xo+squareSprite[6],yo+squareSprite[7]);
+        quadData(this.x*size,this.y*size,this.halfsize,this.halfsize,this.color,xo+squareSprite[0],yo);
+        quadData(this.x*size+8,this.y*size,this.halfsize,this.halfsize,this.color,xo+squareSprite[1],yo);
+        quadData(this.x*size+8,this.y*size+8,this.halfsize,this.halfsize,this.color,xo+squareSprite[2],yo);
+        quadData(this.x*size,this.y*size+8,this.halfsize,this.halfsize,this.color,xo+squareSprite[3],yo);
         glEnd();
         Texture.squares.unbind();
     }
