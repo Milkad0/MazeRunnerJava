@@ -21,6 +21,8 @@ import javax.imageio.ImageIO;
  */
 public class Level {
     
+    public float gravity = 1.8f;
+    
     public int width,height;
     
     List<Square> Square = new ArrayList<Square>();
@@ -28,7 +30,7 @@ public class Level {
     Square[][] noneSolidSquare;
     
     List<Characters> tab_character = new ArrayList<Characters>();
-    private static Human player = new Human(5,5);
+    private static Human player = new Human(2,5);
     public Level(int width, int height){
       
         

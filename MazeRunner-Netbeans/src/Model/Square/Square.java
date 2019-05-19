@@ -75,72 +75,12 @@ public class Square {
     
     public void setSquare(boolean vr,boolean vl,boolean vd,boolean vu,boolean vur,boolean vul,boolean vdr,boolean vdl ){
         if (!hasSquareSet) return;
-        //if (vl) {
+ 
             squareSprite[0] = 0;
             squareSprite[1] = 0;
             squareSprite[2] = 0;
             squareSprite[3] = 0;
-        //}
-       /*if (vr) {
-            squareSprite[0] = 1;
-            squareSprite[1] = 1;
-            squareSprite[2] = 0;
-            squareSprite[3] = 0;
-        }
-       if (vu) {
-            squareSprite[0] = 1;
-            squareSprite[1] = 1;
-            squareSprite[2] = 0;
-            squareSprite[3] = 0;
-            if (vr) { 
-                squareSprite[1] = 0; 
-                //squareSprite[3] = 0;
-            }
-            if (vl) { 
-                squareSprite[0] = 0; 
-                //squareSprite[1] = 0;
-            }
-       }
-    if (vd) {
-        squareSprite[0] = 1;
-        squareSprite[1] = 1;
-        squareSprite[2] = 0;
-        squareSprite[3] = 0;
-            if (vr) { 
-               // squareSprite[4] = 2; 
-                squareSprite[2] = 0;
-            }
-            if (vl) { 
-                squareSprite[3] = 0; 
-                //squareSprite[7] = 2;
-            }
-    }
-
-    if (vd && vr) {
-        squareSprite[2] = 0;
-        //squareSprite[0] = 2;
-    }
-    if (vd && vl) {
-        squareSprite[3] = 0;
-       // squareSprite[7] = 2;
-    }
-
-    if (vur && !vu && !vr) {
-        squareSprite[2] = 0;
-        squareSprite[3] = 0;
-    }
-    if (vdr && !vd && !vr) {
-        squareSprite[2] = 2;
-        //squareSprite[3] = 0;
-    }
-    if (vul && !vu && !vl) {
-        squareSprite[3] = 0;
-        squareSprite[2] = 0;
-    }
-    if (vdl && !vd && !vl) {
-        squareSprite[3] = 2;
-        //squareSprite[7] = 0;
-    }*/
+        
    }
     
     

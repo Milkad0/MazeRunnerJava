@@ -20,12 +20,12 @@ public abstract class Characters {
     
     //GETTER
     
-    protected int x, y;
+    protected float x, y;
 	protected boolean removed = false;
 	protected Texture texture;
 	protected Level level;
 	
-	protected float drag;
+	protected float friction;
 	protected float mass;
 	
 	//protected Vector2f shootPoint;
@@ -41,17 +41,35 @@ public abstract class Characters {
 	public abstract void render();
 	
         public boolean isSolidSquare(float xa, float ya){
-            if(level.getSolidSquare((int)(x+xa+8)/16,(int) (y+ya+8)/16) !=null)return true;
+            
+            //taille bordure
+            int x0 = (int)(x+xa+3.8f)/16 ;
+            int x1 = (int)(x+xa+13)/16 ;
+            int y0 = (int) (y+ya+2)/16;
+            int y1 = (int) (y+ya+15.9)/16;
+            
+            if(level.getSolidSquare(x0,y0) !=null)return true;
+            if(level.getSolidSquare(x1,y0) !=null)return true;
+            if(level.getSolidSquare(x0,y1) !=null)return true;
+            if(level.getSolidSquare(x1,y1) !=null)return true;
             
             return false;
             
         }
+        
+       public boolean isGrounded(){
+           
+           if(level.getSolidSquare((int)(x+3.8f)/16 , (int)(y+16)/16)!=null) return true;
+           if(level.getSolidSquare((int)(x+12)/16 , (int)(y+16)/16)!=null) return true;
+           
+           return false;
+       } 
 	
-	public int getX() {
+	public float getX() {
 		return x;
 	}
 	
-	public int getY() {
+	public float getY() {
 		return y;
 	}
 	
