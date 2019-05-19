@@ -10,6 +10,10 @@ package Model.Character;
  * @author q95
  */
 public class Jumper extends Enemies{
+
+    public Jumper(int x, int y) {
+        super(x, y);
+    }
     
     //OTHERS
     public void move(){

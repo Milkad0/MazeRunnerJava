@@ -20,6 +20,7 @@ import static org.lwjgl.opengl.GL12.*;
 public class Texture {
     
     public static Texture squares = loadTexture("/Texture/blocks1.png");
+    public static Texture human = loadTexture("/Characters/Player/Human.png");
     int width, height;
     int id;
     

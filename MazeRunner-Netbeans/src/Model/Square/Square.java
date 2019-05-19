@@ -8,6 +8,7 @@ package Model.Square;
 
 import Controller.Component;
 import Controller.Game;
+import static Controller.View.quadData;
 import java.awt.Image;
 import java.util.Random;
 import static org.lwjgl.opengl.GL11.*;
@@ -39,7 +40,7 @@ public class Square {
     }
     
     public enum Squares {
-        BRICK,EMPTY,FREEZE 
+        BRICK,EMPTY,FREEZE,APPLE,LADDER 
     }
     
     public Square(int x,int y,Squares square){     
@@ -57,24 +58,19 @@ public class Square {
         }else if(square == Squares.FREEZE){
             yo=0;
             xo = 2;
+        }else if(square == Squares.APPLE){
+            yo=0;
+            xo=3;
+        }
+        else if(square == Squares.LADDER){
+            yo=0;
+            xo=4;
         }
         
         if(hasSquareSet)squareSprite = new int[]{0,0,0,0,0,0,0,0};
     }
     
-     public static void quadData(int x,int y,int w,int h,float[] color,int xo, int yo){
-        glColor4f(color[0],color[1],color[2],color[3]);
-        glTexCoord2f((0 + xo)/32.0f,(0 + yo)/32.0f); glVertex2f(x,y);
-        glTexCoord2f((1 + xo)/32.0f,(0 + yo)/32.0f); glVertex2f(x + w,y);
-        glTexCoord2f((1 + xo)/32.0f,(1 + yo)/32.0f); glVertex2f(x+w,y+h);
-        glTexCoord2f((0 + xo)/32.0f,(1 + yo)/32.0f); glVertex2f(x,y+h);
-    }
-    
-    public static void renderQuad(int x,int y,int w,int h, float[] color, int xo, int yo){
-        glBegin(GL_QUADS);
-        quadData(x,y,w,h,color, xo , yo);
-        glEnd();
-    }
+ 
     
     public void setSquare(boolean vr,boolean vl,boolean vd,boolean vu,boolean vur,boolean vul,boolean vdr,boolean vdl ){
         if (!hasSquareSet) return;

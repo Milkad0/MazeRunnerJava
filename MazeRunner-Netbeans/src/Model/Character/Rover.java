@@ -10,6 +10,10 @@ package Model.Character;
  * @author q95
  */
 public class Rover extends Enemies{
+
+    public Rover(int x, int y) {
+        super(x, y);
+    }
     
     
     //OTHERS

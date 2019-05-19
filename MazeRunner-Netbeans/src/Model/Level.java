@@ -5,6 +5,8 @@
  */
 package Model;
 
+import Model.Character.Characters;
+import Model.Character.Human;
 import java.awt.image.BufferedImage;
 import Model.Square.Square;
 import Model.Square.Square.Squares;
@@ -25,13 +27,20 @@ public class Level {
     Square[][] solidSquare;
     Square[][] noneSolidSquare;
     
+    List<Characters> tab_character = new ArrayList<Characters>();
+    
     public Level(int width, int height){
       
         
         
         
         loadLevel("Map 1");
-        
+        spawner();
+    }
+    
+    public void spawner(){
+        addCharacters(new Human(5,5));
+       
     }
     
     public void loadLevel (String name){
@@ -122,13 +131,32 @@ public class Level {
         
     }
     
-    public void update(){
+    public void addCharacters (Characters e){
+        tab_character.add(e);
         
+    }
+    
+    public void removeCharacters (Characters e){
+        tab_character.remove(e);
+        
+    }
+    
+    public void update(){
+         for (int i=0;i<tab_character.size();i++){
+         Characters e = tab_character.get(i);
+         if(e.getRemoved()) tab_character.remove(e);
+         e.update();
+     }
     }
     
     public void render(){
      for (Square square: Square){ //for each
          square.render();
+     }
+     
+     for (int i=0;i<tab_character.size();i++){
+         Characters e = tab_character.get(i);
+         e.render();
      }
     }
 }

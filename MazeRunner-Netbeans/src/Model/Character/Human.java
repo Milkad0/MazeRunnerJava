@@ -5,14 +5,35 @@
  */
 package Model.Character;
 
+import static Controller.View.renderCharacters;
+import Model.Level;
+import Model.Square.Square;
+import Model.Square.Texture;
+
 /**
  *
  * @author q95
  */
-public class Human extends Characters{
+public  class Human extends Characters{
     
     //OTHERS
-    public void move(){
-        ;
+    public Human (int x,int y){
+        super(x,y);
+        texture = Texture.human;
+    }
+    @Override
+    public void update(){
+        
+    }
+    @Override
+    public void render(){
+        texture.bind();
+        renderCharacters(x,y,16,16,new float[]{1,1,1,1},4.0f,0,0);
+        texture.unbind();
+    }
+
+    @Override
+    public void init(Level level) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 }

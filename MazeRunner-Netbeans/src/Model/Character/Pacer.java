@@ -10,6 +10,10 @@ package Model.Character;
  * @author q95
  */
 public class Pacer extends Enemies{
+
+    public Pacer(int x, int y) {
+        super(x, y);
+    }
     
     //OTHERS
     public void move(){
