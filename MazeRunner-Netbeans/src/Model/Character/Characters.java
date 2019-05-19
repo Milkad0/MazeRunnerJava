@@ -6,7 +6,7 @@
 package Model.Character;
 import Model.Level;
 import Model.Square.Square;
-import Model.Square.Texture;
+import Graphics.Texture;
 
 /**
  *
@@ -40,6 +40,12 @@ public abstract class Characters {
 	public abstract void update();
 	public abstract void render();
 	
+        public boolean isSolidSquare(float xa, float ya){
+            if(level.getSolidSquare((int)(x+xa+8)/16,(int) (y+ya+8)/16) !=null)return true;
+            
+            return false;
+            
+        }
 	
 	public int getX() {
 		return x;

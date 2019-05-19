@@ -6,9 +6,10 @@
 package Model.Square;
 
 
+import Graphics.Texture;
 import Controller.Component;
 import Controller.Game;
-import static Controller.View.quadData;
+import static Graphics.View.quadData;
 import java.awt.Image;
 import java.util.Random;
 import static org.lwjgl.opengl.GL11.*;
@@ -40,7 +41,7 @@ public class Square {
     }
     
     public enum Squares {
-        BRICK,EMPTY,FREEZE,APPLE,LADDER 
+        BRICK,EMPTY,FREEZE,APPLE,LADDER,GOAL,HYPER
     }
     
     public Square(int x,int y,Squares square){     

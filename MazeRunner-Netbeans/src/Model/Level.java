@@ -28,7 +28,7 @@ public class Level {
     Square[][] noneSolidSquare;
     
     List<Characters> tab_character = new ArrayList<Characters>();
-    
+    private static Human player = new Human(5,5);
     public Level(int width, int height){
       
         
@@ -39,7 +39,8 @@ public class Level {
     }
     
     public void spawner(){
-        addCharacters(new Human(5,5));
+        player.init(this);
+        addCharacters(player);
        
     }
     
@@ -119,6 +120,13 @@ public class Level {
         
     }
     
+    public Square getSolidSquare(int x, int y){
+         if(x<0||y<0||x>=width||y>=height){
+              return null;
+          }
+        return solidSquare[x][y];
+    }
+    
     public void addSquares (int x, int y){
           if (solidSquare[x][y] != null){
                 Square.add(solidSquare[x][y]);
@@ -158,5 +166,9 @@ public class Level {
          Characters e = tab_character.get(i);
          e.render();
      }
+    }
+    
+    public static Human getPlayer(){
+        return player;
     }
 }

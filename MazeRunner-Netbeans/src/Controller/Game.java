@@ -34,6 +34,7 @@ public class Game {
     
     public void update(){
         //translateView(-0.5f, -0.5f);
+        //System.out.println(Level.getPlayer().getX());
         level.update();
         
     }
