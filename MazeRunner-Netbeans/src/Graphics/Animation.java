@@ -56,6 +56,10 @@ public class Animation {
         frame=0;
     }
     
+    public boolean getPlaying(){
+        return playing;
+    }
+    
     public int getCurrentFrame(){
         return frame;
     }

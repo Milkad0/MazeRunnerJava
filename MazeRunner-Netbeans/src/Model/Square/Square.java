@@ -73,15 +73,16 @@ public class Square {
     
  
     
-    public void setSquare(boolean vr,boolean vl,boolean vd,boolean vu,boolean vur,boolean vul,boolean vdr,boolean vdl ){
-        if (!hasSquareSet) return;
+    public void setSquare(){
+        
  
-            squareSprite[0] = 0;
-            squareSprite[1] = 0;
+            squareSprite[0] = -2;
+            squareSprite[1] = -2;
             squareSprite[2] = 0;
-            squareSprite[3] = 0;
+            squareSprite[3] = -2;
         
    }
+
     
     
     public void render(){
@@ -92,10 +93,18 @@ public class Square {
         if (x0+1 < 0 || y0+1 < 0 || x0 > Component.width/16|| y0 > Component.height/16) return;
         Texture.squares.bind();
         glBegin(GL_QUADS);
+        
+        if((xo==3||xo==0)&&yo==0){
         quadData(this.x*size,this.y*size,this.halfsize,this.halfsize,this.color,xo+squareSprite[0],yo);
         quadData(this.x*size+8,this.y*size,this.halfsize,this.halfsize,this.color,xo+squareSprite[1],yo);
         quadData(this.x*size+8,this.y*size+8,this.halfsize,this.halfsize,this.color,xo+squareSprite[2],yo);
         quadData(this.x*size,this.y*size+8,this.halfsize,this.halfsize,this.color,xo+squareSprite[3],yo);
+        }else{
+            
+           quadData(this.x*size,this.y*size,this.size,this.size,this.color,xo,yo); 
+        }
+        
+        
         glEnd();
         Texture.squares.unbind();
     }

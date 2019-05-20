@@ -39,6 +39,21 @@ public abstract class Characters {
 	public abstract void init(Level level);
 	public abstract void update();
 	public abstract void render();
+        
+        public boolean isApple(){
+  
+           if(level.getAppleSquare((int)(x+4.6f)/16 , (int)(y+16)/16)!=null) return true;
+         
+            return false;
+        }
+        
+        
+        public boolean isLadder(){
+  
+           if(level.getLadderSquare((int)(x+4.6f)/16 , (int)(y+16)/16)!=null) return true;
+         
+            return false;
+        }
 	
         public boolean isSolidSquare(float xa, float ya){
             
@@ -46,7 +61,7 @@ public abstract class Characters {
             int x0 = (int)(x+xa+3.8f)/16 ;
             int x1 = (int)(x+xa+13)/16 ;
             int y0 = (int) (y+ya+2)/16;
-            int y1 = (int) (y+ya+15.9)/16;
+            int y1 = (int) (y+ya+15.8)/16;
             
             if(level.getSolidSquare(x0,y0) !=null)return true;
             if(level.getSolidSquare(x1,y0) !=null)return true;

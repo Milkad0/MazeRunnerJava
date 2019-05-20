@@ -19,14 +19,15 @@ import org.lwjgl.input.Keyboard;
  */
 public  class Human extends Characters{
     
-    Animation anim;
+    Animation run,jump;
     int dir = 0;
-    float speed = 2f;
+    float speed = 1.5f;
     
     public Human (int x,int y){
         super(x,y);
         texture = Texture.human;
-        anim = new Animation(4, 5, true);
+        run = new Animation(4, 5, true);
+        jump = new Animation(1,5,true);
         
         mass = 0.1f;
         friction = 0.95f;
@@ -34,27 +35,50 @@ public  class Human extends Characters{
     float xa,ya;
     public void update(){
         
+        if(!isLadder()){
         ya += level.gravity*mass;
-        
-        anim.update();
-        anim.pause();
+        }
+        run.update();
+        run.pause();
+        jump.pause();
+        jump.update();
         if(Keyboard.isKeyDown(Keyboard.KEY_Z)||Keyboard.isKeyDown(Keyboard.KEY_W)){
-            if (isGrounded())
+            if (isGrounded()){
             ya -= 3.8f;
+            dir=2;
+            jump.play();
+             
+            }else if(isLadder()){
+            ya -= 0.6f;
+            
+            }
+           
+           
         }
         if(Keyboard.isKeyDown(Keyboard.KEY_S)){
             ya += 0;
+            if(isLadder()){
+            ya += 0.6f;
+            }
         }
         if(Keyboard.isKeyDown(Keyboard.KEY_Q)||Keyboard.isKeyDown(Keyboard.KEY_A)){
+            if(isLadder()){
+            ya -= 0.1f;
+            
+            }
             xa -= speed;
             dir = 1;
-            anim.play();
+            run.play();
         }
         if(Keyboard.isKeyDown(Keyboard.KEY_D)){
+            if(isLadder()){
+            ya -= 0.1f;
+            }
             xa += speed;
             dir = 0;
-            anim.play();
+            run.play();
         }
+         
         int xStep = (int) Math.abs(xa*1000);
         for (int i=0;i<xStep;i++){
             if(!isSolidSquare(xa/xStep,0)){
@@ -73,12 +97,16 @@ public  class Human extends Characters{
         }
         
         xa = 0;
+        if(!isLadder()){
         ya *= friction;
+        }else{
+            ya=0;
+        }
     }
     @Override
     public void render(){
         texture.bind();
-        renderCharacters(x,y,16,16,Color.WHITE,4.0f,anim.getCurrentFrame(),0+dir);
+        renderCharacters(x,y,16,16,Color.WHITE,4.0f,run.getCurrentFrame(),0+dir);
         texture.unbind();
     }
 

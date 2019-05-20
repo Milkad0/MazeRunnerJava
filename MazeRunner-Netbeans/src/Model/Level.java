@@ -28,6 +28,8 @@ public class Level {
     List<Square> Square = new ArrayList<Square>();
     Square[][] solidSquare;
     Square[][] noneSolidSquare;
+    Square[][] ladderSquare;
+    Square[][] appleSquare;
     
     List<Characters> tab_character = new ArrayList<Characters>();
     private static Human player = new Human(2,5);
@@ -62,6 +64,8 @@ public class Level {
           
           solidSquare = new Square [width][height];
           noneSolidSquare = new Square [width][height];
+          ladderSquare = new Square [width][height];
+          appleSquare = new Square [width][height];
           
           for (int x=0;x<width;x++){
               for(int y=0;y<height;y++){
@@ -70,6 +74,12 @@ public class Level {
                   }
                   if(pixels[x+y*width]==0xFF000000){
                       noneSolidSquare[x][y] = new Square(x,y,Squares.EMPTY);
+                  }
+                  if(pixels[x+y*width]==0xFFff6A00){
+                      ladderSquare[x][y] = new Square(x,y,Squares.LADDER);
+                  }
+                  if(pixels[x+y*width]==0xFFff0000){
+                      appleSquare[x][y] = new Square(x,y,Squares.APPLE);
                   }
               }
           }
@@ -84,43 +94,16 @@ public class Level {
           if(x-1<0||y-1<0||x+1>=width||y+1>=height){
               continue;
           }
-          boolean vu=false, vd=false, vl=false, vr=false;
-          boolean vur=false, vdr=false, vul=false, vdl=false;
-          
-          if(solidSquare[x+1][y]==null){
-              vr = true;
-          }
-          if(solidSquare[x-1][y]==null){
-              vl = true;
-          }
-          if(solidSquare[x][y+1]==null){
-              vd = true;
-          }
-          if(solidSquare[x][y-1]==null){
-              vu = true;
-          }
-           if(solidSquare[x+1][y+1]==null){
-              vdr = true;
-          }
-          if(solidSquare[x-1][y-1]==null){
-              vul = true;
-          }
-          if(solidSquare[x-1][y+1]==null){
-              vdl = true;
-          }
-          if(solidSquare[x+1][y-1]==null){
-              vur = true;
-          }
-          
-          if(solidSquare[x][y]!=null){
-              solidSquare[x][y].setSquare(vr, vl, vd, vu, vur, vul, vdr, vdl);
-          }
+        if(appleSquare[x][y]!=null){
+            appleSquare[x][y].setSquare();
+        }
           addSquares(x,y);
             }
         }
         
         
     }
+    
     
     public Square getSolidSquare(int x, int y){
          if(x<0||y<0||x>=width||y>=height){
@@ -129,13 +112,33 @@ public class Level {
         return solidSquare[x][y];
     }
     
-    public void addSquares (int x, int y){
+     public Square getLadderSquare(int x, int y){
+         if(x<0||y<0||x>=width||y>=height){
+              return null;
+          }
+        return ladderSquare[x][y];
+    }
+     
+     public Square getAppleSquare(int x, int y){
+         if(x<0||y<0||x>=width||y>=height){
+              return null;
+          }
+        return appleSquare[x][y];
+    }
+    
+    
+    public  void addSquares (int x, int y){
           if (solidSquare[x][y] != null){
                 Square.add(solidSquare[x][y]);
                 } else if(noneSolidSquare[x][y] != null){
                     Square.add(noneSolidSquare[x][y]);
+                }else if(ladderSquare[x][y] != null){
+                    Square.add(ladderSquare[x][y]);
+                }else if(appleSquare[x][y] != null){
+                    Square.add(appleSquare[x][y]);
                 }
     }
+   
     
     public void init(){
         
