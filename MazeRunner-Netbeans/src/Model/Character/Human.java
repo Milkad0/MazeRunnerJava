@@ -19,7 +19,8 @@ import org.lwjgl.input.Keyboard;
  */
 public  class Human extends Characters{
     
-    Animation run,jump;
+    Animation run,jump,climb;
+    
     int dir = 0;
     float speed = 1.5f;
     
@@ -28,6 +29,7 @@ public  class Human extends Characters{
         texture = Texture.human;
         run = new Animation(4, 5, true);
         jump = new Animation(1,5,true);
+        climb = new Animation(3,5,true);
         
         mass = 0.1f;
         friction = 0.95f;
@@ -40,16 +42,18 @@ public  class Human extends Characters{
         }
         run.update();
         run.pause();
-        jump.pause();
-        jump.update();
+        climb.update();
+         climb.pause();
         if(Keyboard.isKeyDown(Keyboard.KEY_Z)||Keyboard.isKeyDown(Keyboard.KEY_W)){
             if (isGrounded()){
             ya -= 3.8f;
             dir=2;
-            jump.play();
+            run.play();
              
             }else if(isLadder()){
             ya -= 0.6f;
+            dir =2;
+            climb.play();
             
             }
            
@@ -59,6 +63,8 @@ public  class Human extends Characters{
             ya += 0;
             if(isLadder()){
             ya += 0.6f;
+             dir =2;
+            climb.play();
             }
         }
         if(Keyboard.isKeyDown(Keyboard.KEY_Q)||Keyboard.isKeyDown(Keyboard.KEY_A)){
@@ -106,7 +112,12 @@ public  class Human extends Characters{
     @Override
     public void render(){
         texture.bind();
+        if(climb.getPlaying()){
+        renderCharacters(x,y,16,16,Color.WHITE,4.0f,climb.getCurrentFrame(),0+dir);
+        }else{
+      
         renderCharacters(x,y,16,16,Color.WHITE,4.0f,run.getCurrentFrame(),0+dir);
+        }
         texture.unbind();
     }
 
