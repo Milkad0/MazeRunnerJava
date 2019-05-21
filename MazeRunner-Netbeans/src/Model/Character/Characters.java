@@ -72,6 +72,33 @@ public abstract class Characters {
             
         }
         
+         public boolean isFreezeSquare(float xa, float ya){
+            
+            //taille bordure
+            int x0 = (int)(x+xa+3.8f)/16 ;
+            int x1 = (int)(x+xa+13)/16 ;
+            int y0 = (int) (y+ya+2)/16;
+            int y1 = (int) (y+ya+15.8)/16;
+            
+            
+            if(level.getFreezeSquare(x0,y0) !=null)return true;
+            if(level.getFreezeSquare(x1,y0) !=null)return true;
+            if(level.getFreezeSquare(x0,y1) !=null)return true;
+            if(level.getFreezeSquare(x1,y1) !=null)return true;
+            
+            
+            return false;
+            
+        }
+         public boolean isFreezed(){
+           
+           if(level.getFreezeSquare((int)(x+3.8f)/16 , (int)(y+16)/16)!=null) return true;
+           if(level.getFreezeSquare((int)(x+12)/16 , (int)(y+16)/16)!=null) return true;
+           if(level.getFreezeSquare((int)(x+4.6f)/16 , (int)(y+16)/16)!=null) return true;
+           
+           return false;
+       } 
+        
        public boolean isGrounded(){
            
            if(level.getSolidSquare((int)(x+3.8f)/16 , (int)(y+16)/16)!=null) return true;

@@ -13,31 +13,36 @@ public class Animation {
     private int frame =0;
     private int length;
     private int speed;
+    private int firstFrame;
+    private int resetFrame;
     private boolean loop = false;
     
     private boolean playing = false;
     private int time = 0;
     
-    public Animation (int length, int speed, boolean loop){
+    public Animation (int resetFrame, int firstFrame, int lastFrame, int speed, boolean loop){
         
-        this.length = length;
+        this.firstFrame = firstFrame;
+        this.length = lastFrame;
         this.speed = speed;
         this.loop = loop;
+        this.resetFrame = resetFrame;
     }
     
     public void update(){
+        
         if(playing){
             time++;
             if(time>speed){
                 frame++;
                 if(frame>=length){
-                    if(loop) frame=1;
+                    if(loop) frame=firstFrame-1;
                     else frame = length;
                 }
                 time = 0;
             }
         }else{
-            frame=0;
+            frame=resetFrame-1;
         }
        
         

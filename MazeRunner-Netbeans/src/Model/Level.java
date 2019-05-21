@@ -30,6 +30,7 @@ public class Level {
     Square[][] noneSolidSquare;
     Square[][] ladderSquare;
     Square[][] appleSquare;
+    Square[][] freezeSquare;
     
     List<Characters> tab_character = new ArrayList<Characters>();
     private static Human player = new Human(2,5);
@@ -66,6 +67,7 @@ public class Level {
           noneSolidSquare = new Square [width][height];
           ladderSquare = new Square [width][height];
           appleSquare = new Square [width][height];
+          freezeSquare = new Square [width][height];
           
           for (int x=0;x<width;x++){
               for(int y=0;y<height;y++){
@@ -80,6 +82,9 @@ public class Level {
                   }
                   if(pixels[x+y*width]==0xFFff0000){
                       appleSquare[x][y] = new Square(x,y,Squares.APPLE);
+                  }
+                  if(pixels[x+y*width]==0xFF00ffff){
+                      freezeSquare[x][y] = new Square(x,y,Squares.FREEZE);
                   }
               }
           }
@@ -126,6 +131,12 @@ public class Level {
         return appleSquare[x][y];
     }
     
+      public Square getFreezeSquare(int x, int y){
+         if(x<0||y<0||x>=width||y>=height){
+              return null;
+          }
+        return freezeSquare[x][y];
+    }
     
     public  void addSquares (int x, int y){
           if (solidSquare[x][y] != null){
@@ -136,6 +147,8 @@ public class Level {
                     Square.add(ladderSquare[x][y]);
                 }else if(appleSquare[x][y] != null){
                     Square.add(appleSquare[x][y]);
+                }else if(freezeSquare[x][y] != null){
+                    Square.add(freezeSquare[x][y]);
                 }
     }
    
