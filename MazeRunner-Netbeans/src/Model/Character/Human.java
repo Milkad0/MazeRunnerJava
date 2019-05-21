@@ -23,6 +23,7 @@ public class Human extends Characters {
 
     int dir = 0;
     float speed = 1.5f;
+    boolean freezed = false;
 
     public Human(int x, int y) {
         super(x, y);
@@ -46,7 +47,8 @@ public class Human extends Characters {
         run.pause();
         climb.update();
         climb.pause();
-        freeze.update();
+        //freeze.update();
+        
 
         if (Keyboard.isKeyDown(Keyboard.KEY_Z) || Keyboard.isKeyDown(Keyboard.KEY_W)) {
             if (isGrounded()) {
@@ -93,13 +95,29 @@ public class Human extends Characters {
 
         }
 
-        if (isFreezed()) {
+        if (isFreezed() && freezed == false) {
             dir = 2;
             xa *= -0.5 + friction;
-            freeze.play();
+            
+           
+            long timerBefore = System.currentTimeMillis();
+            long duration = 0;
+
+                freeze.play();
+                freeze.update();
+                render();
+            
+            while ((duration < 3000)&&(freeze.getPlaying())) {
+                
+                duration = System.currentTimeMillis() - timerBefore;
+            }
+            freezed = true;
         } else {
             freeze.pause();
         }
+        
+        
+        
         int xStep = (int) Math.abs(xa * 1000);
         for (int i = 0; i < xStep; i++) {
             if (!isSolidSquare(xa / xStep, 0) && !isFreezeSquare(xa / xStep, 0)) {
