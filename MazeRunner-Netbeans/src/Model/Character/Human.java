@@ -24,7 +24,7 @@ public class Human extends Characters {
     int dir = 0;
     float speed = 1.5f;
     boolean freezed = false;
-
+    int test =0;
     public Human(int x, int y) {
         super(x, y);
         texture = Texture.human;
@@ -47,7 +47,7 @@ public class Human extends Characters {
         run.pause();
         climb.update();
         climb.pause();
-        //freeze.update();
+        freeze.update();
         
 
         if (Keyboard.isKeyDown(Keyboard.KEY_Z) || Keyboard.isKeyDown(Keyboard.KEY_W)) {
@@ -102,17 +102,22 @@ public class Human extends Characters {
            
             long timerBefore = System.currentTimeMillis();
             long duration = 0;
-
+            int random_duration = (int) (1 + (Math.random() * (3 - 1)));
                 freeze.play();
-                freeze.update();
-                render();
-            
-            while ((duration < 3000)&&(freeze.getPlaying())) {
+                test++;
                 
+            if(test==2){
+                freezed = true;
+                test=0;
+           while ((duration < random_duration*1000)&&(freeze.getPlaying())) {
+               
                 duration = System.currentTimeMillis() - timerBefore;
-            }
-            freezed = true;
-        } else {
+            }}
+            
+        } else if(!isFreezed()) {
+            freeze.pause();
+            freezed = false;
+        }else {
             freeze.pause();
         }
         
