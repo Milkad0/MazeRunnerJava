@@ -21,8 +21,8 @@ public class Component {
     
     public static String title = "MazeRunner";
     public static int scale = 3;
-    public static int width = 1500/scale;
-    public static int height = 950/scale;
+    public static int width = 1484/scale;
+    public static int height = 914/scale;
    
     int time = 0;
     
@@ -120,7 +120,7 @@ public class Component {
      public void display(){
         try{  
         Display.setDisplayMode(mode);
-        Display.setResizable(true);
+        Display.setResizable(false);
         Display.setFullscreen(false);
         Display.setTitle(title);
         Display.create();

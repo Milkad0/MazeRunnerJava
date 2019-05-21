@@ -14,37 +14,35 @@ import org.lwjgl.opengl.GL11;
  * @author Vincent
  */
 public class Game {
-    
+
     Level level;
-    
+
     public static float xScroll, yScroll;
-    
-    public Game(){
-        level = new Level(Component.width/16,Component.height/16);
+
+    public Game() {
+        level = new Level(Component.width / 16, Component.height / 16);
     }
-    
-    public void init(){
+
+    public void init() {
         level.init();
     }
-    
-    public void translateView(float xa, float ya){
+
+    public void translateView(float xa, float ya) {
         xScroll += xa;
         yScroll += ya;
     }
-    
-    public void update(){
+
+    public void update() {
         //translateView(-0.5f, -0.5f);
         //System.out.println(Level.getPlayer().getX());
         level.update();
-        
+
     }
-    
-    public void render(){
+
+    public void render() {
         GL11.glTranslatef(xScroll, yScroll, 0);
         level.render();
-     
-    }
-    
-    
-}
 
+    }
+
+}

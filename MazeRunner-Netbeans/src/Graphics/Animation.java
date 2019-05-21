@@ -10,62 +10,65 @@ package Graphics;
  * @author Vincent
  */
 public class Animation {
-    private int frame =0;
+
+    private int frame = 0;
     private int length;
     private int speed;
     private int firstFrame;
     private int resetFrame;
     private boolean loop = false;
-    
+
     private boolean playing = false;
     private int time = 0;
-    
-    public Animation (int resetFrame, int firstFrame, int lastFrame, int speed, boolean loop){
-        
+
+    public Animation(int resetFrame, int firstFrame, int lastFrame, int speed, boolean loop) {
+
         this.firstFrame = firstFrame;
         this.length = lastFrame;
         this.speed = speed;
         this.loop = loop;
         this.resetFrame = resetFrame;
     }
-    
-    public void update(){
-        
-        if(playing){
+
+    public void update() {
+
+        if (playing) {
             time++;
-            if(time>speed){
+            if (time > speed) {
                 frame++;
-                if(frame>=length){
-                    if(loop) frame=firstFrame-1;
-                    else frame = length;
+                if (frame >= length) {
+                    if (loop) {
+                        frame = firstFrame - 1;
+                    } else {
+                        frame = length;
+                    }
                 }
                 time = 0;
             }
-        }else{
-            frame=resetFrame-1;
+        } else {
+            frame = resetFrame - 1;
         }
-       
-        
+
     }
-    
-    public void play(){
+
+    public void play() {
         playing = true;
     }
-    
-    public void pause(){
+
+    public void pause() {
         playing = false;
     }
-    
-    public void stop(){
-        playing=false;
-        frame=0;
+
+    public void stop() {
+        playing = false;
+        frame = 0;
     }
-    
-    public boolean getPlaying(){
+
+    public boolean getPlaying() {
         return playing;
     }
-    
-    public int getCurrentFrame(){
+
+    public int getCurrentFrame() {
         return frame;
     }
 }
