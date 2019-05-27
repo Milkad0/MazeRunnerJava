@@ -73,6 +73,7 @@ public class Human extends Characters {
             }
         }
         if (Keyboard.isKeyDown(Keyboard.KEY_Q) || Keyboard.isKeyDown(Keyboard.KEY_A)) {
+            System.out.println("A Key Pressed");
             xa -= speed;
             dir = 1;
             run.play();
@@ -84,7 +85,9 @@ public class Human extends Characters {
 
         }
         if (Keyboard.isKeyDown(Keyboard.KEY_D)) {
-
+       
+        System.out.println("D Key Pressed");
+        
             xa += speed;
             dir = 0;
             run.play();
@@ -97,7 +100,7 @@ public class Human extends Characters {
 
         if (isFreezed() && freezed == false) {
             dir = 2;
-            xa *= -0.5 + friction;
+            
             
            
             long timerBefore = System.currentTimeMillis();
@@ -109,15 +112,20 @@ public class Human extends Characters {
             if(test==2){
                 freezed = true;
                 test=0;
+
            while ((duration < random_duration*1000)&&(freeze.getPlaying())) {
                
                 duration = System.currentTimeMillis() - timerBefore;
-            }}
+            }
+            System.out.println("Boucle stop");
+            
+            }
             
         } else if(!isFreezed()) {
             freeze.pause();
             freezed = false;
         }else {
+            xa *= 0.5 + friction;
             freeze.pause();
         }
         
