@@ -7,6 +7,7 @@ package Model;
 
 import Model.Character.Characters;
 import Model.Character.Human;
+import Model.Square.Apple;
 import java.awt.image.BufferedImage;
 import Model.Square.Square;
 import Model.Square.Square.Squares;
@@ -33,7 +34,11 @@ public class Level {
     Square[][] freezeSquare;
 
     List<Characters> tab_character = new ArrayList<Characters>();
+    List<Square> tab_apple = new ArrayList<Square>();
+    
     private static Human player = new Human(2, 5);
+    //private static Apple apple = new Apple(4,5);
+    
 
     public Level(int width, int height) {
 

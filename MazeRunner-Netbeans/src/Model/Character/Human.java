@@ -5,6 +5,7 @@
  */
 package Model.Character;
 
+import Controller.Component;
 import Graphics.Animation;
 import Graphics.Color;
 import static Graphics.View.renderCharacters;
@@ -62,6 +63,7 @@ public class Human extends Characters {
                 climb.play();
 
             }
+           
 
         }
         if (Keyboard.isKeyDown(Keyboard.KEY_S)) {
@@ -169,7 +171,7 @@ public class Human extends Characters {
 
         } else {
 
-            renderCharacters(x, y, 16, 16, Color.WHITE, 4.0f, run.getCurrentFrame(), 0 + dir);
+           renderCharacters(x, y, 16, 16, Color.WHITE, 4.0f, run.getCurrentFrame(), 0 + dir);
         }
         texture.unbind();
     }

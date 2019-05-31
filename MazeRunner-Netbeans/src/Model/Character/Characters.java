@@ -166,29 +166,5 @@ public abstract class Characters {
     }
 
     //OTHERS
-    /* public void move(Square square){
-        switch(square.getID()){
-            case 1:
-                setPowerCount();
-                break;
-            case 2:
-                break;
-            case 3:
-                break;
-            case 4:
-                //freeze
-                break;
-            case 5:
-                //goal
-                break;
-            case 6:
-                //hyper
-                break;
-            case 7:
-                //ladder
-                break;
-            default:
-                break;
-        }
-    }*/
+   
 }

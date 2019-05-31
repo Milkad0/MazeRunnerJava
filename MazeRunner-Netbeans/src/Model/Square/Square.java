@@ -37,6 +37,7 @@ public class Square {
     public Square() {
 
     }
+   
 
     public enum Squares {
         BRICK, EMPTY, FREEZE, APPLE, LADDER, GOAL, HYPER
