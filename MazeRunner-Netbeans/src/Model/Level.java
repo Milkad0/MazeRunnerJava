@@ -32,6 +32,7 @@ public class Level {
     Square[][] ladderSquare;
     Square[][] appleSquare;
     Square[][] freezeSquare;
+    Square[][] hyperSquare;
 
     List<Characters> tab_character = new ArrayList<Characters>();
     List<Square> tab_apple = new ArrayList<Square>();
@@ -71,6 +72,7 @@ public class Level {
         ladderSquare = new Square[width][height];
         appleSquare = new Square[width][height];
         freezeSquare = new Square[width][height];
+        hyperSquare = new Square [width][height];
 
         for (int x = 0; x < width; x++) {
             for (int y = 0; y < height; y++) {
@@ -89,6 +91,38 @@ public class Level {
                 if (pixels[x + y * width] == 0xFF00ffff) {
                     freezeSquare[x][y] = new Square(x, y, Squares.FREEZE);
                 }
+                if (pixels[x + y * width] == 0xFFffD800) {
+                    hyperSquare[x][y] = new Square(x, y, Squares.HYPER_0);
+                }
+                if (pixels[x + y * width] == 0xFFffD801) {
+                    hyperSquare[x][y] = new Square(x, y, Squares.HYPER_1);
+                }
+                if (pixels[x + y * width] == 0xFFffD802) {
+                    hyperSquare[x][y] = new Square(x, y, Squares.HYPER_2);
+                }
+                if (pixels[x + y * width] == 0xFFffD803) {
+                    hyperSquare[x][y] = new Square(x, y, Squares.HYPER_3);
+                }
+                if (pixels[x + y * width] == 0xFFffD804) {
+                    hyperSquare[x][y] = new Square(x, y, Squares.HYPER_4);
+                }
+                if (pixels[x + y * width] == 0xFFffD805) {
+                    hyperSquare[x][y] = new Square(x, y, Squares.HYPER_5);
+                }
+                if (pixels[x + y * width] == 0xFFffD806) {
+                    hyperSquare[x][y] = new Square(x, y, Squares.HYPER_6);
+                }
+                if (pixels[x + y * width] == 0xFFffD807) {
+                    hyperSquare[x][y] = new Square(x, y, Squares.HYPER_7);
+                }
+                if (pixels[x + y * width] == 0xFFffD808) {
+                    hyperSquare[x][y] = new Square(x, y, Squares.HYPER_8);
+                }
+                if (pixels[x + y * width] == 0xFFffD809) {
+                    hyperSquare[x][y] = new Square(x, y, Squares.HYPER_9);
+                }
+          
+                
             }
         }
 
@@ -138,7 +172,14 @@ public class Level {
         }
         return freezeSquare[x][y];
     }
-
+    
+     public Square getHyperSquare(int x, int y) {
+        if (x < 0 || y < 0 || x >= width || y >= height) {
+            return null;
+        }
+        return hyperSquare[x][y];
+    }
+     
     public void addSquares(int x, int y) {
         if (solidSquare[x][y] != null) {
             Square.add(solidSquare[x][y]);
@@ -150,6 +191,8 @@ public class Level {
             Square.add(appleSquare[x][y]);
         } else if (freezeSquare[x][y] != null) {
             Square.add(freezeSquare[x][y]);
+        } else if (hyperSquare[x][y] != null) {
+            Square.add(hyperSquare[x][y]);
         }
     }
 
