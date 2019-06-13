@@ -29,7 +29,7 @@ public class Level {
     public int width, height;
 
     private int[] bounds = new int[4];
-    
+
     List<Square> Square = new ArrayList<Square>();
     Square[][] solidSquare;
     Square[][] noneSolidSquare;
@@ -40,10 +40,9 @@ public class Level {
 
     List<Characters> tab_character = new ArrayList<Characters>();
     List<Square> tab_apple = new ArrayList<Square>();
-    
+
     private static Human player = new Human(2, 5);
     //private static Apple apple = new Apple(4,5);
-    
 
     public Level(int width, int height) {
 
@@ -68,12 +67,12 @@ public class Level {
         }
         width = image.getWidth();
         height = image.getHeight();
-        
+
         bounds[0] = -16;
         bounds[1] = -16;
         bounds[2] = -width * 16 + 16 + Display.getWidth() / Component.scale;
         bounds[3] = -height * 16 + 16 + Display.getHeight() / Component.scale;
-        
+
         pixels = new int[width * height];
         image.getRGB(0, 0, width, height, pixels, 0, width);
 
@@ -82,7 +81,7 @@ public class Level {
         ladderSquare = new Square[width][height];
         appleSquare = new Square[width][height];
         freezeSquare = new Square[width][height];
-        hyperSquare = new Square [width][height];
+        hyperSquare = new Square[width][height];
 
         for (int x = 0; x < width; x++) {
             for (int y = 0; y < height; y++) {
@@ -131,8 +130,6 @@ public class Level {
                 if (pixels[x + y * width] == 0xFFffD809) {
                     hyperSquare[x][y] = new Square(x, y, Squares.HYPER_9);
                 }
-          
-                
             }
         }
 
@@ -182,14 +179,14 @@ public class Level {
         }
         return freezeSquare[x][y];
     }
-    
-     public Square getHyperSquare(int x, int y) {
+
+    public Square getHyperSquare(int x, int y) {
         if (x < 0 || y < 0 || x >= width || y >= height) {
             return null;
         }
         return hyperSquare[x][y];
     }
-     
+
     public void addSquares(int x, int y) {
         if (solidSquare[x][y] != null) {
             Square.add(solidSquare[x][y]);
@@ -209,8 +206,8 @@ public class Level {
     public void init() {
 
     }
-    
-    public int getBounds(int index){
+
+    public int getBounds(int index) {
         return bounds[index];
     }
 

@@ -21,8 +21,8 @@ public class Component {
     
     public static String title = "MazeRunner";
     public static int scale = 3;
-    public static int width = 1484/scale;
-    public static int height = 914/scale;
+    public static int width = 1442/scale;
+    public static int height = 866/scale;
    
     int time = 0;
     
