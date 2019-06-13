@@ -27,14 +27,14 @@ public class Human extends Characters {
     boolean freezed = false;
     int test = 0;
     boolean teleport = false;
-
+    char lastKey;
     public Human(int x, int y) {
         super(x, y);
         texture = Texture.human;
-        run = new Animation(1, 1, 4, 5, true);
+        run = new Animation(1, 2, 4, 5, true);
         jump = new Animation(1, 1, 1, 5, true);
         climb = new Animation(1, 2, 3, 5, true);
-        freeze = new Animation(4, 4, 4, 5, true);
+        freeze = new Animation(5, 5, 5, 5, true);
 
         mass = 0.1f;
         friction = 0.95f;
@@ -65,6 +65,7 @@ public class Human extends Characters {
                 climb.play();
 
             }
+            lastKey = 'W';
 
         }
         if (Keyboard.isKeyDown(Keyboard.KEY_S) || Keyboard.isKeyDown(Keyboard.KEY_DOWN)) {
@@ -74,6 +75,7 @@ public class Human extends Characters {
                 dir = 2;
                 climb.play();
             }
+            lastKey = 'S';
         }
         if (Keyboard.isKeyDown(Keyboard.KEY_Q) || Keyboard.isKeyDown(Keyboard.KEY_A) || Keyboard.isKeyDown(Keyboard.KEY_LEFT)) {
             System.out.println("A Key Pressed");
@@ -85,6 +87,7 @@ public class Human extends Characters {
                 ya -= 0.1f;
 
             }
+            lastKey = 'A';
 
         }
         if (Keyboard.isKeyDown(Keyboard.KEY_D) || Keyboard.isKeyDown(Keyboard.KEY_RIGHT)) {
@@ -98,11 +101,16 @@ public class Human extends Characters {
             if (isLadder()) {
                 ya -= 0.1f;
             }
+            lastKey = 'D';
 
         }
 
         if (isFreezed() && freezed == false) {
-            dir = 2;
+            if(lastKey=='A'){
+            dir = 1;
+            }else{
+            dir = 0;
+            }
 
             long timerBefore = System.currentTimeMillis();
             long duration = 0;
@@ -191,15 +199,15 @@ public class Human extends Characters {
     @Override
     public void render() {
         texture.bind();
-
+        float sizeSpriteSheet = 7.0f;
         if (climb.getPlaying()) {
-            renderCharacters(x, y, 16, 16, Color.WHITE, 4.0f, climb.getCurrentFrame(), 0 + dir);
+            renderCharacters(x, y, 16, 16, Color.WHITE, sizeSpriteSheet, climb.getCurrentFrame(), 0 + dir);
         } else if (freeze.getPlaying()) {
-            renderCharacters(x, y, 16, 16, Color.WHITE, 4.0f, freeze.getCurrentFrame(), 0 + dir);
+            renderCharacters(x, y, 16, 16, Color.WHITE, sizeSpriteSheet, freeze.getCurrentFrame(), 0 + dir);
 
         } else {
 
-            renderCharacters(x, y, 16, 16, Color.WHITE, 4.0f, run.getCurrentFrame(), 0 + dir);
+            renderCharacters(x, y, 16, 16, Color.WHITE, sizeSpriteSheet, run.getCurrentFrame(), 0 + dir);
         }
         texture.unbind();
     }
