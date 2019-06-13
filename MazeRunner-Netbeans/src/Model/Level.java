@@ -8,6 +8,7 @@ package Model;
 import Controller.Component;
 import Model.Character.Characters;
 import Model.Character.Human;
+import Model.Character.Jumper;
 import Model.Square.Apple;
 import java.awt.image.BufferedImage;
 import Model.Square.Square;
@@ -42,6 +43,7 @@ public class Level {
     List<Square> tab_apple = new ArrayList<Square>();
 
     private static Human player = new Human(2, 5);
+    private static Jumper jumper = new Jumper(2, 5);
     //private static Apple apple = new Apple(4,5);
 
     public Level(int width, int height) {
@@ -52,7 +54,9 @@ public class Level {
 
     public void spawner() {
         player.init(this);
+        jumper.init(this);
         addCharacters(player);
+        addCharacters(jumper);
 
     }
 

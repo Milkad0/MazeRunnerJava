@@ -22,6 +22,9 @@ public class Texture {
 
     public static Texture squares = loadTexture("/Texture/blocks1.png");
     public static Texture human = loadTexture("/Characters/Player/Human.png");
+    //public static Texture jumper = loadTexture("/Characters/Player/Human.png");
+    //public static Texture pacer = loadTexture("");
+    //public static Texture rover = loadTexture("");
     int width, height;
     int id;
 
