@@ -40,7 +40,7 @@ public class Square {
    
 
     public enum Squares {
-        BRICK, EMPTY, FREEZE, APPLE, LADDER, GOAL, HYPER
+        BRICK, EMPTY, FREEZE, APPLE, LADDER, GOAL, HYPER_0, HYPER_1,HYPER_2,HYPER_3,HYPER_4,HYPER_5,HYPER_6,HYPER_7,HYPER_8,HYPER_9
     }
 
     public Square(int x, int y, Squares square) {
@@ -64,6 +64,36 @@ public class Square {
         } else if (square == Squares.LADDER) {
             yo = 0;
             xo = 4;
+        } else if (square == Squares.HYPER_0) {
+            yo = 0;
+            xo = 5;
+        } else if (square == Squares.HYPER_1) {
+            yo = 0;
+            xo = 6;
+        } else if (square == Squares.HYPER_2) {
+            yo = 0;
+            xo = 7;
+        } else if (square == Squares.HYPER_3) {
+            yo = 0;
+            xo = 8;
+        } else if (square == Squares.HYPER_4) {
+            yo = 0;
+            xo = 9;
+        } else if (square == Squares.HYPER_5) {
+            yo = 0;
+            xo = 10;
+        } else if (square == Squares.HYPER_6) {
+            yo = 0;
+            xo = 11;
+        } else if (square == Squares.HYPER_7) {
+            yo = 0;
+            xo = 12;
+        } else if (square == Squares.HYPER_8) {
+            yo = 0;
+            xo = 13;
+        } else if (square == Squares.HYPER_9) {
+            yo = 0;
+            xo = 14;
         }
 
         if (hasSquareSet) {
@@ -123,6 +153,9 @@ public class Square {
         this.image = image;
     }
 
+    public Squares getSquare(){
+        return this.square;
+    }
     public Square(int _id, Image _image) {
         this.id = _id;
         this.image = _image;

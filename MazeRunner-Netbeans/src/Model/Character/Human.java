@@ -135,7 +135,7 @@ public class Human extends Characters {
         
         int xStep = (int) Math.abs(xa * 1000);
         for (int i = 0; i < xStep; i++) {
-            if (!isSolidSquare(xa / xStep, 0) && !isFreezeSquare(xa / xStep, 0)) {
+            if (!isSolidSquare(xa / xStep, 0) && !isFreezeSquare(xa / xStep, 0) && !isHyperSquare(xa / xStep, 0)) {
                 x += xa / xStep;
             } else {
                 xa = 0;
@@ -144,7 +144,7 @@ public class Human extends Characters {
 
         int yStep = (int) Math.abs(ya * 1000);
         for (int i = 0; i < yStep; i++) {
-            if (!isSolidSquare(0, ya / yStep) && !isFreezeSquare(0, ya / yStep)) {
+            if (!isSolidSquare(0, ya / yStep) && !isFreezeSquare(0, ya / yStep) && !isHyperSquare(0, ya / yStep)) {
                 y += ya / yStep;
             } else {
                 ya = 0;

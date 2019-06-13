@@ -124,6 +124,29 @@ public abstract class Characters {
         return false;
     }
 
+    public boolean isHyperSquare(float xa, float ya) {
+
+        int x0 = (int) (x + xa + 3.8f) / 16;
+        int x1 = (int) (x + xa + 13) / 16;
+        int y0 = (int) (y + ya + 2) / 16;
+        int y1 = (int) (y + ya + 15.8) / 16;
+
+        if (level.getHyperSquare(x0, y0) != null) {
+            return true;
+        }
+        if (level.getHyperSquare(x1, y0) != null) {
+            return true;
+        }
+        if (level.getHyperSquare(x0, y1) != null) {
+            return true;
+        }
+        if (level.getHyperSquare(x1, y1) != null) {
+            return true;
+        }
+
+        return false;
+    }
+    
     public boolean isGrounded() {
 
         if (level.getSolidSquare((int) (x + 3.8f) / 16, (int) (y + 16) / 16) != null) {
