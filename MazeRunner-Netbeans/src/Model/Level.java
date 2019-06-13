@@ -5,6 +5,7 @@
  */
 package Model;
 
+import Controller.Component;
 import Model.Character.Characters;
 import Model.Character.Human;
 import Model.Square.Apple;
@@ -15,6 +16,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import javax.imageio.ImageIO;
+import org.lwjgl.opengl.Display;
 
 /**
  *
@@ -26,6 +28,8 @@ public class Level {
 
     public int width, height;
 
+    private int[] bounds = new int[4];
+    
     List<Square> Square = new ArrayList<Square>();
     Square[][] solidSquare;
     Square[][] noneSolidSquare;
@@ -63,6 +67,12 @@ public class Level {
         }
         width = image.getWidth();
         height = image.getHeight();
+        
+        bounds[0] = -16;
+        bounds[1] = -16;
+        bounds[2] = -width * 16 + 16 + Display.getWidth() / Component.scale;
+        bounds[3] = -height * 16 + 16 + Display.getHeight() / Component.scale;
+        
         pixels = new int[width * height];
         image.getRGB(0, 0, width, height, pixels, 0, width);
 
@@ -155,6 +165,10 @@ public class Level {
 
     public void init() {
 
+    }
+    
+    public int getBounds(int index){
+        return bounds[index];
     }
 
     public void addCharacters(Characters e) {

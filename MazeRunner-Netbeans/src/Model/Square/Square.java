@@ -83,7 +83,10 @@ public class Square {
     public void render() {
         float x0 = x + Game.xScroll / 16;
         float y0 = y + Game.yScroll / 16;
-
+        
+        float x1 = x + size + Game.xScroll/16;
+        float y1 = y + size + Game.yScroll/16;
+        
         if (x0 + 1 < 0 || y0 + 1 < 0 || x0 > Component.width / 16 || y0 > Component.height / 16) {
             return;
         }

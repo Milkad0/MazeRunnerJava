@@ -21,6 +21,8 @@ public class Game {
 
     public Game() {
         level = new Level(Component.width / 16, Component.height / 16);
+        xScroll = level.getBounds(0);
+        yScroll = level.getBounds(1);
     }
 
     public void init() {
