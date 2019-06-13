@@ -25,7 +25,8 @@ public class Human extends Characters {
     int dir = 0;
     float speed = 1.5f;
     boolean freezed = false;
-    int test =0;
+    int test = 0;
+
     public Human(int x, int y) {
         super(x, y);
         texture = Texture.human;
@@ -49,9 +50,8 @@ public class Human extends Characters {
         climb.update();
         climb.pause();
         freeze.update();
-        
 
-        if (Keyboard.isKeyDown(Keyboard.KEY_Z) || Keyboard.isKeyDown(Keyboard.KEY_W)) {
+        if (Keyboard.isKeyDown(Keyboard.KEY_Z) || Keyboard.isKeyDown(Keyboard.KEY_W) || Keyboard.isKeyDown(Keyboard.KEY_UP)) {
             if (isGrounded()) {
                 ya -= 3.8f;
                 dir = 2;
@@ -63,10 +63,9 @@ public class Human extends Characters {
                 climb.play();
 
             }
-           
 
         }
-        if (Keyboard.isKeyDown(Keyboard.KEY_S)) {
+        if (Keyboard.isKeyDown(Keyboard.KEY_S) || Keyboard.isKeyDown(Keyboard.KEY_DOWN)) {
             ya += 0;
             if (isLadder()) {
                 ya += 0.6f;
@@ -74,7 +73,7 @@ public class Human extends Characters {
                 climb.play();
             }
         }
-        if (Keyboard.isKeyDown(Keyboard.KEY_Q) || Keyboard.isKeyDown(Keyboard.KEY_A)) {
+        if (Keyboard.isKeyDown(Keyboard.KEY_Q) || Keyboard.isKeyDown(Keyboard.KEY_A) || Keyboard.isKeyDown(Keyboard.KEY_LEFT)) {
             System.out.println("A Key Pressed");
             xa -= speed;
             dir = 1;
@@ -86,10 +85,10 @@ public class Human extends Characters {
             }
 
         }
-        if (Keyboard.isKeyDown(Keyboard.KEY_D)) {
-       
-        System.out.println("D Key Pressed");
-        
+        if (Keyboard.isKeyDown(Keyboard.KEY_D) || Keyboard.isKeyDown(Keyboard.KEY_RIGHT)) {
+
+            System.out.println("D Key Pressed");
+
             xa += speed;
             dir = 0;
             run.play();
@@ -102,37 +101,33 @@ public class Human extends Characters {
 
         if (isFreezed() && freezed == false) {
             dir = 2;
-            
-            
-           
+
             long timerBefore = System.currentTimeMillis();
             long duration = 0;
             int random_duration = (int) (1 + (Math.random() * (3 - 1)));
-                freeze.play();
-                test++;
-                
-            if(test==2){
-                freezed = true;
-                test=0;
+            freeze.play();
+            test++;
 
-           while ((duration < random_duration*1000)&&(freeze.getPlaying())) {
-               
-                duration = System.currentTimeMillis() - timerBefore;
+            if (test == 2) {
+                freezed = true;
+                test = 0;
+
+                while ((duration < random_duration * 1000) && (freeze.getPlaying())) {
+
+                    duration = System.currentTimeMillis() - timerBefore;
+                }
+                System.out.println("Boucle stop");
+
             }
-            System.out.println("Boucle stop");
-            
-            }
-            
-        } else if(!isFreezed()) {
+
+        } else if (!isFreezed()) {
             freeze.pause();
             freezed = false;
-        }else {
+        } else {
             xa *= 0.5 + friction;
             freeze.pause();
         }
-        
-        
-        
+
         int xStep = (int) Math.abs(xa * 1000);
         for (int i = 0; i < xStep; i++) {
             if (!isSolidSquare(xa / xStep, 0) && !isFreezeSquare(xa / xStep, 0) && !isHyperSquare(xa / xStep, 0)) {
@@ -171,7 +166,7 @@ public class Human extends Characters {
 
         } else {
 
-           renderCharacters(x, y, 16, 16, Color.WHITE, 4.0f, run.getCurrentFrame(), 0 + dir);
+            renderCharacters(x, y, 16, 16, Color.WHITE, 4.0f, run.getCurrentFrame(), 0 + dir);
         }
         texture.unbind();
     }
