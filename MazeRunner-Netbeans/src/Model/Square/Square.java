@@ -133,29 +133,44 @@ public class Square {
         glEnd();
         Texture.squares.unbind();
     }
-
+//GETTER
+    
     public int getId() {
         return id;
     }
+    
+    public int getX(){
+        return this.x;
+    }
+    
+     public int getY(){
+        return this.y;
+    }
 
+     public Image getImage() {
+        return image;
+    }
+  
+    public Squares getSquare(){
+        return this.square;
+    }
+     
+//SETTER
+     
     public void setId(int id) {
         this.id = id;
     }
-
-    public Image getImage() {
-        return image;
-    }
-
+    
     public void setImage(Image image) {
         this.image = image;
     }
 
-    public Squares getSquare(){
-        return this.square;
-    }
+//OTHERS    
+    
     public Square(int _id, Image _image) {
         this.id = _id;
         this.image = _image;
     }
+    
 
 }

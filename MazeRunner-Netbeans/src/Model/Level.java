@@ -40,7 +40,10 @@ public class Level {
 
     List<Characters> tab_character = new ArrayList<Characters>();
     List<Square> tab_apple = new ArrayList<Square>();
-
+    static int tab_XHyperSquare[]={-1,-1,-1,-1,-1,-1,-1,-1,-1,-1};
+    static int tab_YHyperSquare[]={-1,-1,-1,-1,-1,-1,-1,-1,-1,-1};
+    
+    
     private static Human player = new Human(2, 5);
     //private static Apple apple = new Apple(4,5);
 
@@ -102,33 +105,53 @@ public class Level {
                 }
                 if (pixels[x + y * width] == 0xFFffD800) {
                     hyperSquare[x][y] = new Square(x, y, Squares.HYPER_0);
+                    tab_XHyperSquare[0]=x;
+                    tab_YHyperSquare[0]=y;
                 }
                 if (pixels[x + y * width] == 0xFFffD801) {
                     hyperSquare[x][y] = new Square(x, y, Squares.HYPER_1);
+                    tab_XHyperSquare[1]=x;
+                    tab_YHyperSquare[1]=y;
                 }
                 if (pixels[x + y * width] == 0xFFffD802) {
                     hyperSquare[x][y] = new Square(x, y, Squares.HYPER_2);
+                    tab_XHyperSquare[2]=x;
+                    tab_YHyperSquare[2]=y;
                 }
                 if (pixels[x + y * width] == 0xFFffD803) {
                     hyperSquare[x][y] = new Square(x, y, Squares.HYPER_3);
+                    tab_XHyperSquare[3]=x;
+                    tab_YHyperSquare[3]=y;
                 }
                 if (pixels[x + y * width] == 0xFFffD804) {
                     hyperSquare[x][y] = new Square(x, y, Squares.HYPER_4);
+                    tab_XHyperSquare[4]=x;
+                    tab_YHyperSquare[4]=y;
                 }
                 if (pixels[x + y * width] == 0xFFffD805) {
                     hyperSquare[x][y] = new Square(x, y, Squares.HYPER_5);
+                    tab_XHyperSquare[5]=x;
+                    tab_YHyperSquare[5]=y;
                 }
                 if (pixels[x + y * width] == 0xFFffD806) {
                     hyperSquare[x][y] = new Square(x, y, Squares.HYPER_6);
+                    tab_XHyperSquare[6]=x;
+                    tab_YHyperSquare[6]=y;
                 }
                 if (pixels[x + y * width] == 0xFFffD807) {
                     hyperSquare[x][y] = new Square(x, y, Squares.HYPER_7);
+                    tab_XHyperSquare[7]=x;
+                    tab_YHyperSquare[7]=y;
                 }
                 if (pixels[x + y * width] == 0xFFffD808) {
                     hyperSquare[x][y] = new Square(x, y, Squares.HYPER_8);
+                    tab_XHyperSquare[8]=x;
+                    tab_YHyperSquare[8]=y;
                 }
                 if (pixels[x + y * width] == 0xFFffD809) {
                     hyperSquare[x][y] = new Square(x, y, Squares.HYPER_9);
+                    tab_XHyperSquare[9]=x;
+                    tab_YHyperSquare[9]=y;
                 }
             }
         }
@@ -152,6 +175,74 @@ public class Level {
 
     }
 
+
+
+    public void addSquares(int x, int y) {
+        if (solidSquare[x][y] != null) {
+            Square.add(solidSquare[x][y]);
+        } else if (noneSolidSquare[x][y] != null) {
+            Square.add(noneSolidSquare[x][y]);
+        } else if (ladderSquare[x][y] != null) {
+            Square.add(ladderSquare[x][y]);
+        } else if (appleSquare[x][y] != null) {
+            Square.add(appleSquare[x][y]);
+        } else if (freezeSquare[x][y] != null) {
+            Square.add(freezeSquare[x][y]);
+        } else if (hyperSquare[x][y] != null) {
+            Square.add(hyperSquare[x][y]);
+        }
+    }
+
+    public void init() {
+
+    }
+
+
+
+    public void addCharacters(Characters e) {
+        tab_character.add(e);
+
+    }
+
+    public void removeCharacters(Characters e) {
+        tab_character.remove(e);
+
+    }
+
+    public void update() {
+        for (int i = 0; i < tab_character.size(); i++) {
+            Characters e = tab_character.get(i);
+            if (e.getRemoved()) {
+                tab_character.remove(e);
+            }
+            e.update();
+        }
+    }
+
+    public void render() {
+        for (Square square : Square) { //for each
+            square.render();
+        }
+
+        for (int i = 0; i < tab_character.size(); i++) {
+            Characters e = tab_character.get(i);
+            e.render();
+        }
+    }
+
+   
+    
+    //GETTER
+    
+    
+    public static Human getPlayer() {
+        return player;
+    }
+         
+    public int getBounds(int index) {
+        return bounds[index];
+    }
+     
     public Square getSolidSquare(int x, int y) {
         if (x < 0 || y < 0 || x >= width || y >= height) {
             return null;
@@ -186,63 +277,18 @@ public class Level {
         }
         return hyperSquare[x][y];
     }
+     
+    public static int getXHyperSquare(int x){
 
-    public void addSquares(int x, int y) {
-        if (solidSquare[x][y] != null) {
-            Square.add(solidSquare[x][y]);
-        } else if (noneSolidSquare[x][y] != null) {
-            Square.add(noneSolidSquare[x][y]);
-        } else if (ladderSquare[x][y] != null) {
-            Square.add(ladderSquare[x][y]);
-        } else if (appleSquare[x][y] != null) {
-            Square.add(appleSquare[x][y]);
-        } else if (freezeSquare[x][y] != null) {
-            Square.add(freezeSquare[x][y]);
-        } else if (hyperSquare[x][y] != null) {
-            Square.add(hyperSquare[x][y]);
-        }
+        return tab_XHyperSquare[x];
     }
+    
+    public static int getYHyperSquare(int y){
 
-    public void init() {
-
+        return tab_YHyperSquare[y];
     }
-
-    public int getBounds(int index) {
-        return bounds[index];
-    }
-
-    public void addCharacters(Characters e) {
-        tab_character.add(e);
-
-    }
-
-    public void removeCharacters(Characters e) {
-        tab_character.remove(e);
-
-    }
-
-    public void update() {
-        for (int i = 0; i < tab_character.size(); i++) {
-            Characters e = tab_character.get(i);
-            if (e.getRemoved()) {
-                tab_character.remove(e);
-            }
-            e.update();
-        }
-    }
-
-    public void render() {
-        for (Square square : Square) { //for each
-            square.render();
-        }
-
-        for (int i = 0; i < tab_character.size(); i++) {
-            Characters e = tab_character.get(i);
-            e.render();
-        }
-    }
-
-    public static Human getPlayer() {
-        return player;
-    }
+    
+    //SETTER
+    
+    //OTHERS
 }

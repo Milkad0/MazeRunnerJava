@@ -26,6 +26,7 @@ public class Human extends Characters {
     float speed = 1.5f;
     boolean freezed = false;
     int test = 0;
+    boolean teleport = false;
 
     public Human(int x, int y) {
         super(x, y);
@@ -42,6 +43,7 @@ public class Human extends Characters {
 
     public void update() {
 
+        
         if (!isLadder()) {
             ya += level.gravity * mass;
         }
@@ -116,7 +118,6 @@ public class Human extends Characters {
 
                     duration = System.currentTimeMillis() - timerBefore;
                 }
-                System.out.println("Boucle stop");
 
             }
 
@@ -153,6 +154,38 @@ public class Human extends Characters {
         } else {
             ya = 0;
         }
+        
+        if (isTeleport()){
+            int posX = (int) getPositionX()/16;
+            int posY = (int) (getPositionY()/16)+1;
+            int numFuturHyperSquare = -2;
+            
+            for (int numHyperSquare = 0; numHyperSquare < 9; numHyperSquare++) {
+                if((Level.getXHyperSquare(numHyperSquare)==posX)&&(Level.getYHyperSquare(numHyperSquare)==posY)){
+                    
+                    if(Level.getXHyperSquare(numHyperSquare+1)==-1){
+                    numFuturHyperSquare = 0;  
+                    }else{
+                    numFuturHyperSquare = numHyperSquare+1;
+                    }
+                    break;
+                 }
+            }
+            
+            if(numFuturHyperSquare != -2){
+                int x = Level.getXHyperSquare(numFuturHyperSquare);
+                int y = Level.getYHyperSquare(numFuturHyperSquare)-1;
+            
+                if((teleport==false)&&(x>0)&&(y>0)){
+                 setPosition(x,y);
+                 teleport=true;
+                }
+            }
+        }else{
+            teleport=false;
+        }
+        
+       
     }
 
     @Override

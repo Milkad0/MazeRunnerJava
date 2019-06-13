@@ -43,7 +43,7 @@ public abstract class Characters {
 
     public boolean isApple() {
 
-        if (level.getAppleSquare((int) (x + 4.6f) / 16, (int) (y + 16) / 16) != null) {
+        if (level.getAppleSquare((int) (x + 7.9f) / 16, (int) (y + 16) / 16) != null) {
             return true;
         }
 
@@ -52,7 +52,7 @@ public abstract class Characters {
 
     public boolean isLadder() {
 
-        if (level.getLadderSquare((int) (x + 4.6f) / 16, (int) (y + 16) / 16) != null) {
+        if (level.getLadderSquare((int) (x + 7.9f) / 16, (int) (y + 16) / 16) != null) {
             return true;
         }
 
@@ -111,13 +111,13 @@ public abstract class Characters {
 
     public boolean isFreezed() {
 
-        if (level.getFreezeSquare((int) (x + 3.8f) / 16, (int) (y + 16) / 16) != null) {
+        if (level.getFreezeSquare((int) (x + 3.8f) / 16, (int) (y + 16) / 16) != null) { //gauche
             return true;
         }
-        if (level.getFreezeSquare((int) (x + 12) / 16, (int) (y + 16) / 16) != null) {
+        if (level.getFreezeSquare((int) (x + 12) / 16, (int) (y + 16) / 16) != null) { //droite
             return true;
         }
-        if (level.getFreezeSquare((int) (x + 4.6f) / 16, (int) (y + 16) / 16) != null) {
+        if (level.getFreezeSquare((int) (x + 7.9f) / 16, (int) (y + 16) / 16) != null) {//milieu
             return true;
         }
 
@@ -147,6 +147,15 @@ public abstract class Characters {
         return false;
     }
     
+     public boolean isTeleport() {
+
+        if ((level.getHyperSquare((int) (x + 3.8f) / 16, (int) (y + 16) / 16) != null)&&(level.getHyperSquare((int) (x + 7.9f) / 16, (int) (y + 16) / 16) != null)&&(level.getHyperSquare((int) (x + 12) / 16, (int) (y + 16) / 16) != null)) {//gauche && milieu && droite
+            return true;
+        }
+
+        return false;
+    }
+    
     public boolean isGrounded() {
 
         if (level.getSolidSquare((int) (x + 3.8f) / 16, (int) (y + 16) / 16) != null) {
@@ -158,6 +167,8 @@ public abstract class Characters {
 
         return false;
     }
+    
+    //GETTER
 
     public float getX() {
         return x;
@@ -179,13 +190,22 @@ public abstract class Characters {
         return this.powerCount;
     }
 
-    public int[][] getPosition() {
-        return this.position;
+    public float getPositionX() {
+        return this.x;
+    }
+    
+    public float getPositionY() {
+        return this.y;
     }
 
     //SETTER
     public void setPowerCount() {
         this.powerCount++;
+    }
+    
+    public void setPosition(float x, float y){
+        this.x = x*16;
+        this.y = y*16;
     }
 
     //OTHERS
