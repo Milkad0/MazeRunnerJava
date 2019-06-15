@@ -168,6 +168,7 @@ public class Human extends Characters {
         }
         
         if (isTeleport()){
+           // teleportEnd = false;
             int posX = (int) getPositionX()/16;
             int posY = (int) (getPositionY()/16)+1;
             int numFuturHyperSquare = -2;
@@ -192,20 +193,15 @@ public class Human extends Characters {
                  setPosition(x,y);
                  teleport=true;
                  teleportEnd = true;
-                 
                 }
-              /*  if (teleportEnd){
-                    finTeleportation.play();
+              finTeleportation.play();
                     dir = 3;
-                   teleportEnd = false;
-                }*/
                 
                 
             }
         }else if(isBrick()){
             teleport=false;
         }
-        
        
     }
 
