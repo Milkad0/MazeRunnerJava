@@ -21,14 +21,14 @@ public class Jumper extends Enemies{
     Animation run, jump, climb, freeze;
 
     int dir = 0;
-    float speed = 0.01f;
+    float speed = 0.05f;
     boolean freezed = false;
     int test = 0;
 
     public Jumper(int x, int y) {
         super(x, y);
         texture = Texture.human;
-        run = new Animation(1, 1, 4, 1, true);
+        run = new Animation(1, 1, 4, 5, true);
         jump = new Animation(1, 1, 1, 5, true);
         climb = new Animation(1, 2, 3, 5, true);
         freeze = new Animation(4, 4, 4, 5, true);
