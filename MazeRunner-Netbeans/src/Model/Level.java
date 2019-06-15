@@ -7,7 +7,7 @@ package Model;
 
 import Controller.Component;
 import Model.Character.Characters;
-import Model.Character.Human;
+import Model.Character.*;
 import Model.Square.Apple;
 import java.awt.image.BufferedImage;
 import Model.Square.Square;
@@ -45,6 +45,7 @@ public class Level {
     
     
     private static Human player = new Human(2, 5);
+    private static Pacer pacer = new Pacer(17, 17);
     //private static Apple apple = new Apple(4,5);
 
     public Level(int width, int height) {
@@ -55,7 +56,9 @@ public class Level {
 
     public void spawner() {
         player.init(this);
+        pacer.init(this);
         addCharacters(player);
+        addCharacters(pacer);
 
     }
 
