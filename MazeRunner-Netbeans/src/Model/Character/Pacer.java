@@ -20,17 +20,14 @@ public class Pacer extends Enemies{
 Animation run, jump, climb, freeze;
 
     int dir = 0;
-    float speed = 1f;
+    float speed = 2f;
     boolean freezed = false;
     int test = 0;
 
     public Pacer(int x, int y) {
         super(x, y);
-        texture = Texture.human;
-        run = new Animation(1, 2, 4, 5, true,false);
-        jump = new Animation(1, 1, 1, 5, true,false);
-        climb = new Animation(1, 2, 3, 5, true,false);
-        freeze = new Animation(5, 5, 5, 5, true,false);
+        texture = Texture.pacer;
+        run = new Animation(1, 1, 1, 5, true,false);
 
         mass = 1f;
         friction = 0.95f;
@@ -43,7 +40,6 @@ Animation run, jump, climb, freeze;
         
         run.update();
         run.pause();
-        freeze.update();
         
         if (dir == 1){
             xa = -speed;
@@ -81,11 +77,7 @@ Animation run, jump, climb, freeze;
     @Override
     public void render() {
         texture.bind();
-        if (freeze.getPlaying()) {
-            renderCharacters(x, y, 16, 16, Color.WHITE, 7.0f, freeze.getCurrentFrame(), 0 + dir);
-        } else {
-            renderCharacters(x, y, 16, 16, Color.WHITE, 7.0f, run.getCurrentFrame(), 0 + dir);
-        }
+        renderCharacters(x, y, 16, 16, Color.WHITE, 7.0f, run.getCurrentFrame(), 0 + dir);
         texture.unbind();
     }
 
