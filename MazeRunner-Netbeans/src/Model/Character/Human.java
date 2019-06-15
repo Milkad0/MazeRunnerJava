@@ -20,21 +20,23 @@ import org.lwjgl.input.Keyboard;
  */
 public class Human extends Characters {
 
-    Animation run, jump, climb, freeze;
+    Animation run, jump, climb, freeze,finTeleportation;
 
     int dir = 0;
     float speed = 1.5f;
     boolean freezed = false;
-    int test = 0;
+    int testFreeze = 0;
     boolean teleport = false;
+    boolean teleportEnd = false;
     char lastKey;
     public Human(int x, int y) {
         super(x, y);
         texture = Texture.human;
-        run = new Animation(1, 2, 4, 5, true);
-        jump = new Animation(1, 1, 1, 5, true);
-        climb = new Animation(1, 2, 3, 5, true);
-        freeze = new Animation(5, 5, 5, 5, true);
+        run = new Animation(1, 2, 4, 5, true,false);
+        jump = new Animation(1, 1, 1, 5, true,false);
+        climb = new Animation(1, 2, 3, 5, true,false);
+        freeze = new Animation(5, 5, 5, 5, true,false);
+        finTeleportation = new Animation(1,5,5,2,false,true);
 
         mass = 0.1f;
         friction = 0.95f;
@@ -52,9 +54,11 @@ public class Human extends Characters {
         climb.update();
         climb.pause();
         freeze.update();
+        finTeleportation.update();
+        finTeleportation.pause();
 
         if (Keyboard.isKeyDown(Keyboard.KEY_Z) || Keyboard.isKeyDown(Keyboard.KEY_W) || Keyboard.isKeyDown(Keyboard.KEY_UP)) {
-            if (isGrounded()) {
+            if (isGrounded()||isTeleport()) {
                 ya -= 3.8f;
                 dir = 2;
                 run.play();
@@ -116,11 +120,11 @@ public class Human extends Characters {
             long duration = 0;
             int random_duration = (int) (1 + (Math.random() * (3 - 1)));
             freeze.play();
-            test++;
+            testFreeze++;
 
-            if (test == 2) {
+            if (testFreeze == 2) {
                 freezed = true;
-                test = 0;
+                testFreeze = 0;
 
                 while ((duration < random_duration * 1000) && (freeze.getPlaying())) {
 
@@ -183,13 +187,22 @@ public class Human extends Characters {
             if(numFuturHyperSquare != -2){
                 int x = Level.getXHyperSquare(numFuturHyperSquare);
                 int y = Level.getYHyperSquare(numFuturHyperSquare)-1;
-            
+         
                 if((teleport==false)&&(x>0)&&(y>0)){
                  setPosition(x,y);
                  teleport=true;
+                 teleportEnd = true;
+                 
                 }
+              /*  if (teleportEnd){
+                    finTeleportation.play();
+                    dir = 3;
+                   teleportEnd = false;
+                }*/
+                
+                
             }
-        }else{
+        }else if(isBrick()){
             teleport=false;
         }
         
@@ -205,7 +218,10 @@ public class Human extends Characters {
         } else if (freeze.getPlaying()) {
             renderCharacters(x, y, 16, 16, Color.WHITE, sizeSpriteSheet, freeze.getCurrentFrame(), 0 + dir);
 
-        } else {
+        } else if (finTeleportation.getPlaying()) {
+            renderCharacters(x, y, 16, 16, Color.WHITE, sizeSpriteSheet, finTeleportation.getCurrentFrame(), 0 + dir);
+
+        }else  {
 
             renderCharacters(x, y, 16, 16, Color.WHITE, sizeSpriteSheet, run.getCurrentFrame(), 0 + dir);
         }

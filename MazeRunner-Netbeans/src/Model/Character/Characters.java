@@ -43,7 +43,7 @@ public abstract class Characters {
 
     public boolean isApple() {
 
-        if (level.getAppleSquare((int) (x + 7.9f) / 16, (int) (y + 16) / 16) != null) {
+        if (level.getAppleSquare((int) (x + 8.9f) / 16, (int) (y + 16) / 16) != null) {
             return true;
         }
 
@@ -52,7 +52,7 @@ public abstract class Characters {
 
     public boolean isLadder() {
 
-        if (level.getLadderSquare((int) (x + 7.9f) / 16, (int) (y + 16) / 16) != null) {
+        if ((level.getLadderSquare((int) (x + 3.8f) / 16, (int) (y + 16) / 16) != null)&&(level.getLadderSquare((int) (x + 8.9f) / 16, (int) (y + 16) / 16) != null)&&(level.getLadderSquare((int) (x + 13) / 16, (int) (y + 16) / 16) != null)) {//gauche && milieu && droite
             return true;
         }
 
@@ -63,7 +63,7 @@ public abstract class Characters {
 
         //taille bordure
         int x0 = (int) (x + xa + 3.8f) / 16;
-        int x1 = (int) (x + xa + 13) / 16;
+        int x1 = (int) (x + xa + 14) / 16;
         int y0 = (int) (y + ya + 2) / 16;
         int y1 = (int) (y + ya + 15.8) / 16;
 
@@ -114,10 +114,10 @@ public abstract class Characters {
         if (level.getFreezeSquare((int) (x + 3.8f) / 16, (int) (y + 16) / 16) != null) { //gauche
             return true;
         }
-        if (level.getFreezeSquare((int) (x + 12) / 16, (int) (y + 16) / 16) != null) { //droite
+        if (level.getFreezeSquare((int) (x + 13) / 16, (int) (y + 16) / 16) != null) { //droite
             return true;
         }
-        if (level.getFreezeSquare((int) (x + 7.9f) / 16, (int) (y + 16) / 16) != null) {//milieu
+        if (level.getFreezeSquare((int) (x + 8.9f) / 16, (int) (y + 16) / 16) != null) {//milieu
             return true;
         }
 
@@ -149,7 +149,16 @@ public abstract class Characters {
     
      public boolean isTeleport() {
 
-        if ((level.getHyperSquare((int) (x + 3.8f) / 16, (int) (y + 16) / 16) != null)&&(level.getHyperSquare((int) (x + 7.9f) / 16, (int) (y + 16) / 16) != null)&&(level.getHyperSquare((int) (x + 12) / 16, (int) (y + 16) / 16) != null)) {//gauche && milieu && droite
+        if ((level.getHyperSquare((int) (x + 3.8f) / 16, (int) (y + 16) / 16) != null)&&(level.getHyperSquare((int) (x + 8.9f) / 16, (int) (y + 16) / 16) != null)&&(level.getHyperSquare((int) (x + 13) / 16, (int) (y + 16) / 16) != null)) {//gauche && milieu && droite
+            return true;
+        }
+
+        return false;
+    }
+     
+     public boolean isBrick() {
+
+         if ((level.getSolidSquare((int) (x + 3.8f) / 16, (int) (y + 16) / 16) != null)&&(level.getSolidSquare((int) (x + 8.9f) / 16, (int) (y + 16) / 16) != null)&&(level.getSolidSquare((int) (x + 13) / 16, (int) (y + 16) / 16) != null)) {//gauche && milieu && droite
             return true;
         }
 
@@ -161,7 +170,7 @@ public abstract class Characters {
         if (level.getSolidSquare((int) (x + 3.8f) / 16, (int) (y + 16) / 16) != null) {
             return true;
         }
-        if (level.getSolidSquare((int) (x + 12) / 16, (int) (y + 16) / 16) != null) {
+        if (level.getSolidSquare((int) (x + 13) / 16, (int) (y + 16) / 16) != null) {
             return true;
         }
 

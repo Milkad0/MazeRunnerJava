@@ -11,23 +11,26 @@ package Graphics;
  */
 public class Animation {
 
-    private int frame = 0;
+    private int frame;
     private int length;
     private int speed;
     private int firstFrame;
     private int resetFrame;
+    private int fakeFrame=0;
+    private boolean reverse = false;
     private boolean loop = false;
 
     private boolean playing = false;
     private int time = 0;
 
-    public Animation(int resetFrame, int firstFrame, int lastFrame, int speed, boolean loop) {
+    public Animation(int resetFrame, int firstFrame, int lastFrame, int speed, boolean loop, boolean reverse) {
 
         this.firstFrame = firstFrame;
         this.length = lastFrame;
         this.speed = speed;
         this.loop = loop;
         this.resetFrame = resetFrame;
+        this.reverse = reverse;
     }
 
     public void update() {
@@ -35,6 +38,24 @@ public class Animation {
         if (playing) {
             time++;
             if (time > speed) {
+                
+                if(reverse){
+                    if(frame==0){
+                        frame=firstFrame-1;
+                    }
+                    frame --;
+                    fakeFrame++;
+                    if (fakeFrame >= length) {
+                    if (loop) {
+                        frame = firstFrame - 1;
+                        fakeFrame = 0;
+                    } else {
+                        fakeFrame = length;
+                        frame = resetFrame-1;
+                    }
+                }
+                }else{
+                
                 frame++;
                 if (frame >= length) {
                     if (loop) {
@@ -43,10 +64,12 @@ public class Animation {
                         frame = length;
                     }
                 }
+                }
                 time = 0;
             }
         } else {
             frame = resetFrame - 1;
+            fakeFrame = 0;
         }
 
     }
