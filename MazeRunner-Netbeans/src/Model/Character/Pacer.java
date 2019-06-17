@@ -17,17 +17,17 @@ import Model.Level;
  */
 public class Pacer extends Enemies{
 
-Animation run, jump, climb, freeze;
+    public Animation run, freeze;
 
     int dir = 0;
     float speed = 2f;
-    boolean freezed = false;
     int test = 0;
 
     public Pacer(int x, int y) {
         super(x, y);
         texture = Texture.pacer;
         run = new Animation(1, 1, 1, 5, true,false);
+        freeze = new Animation(1, 1, 1, 5, true,false);
 
         mass = 1f;
         friction = 0.95f;
@@ -40,6 +40,8 @@ Animation run, jump, climb, freeze;
         
         run.update();
         run.pause();
+        freeze.update();
+        freeze.stop();
         
         if (dir == 1){
             xa = -speed;
@@ -77,7 +79,8 @@ Animation run, jump, climb, freeze;
     @Override
     public void render() {
         texture.bind();
-        renderCharacters(x, y, 16, 16, Color.WHITE, 7.0f, run.getCurrentFrame(), 0 + dir);
+        float sizeSpriteSheet = 7.0f;
+        renderCharacters(x, y, 16, 16, Color.WHITE, sizeSpriteSheet, run.getCurrentFrame(), 0 + dir);
         texture.unbind();
     }
 
