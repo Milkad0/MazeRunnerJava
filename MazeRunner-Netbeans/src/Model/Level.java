@@ -73,11 +73,12 @@ public class Level {
         }
         width = image.getWidth();
         height = image.getHeight();
+        System.out.println(height);
 
         bounds[0] = -16;
         bounds[1] = -16;
-        bounds[2] = -width * 16 + 16 + Display.getWidth() / Component.scale;
-        bounds[3] = -height * 16 + 16 + Display.getHeight() / Component.scale;
+        bounds[2] = (int) (-width * 16 + 16 + Display.getWidth() / Component.scale);
+        bounds[3] = (int) (-height * 16 + 16 + Display.getHeight() / Component.scale);
 
         pixels = new int[width * height];
         image.getRGB(0, 0, width, height, pixels, 0, width);
@@ -166,7 +167,7 @@ public class Level {
         for (int x = 0; x < width; x++) {
             for (int y = 0; y < height; y++) {
 
-                if (x - 1 < 0 || y - 1 < 0 || x + 1 >= width || y + 1 >= height) {
+                if (x - 1< 0 || y - 1 < 0 || x + 1 >= width || y  >= height) {
                     continue;
                 }
                 if (appleSquare[x][y] != null) {

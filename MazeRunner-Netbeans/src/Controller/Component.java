@@ -20,17 +20,19 @@ public class Component {
     public boolean running = false;
     
     public static String title = "MazeRunner";
-    public static int scale = 3;
-    public static int width = 1442/scale;
-    public static int height = 866/scale;
+    public static float scale = 1 ;
+    public static int width = (int) (Display.getWidth()/scale);
+    public static int height = (int) (Display.getHeight()/scale);
    
+    
     int time = 0;
     
     public static boolean tick = false;
     public static boolean render = false;
     
-    DisplayMode mode = new DisplayMode(width*scale,height*scale);
-    
+    DisplayMode mode = new DisplayMode((int) (width*scale), (int) (height*scale));
+   
+         
     Game game;
     
       public  Component () {
@@ -57,6 +59,7 @@ public class Component {
     public void loop(){
         
         game.init();
+        scale = (Display.getWidth()*3.55f)/1920;
         
         long timer = System.currentTimeMillis();
         
@@ -72,8 +75,8 @@ public class Component {
                 stop();
             }
             Display.update();
-            width = Display.getWidth()/scale;
-            height = Display.getHeight()/scale;
+            width = (int) (Display.getWidth()/scale);
+            height = (int) (Display.getHeight()/scale);
             tick = false;
             render = false;
             
@@ -120,8 +123,8 @@ public class Component {
      public void display(){
         try{  
         Display.setDisplayMode(mode);
+        Display.setDisplayModeAndFullscreen(Display.getDesktopDisplayMode());
         Display.setResizable(false);
-        Display.setFullscreen(false);
         Display.setTitle(title);
         Display.create();
         
@@ -132,8 +135,7 @@ public class Component {
     }
     private void view2D(int width,int height){ 
         
-        glViewport(0,0,width*scale,height*scale);
-        
+        glViewport(0,0,(int) (width*scale), (int) (height*scale));
         glMatrixMode(GL_PROJECTION);
         glLoadIdentity();
         GLU.gluOrtho2D(0,width,height,0);
