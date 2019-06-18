@@ -59,7 +59,7 @@ public class Component {
     public void loop(){
         
         game.init();
-        scale = (Display.getWidth()*3.55f)/1920;
+        scale = (Display.getWidth()*3.54f)/1920;
         
         long timer = System.currentTimeMillis();
         
