@@ -127,6 +127,7 @@ public class Component {
         //Display.setDisplayModeAndFullscreen(Display.getDesktopDisplayMode());
         Display.setResizable(false);
         Display.setFullscreen(true);
+        Display.setLocation(-2, 0);
         Display.setTitle(title);
         Display.create();
         
