@@ -20,13 +20,13 @@ public class Pacer extends Enemies{
     public Animation run, freeze;
 
     int dir = 0;
-    float speed = 2f;
+    float speed = 2.0f;
     int test = 0;
 
     public Pacer(int x, int y) {
         super(x, y);
         texture = Texture.pacer;
-        run = new Animation(1, 1, 1, 5, true,false);
+        run = new Animation(1, 1, 2, 5, true,false);
         freeze = new Animation(1, 1, 1, 5, true,false);
 
         mass = 1f;
