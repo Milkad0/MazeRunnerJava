@@ -6,6 +6,7 @@
 
 package Controller;
 import Model.Square.Square;
+import java.awt.Toolkit;
 import org.lwjgl.LWJGLException;
 import org.lwjgl.opengl.Display;
 import org.lwjgl.opengl.DisplayMode;
@@ -21,8 +22,8 @@ public class Component {
     
     public static String title = "MazeRunner";
     public static float scale = 1 ;
-    public static int width = (int) (Display.getWidth()/scale);
-    public static int height = (int) (Display.getHeight()/scale);
+    public static int width = Toolkit.getDefaultToolkit().getScreenSize().width /*(int) (Display.getWidth()/scale)*/;
+    public static int height = Toolkit.getDefaultToolkit().getScreenSize().height /*(int) (Display.getHeight()/scale)*/;
    
     
     int time = 0;
@@ -123,8 +124,9 @@ public class Component {
      public void display(){
         try{  
         Display.setDisplayMode(mode);
-        Display.setDisplayModeAndFullscreen(Display.getDesktopDisplayMode());
+        //Display.setDisplayModeAndFullscreen(Display.getDesktopDisplayMode());
         Display.setResizable(false);
+        Display.setFullscreen(true);
         Display.setTitle(title);
         Display.create();
         
