@@ -29,6 +29,7 @@ public  class Enemies extends Characters{
     }
     
     //OTHERS
+    
 }
 
 

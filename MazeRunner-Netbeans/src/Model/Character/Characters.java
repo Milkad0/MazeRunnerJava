@@ -1,4 +1,4 @@
-/*
+ /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
@@ -48,6 +48,29 @@ public abstract class Characters {
         }
 
         return false;
+    }
+    
+    public boolean isPacer(float xa, float ya) {
+        
+        //taille bordure
+        int x0 = (int) (x + xa + 3.8f) / 16;
+        int x1 = (int) (x + xa + 14) / 16;
+        int y0 = (int) (y + ya + 2) / 16;
+        int y1 = (int) (y + ya + 15.8) / 16;
+
+        if (level.getPacer().getX() == x0 && level.getPacer().getY() == y0) {
+            return true;
+        }
+        if (level.getPacer().getX() == x1 && level.getPacer().getY() == y0) {
+            return true;
+        }
+        if (level.getPacer().getX() == x0 && level.getPacer().getY() == y1) {
+            return true;
+        }
+        if (level.getPacer().getX() == x1 && level.getPacer().getY() == y1) {
+            return true;
+        }
+        return false;        
     }
 
     public boolean isLadder() {

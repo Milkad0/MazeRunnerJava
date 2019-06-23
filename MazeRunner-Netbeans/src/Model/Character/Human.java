@@ -82,7 +82,7 @@ public class Human extends Characters {
             lastKey = 'S';
         }
         if (Keyboard.isKeyDown(Keyboard.KEY_Q) || Keyboard.isKeyDown(Keyboard.KEY_A) || Keyboard.isKeyDown(Keyboard.KEY_LEFT)) {
-            System.out.println("A Key Pressed");
+            //System.out.println("A Key Pressed");
             xa -= speed;
             dir = 1;
             run.play();
@@ -96,7 +96,7 @@ public class Human extends Characters {
         }
         if (Keyboard.isKeyDown(Keyboard.KEY_D) || Keyboard.isKeyDown(Keyboard.KEY_RIGHT)) {
 
-            System.out.println("D Key Pressed");
+            //System.out.println("D Key Pressed");
 
             xa += speed;
             dir = 0;
@@ -143,8 +143,12 @@ public class Human extends Characters {
 
         int xStep = (int) Math.abs(xa * 1000);
         for (int i = 0; i < xStep; i++) {
-            if (!isSolidSquare(xa / xStep, 0) && !isFreezeSquare(xa / xStep, 0) && !isHyperSquare(xa / xStep, 0)) {
+            if (!isSolidSquare(xa / xStep, 0) && !isFreezeSquare(xa / xStep, 0) && !isHyperSquare(xa / xStep, 0) && !isPacer(xa / xStep, 0)) {
                 x += xa / xStep;
+            } else if(isPacer(xa / xStep, 0)){
+                System.out.println("Touché par pacer");
+                run.stop();
+                xa = 0;
             } else {
                 xa = 0;
             }
@@ -152,9 +156,13 @@ public class Human extends Characters {
 
         int yStep = (int) Math.abs(ya * 1000);
         for (int i = 0; i < yStep; i++) {
-            if (!isSolidSquare(0, ya / yStep) && !isFreezeSquare(0, ya / yStep) && !isHyperSquare(0, ya / yStep)) {
+            if (!isSolidSquare(0, ya / yStep) && !isFreezeSquare(0, ya / yStep) && !isHyperSquare(0, ya / yStep) && !isPacer(0,ya / yStep)) {
                 y += ya / yStep;
-            } else {
+            } else if(isPacer(0, ya / yStep)){
+                System.out.println("Touché par pacer");
+                run.stop();
+                ya = 0;
+            }else {
                 ya = 0;
 
             }
@@ -217,7 +225,8 @@ public class Human extends Characters {
         } else if (finTeleportation.getPlaying()) {
             renderCharacters(x, y, 16, 16, Color.WHITE, sizeSpriteSheet, finTeleportation.getCurrentFrame(), 0 + dir);
 
-        }else  {
+        }
+        else {
 
             renderCharacters(x, y, 16, 16, Color.WHITE, sizeSpriteSheet, run.getCurrentFrame(), 0 + dir);
         }

@@ -242,6 +242,14 @@ public class Level {
     public static Human getPlayer() {
         return player;
     }
+    
+    public Pacer getPacer() {
+        for (int i = 0; i < tab_character.size(); i++) {
+            Characters e = tab_character.get(i);
+            if(e instanceof Pacer) return (Pacer) e;
+        }
+        return null;
+    }   
          
     public int getBounds(int index) {
         return bounds[index];
