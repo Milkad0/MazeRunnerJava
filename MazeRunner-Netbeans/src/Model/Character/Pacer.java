@@ -29,7 +29,7 @@ public class Pacer extends Enemies{
         run = new Animation(1, 1, 2, 5, true,false);
         freeze = new Animation(1, 1, 1, 5, true,false);
 
-        mass = 1f;
+        mass = 0;
         friction = 0.95f;
     }
     float xa, ya;

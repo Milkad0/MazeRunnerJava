@@ -37,7 +37,11 @@ public class Game {
     public void update() {
         //translateView(-0.5f, -0.5f);
         //System.out.println(Level.getPlayer().getX());
-        level.update();
+        if (level.finish == false){
+            level.update();
+        }else{
+            level = new Level(Component.width / 16, Component.height / 16);
+        }
 
     }
 
@@ -46,5 +50,4 @@ public class Game {
         level.render();
 
     }
-
 }

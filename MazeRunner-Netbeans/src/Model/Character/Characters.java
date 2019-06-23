@@ -21,6 +21,7 @@ public abstract class Characters {
 
     //GETTER
     protected float x, y;
+    protected float xStart, yStart;
     protected boolean removed = false;
     protected Texture texture;
     protected Level level;
@@ -33,6 +34,8 @@ public abstract class Characters {
     public Characters(int x, int y) {
         this.x = x * 16;
         this.y = y * 16;
+        this.xStart = this.x;
+        this.yStart = this.y;
     }
 
     public abstract void init(Level level);
@@ -50,27 +53,30 @@ public abstract class Characters {
         return false;
     }
     
+    public void setPositionStart(){
+        this.x = this.xStart;
+        this.y = this.xStart;
+    }
+    
     public boolean isPacer(float xa, float ya) {
         
-        //taille bordure
-        int x0 = (int) (x + xa + 3.8f) / 16;
-        int x1 = (int) (x + xa + 14) / 16;
-        int y0 = (int) (y + ya + 2) / 16;
-        int y1 = (int) (y + ya + 15.8) / 16;
-
-        if (level.getPacer().getX() == x0 && level.getPacer().getY() == y0) {
+        //à checker
+        int x0 = (int) (xa + 0) / 16;
+        int x1 = (int) (xa + 13) / 16;
+        int y0 = (int) (ya + 0) / 16;
+        int y1 = (int) (ya + 0) / 16;
+        
+        if (((int)level.getPacer().getPositionX()/16 == x0) && ((int)level.getPacer().getPositionY()/16 == y0)) {
             return true;
-        }
-        if (level.getPacer().getX() == x1 && level.getPacer().getY() == y0) {
+        }else if (((int)level.getPacer().getPositionX()/16 == x1) && ((int)level.getPacer().getPositionY()/16 == y0)) {
             return true;
-        }
-        if (level.getPacer().getX() == x0 && level.getPacer().getY() == y1) {
+        }else if (((int)level.getPacer().getPositionX()/16 == x0) && ((int)level.getPacer().getPositionY()/16 == y1)) {
             return true;
-        }
-        if (level.getPacer().getX() == x1 && level.getPacer().getY() == y1) {
+        }else if (((int)level.getPacer().getPositionX()/16 == x1) && ((int)level.getPacer().getPositionY()/16 == y1)) {
             return true;
+        }else{
+            return false;    
         }
-        return false;        
     }
 
     public boolean isLadder() {

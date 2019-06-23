@@ -27,6 +27,8 @@ public class Level {
     public float gravity = 1.8f;
 
     public int width, height;
+    
+    public boolean finish;
 
     private int[] bounds = new int[4];
 
@@ -55,6 +57,7 @@ public class Level {
     }
 
     public void spawner() {
+        this.init();
         player.init(this);
         pacer.init(this);
         addCharacters(player);
@@ -73,6 +76,7 @@ public class Level {
         }
         width = image.getWidth();
         height = image.getHeight();
+        finish=false;
         System.out.println(height);
 
         bounds[0] = -16;
@@ -198,7 +202,8 @@ public class Level {
     }
 
     public void init() {
-
+        player.setPositionStart();
+        pacer.setPositionStart();
     }
 
 
@@ -234,23 +239,24 @@ public class Level {
         }
     }
 
-   
-    
-    //GETTER
-    
+
     
     public static Human getPlayer() {
         return player;
     }
     
     public Pacer getPacer() {
-        for (int i = 0; i < tab_character.size(); i++) {
-            Characters e = tab_character.get(i);
-            if(e instanceof Pacer) return (Pacer) e;
-        }
-        return null;
+        return pacer;
     }   
          
+    public List<Characters> getTabCharacter(){
+        return tab_character;
+    }
+    
+    public boolean getFinish(){
+        return finish;
+    }
+    
     public int getBounds(int index) {
         return bounds[index];
     }
@@ -298,9 +304,5 @@ public class Level {
     public static int getYHyperSquare(int y){
 
         return tab_YHyperSquare[y];
-    }
-    
-    //SETTER
-    
-    //OTHERS
+    } 
 }

@@ -37,17 +37,22 @@ public class Human extends Characters {
         climb = new Animation(1, 2, 3, 5, true,false);
         freeze = new Animation(5, 5, 5, 5, true,false);
         finTeleportation = new Animation(1,5,5,2,false,true);
-
+        
         mass = 0.1f;
         friction = 0.95f;
     }
     float xa, ya;
 
     public void update() {
-
         
         if (!isLadder()) {
             ya += level.gravity * mass;
+        }
+        /*if (((int)level.getPacer().getPositionX()/16==(int)level.getPlayer().getPositionX()/16) && (int)level.getPacer().getPositionY()/16==(int)level.getPlayer().getPositionY()/16){;
+            level.finish = true;
+        }*/
+        if(isPacer(this.x,this.y)){
+            level.finish = true;
         }
         run.update();
         run.pause();
