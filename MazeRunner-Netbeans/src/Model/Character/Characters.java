@@ -13,7 +13,7 @@ import Graphics.Texture;
  *
  * @author q95
  */
-public abstract class Characters {
+public abstract class Characters extends Thread{
 
     //ATTRIBUTS
     protected int powerCount;
@@ -22,6 +22,7 @@ public abstract class Characters {
     //GETTER
     protected float x, y;
     protected float xStart, yStart;
+    protected int dir;
     protected boolean removed = false;
     protected Texture texture;
     protected Level level;

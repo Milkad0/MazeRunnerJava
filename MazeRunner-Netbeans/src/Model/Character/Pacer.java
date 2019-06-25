@@ -10,6 +10,8 @@ import Graphics.Color;
 import Graphics.Texture;
 import static Graphics.View.renderCharacters;
 import Model.Level;
+import java.util.concurrent.TimeUnit;
+import java.util.logging.Logger;
 
 /**
  *
@@ -19,8 +21,7 @@ public class Pacer extends Enemies{
 
     public Animation run, freeze;
 
-    int dir = 0;
-    float speed = 2.0f;
+    float speed = 2f;
     int test = 0;
 
     public Pacer(int x, int y) {
@@ -72,6 +73,18 @@ public class Pacer extends Enemies{
                 y += ya / yStep;
             } else {
                 ya = 0;
+            }
+        }
+    }
+    
+    
+    @Override
+    public void run(){
+        while(level.finish==false){
+            try {
+                update();
+                sleep(15);
+            } catch (InterruptedException ex) {
             }
         }
     }

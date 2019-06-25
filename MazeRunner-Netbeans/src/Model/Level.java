@@ -51,16 +51,19 @@ public class Level {
     static int posY_Door = -1;
     
     
-    private static Human player = new Human(2, 5);
-    private static Pacer pacer = new Pacer(17, 17);
+    private static Human player;
+    private static Pacer pacer;
 
     public Level(int width, int height) {
 
         loadLevel("Map 1");
         spawner();
+        startThread();
     }
 
     public void spawner() {
+        player = new Human(2, 5);
+        pacer = new Pacer(17, 17);
         this.init();
         player.init(this);
         pacer.init(this);
@@ -81,7 +84,6 @@ public class Level {
         width = image.getWidth();
         height = image.getHeight();
         finish=false;
-        System.out.println(height);
 
         bounds[0] = -16;
         bounds[1] = -16;
@@ -298,10 +300,10 @@ public class Level {
             if (e.getRemoved()) {
                 tab_character.remove(e);
             }
-            e.update();
-        }
-        
-        
+            if(e instanceof Pacer == false && e instanceof Human == false){
+                e.update();
+            }
+        }       
     }
 
     public void render() {
@@ -407,4 +409,11 @@ public class Level {
 
         return posX_Door ;
     } 
+    
+    public void startThread(){
+        pacer.start();
+        player.start();
+        pacer.setName("Pacer Thread");
+        player.setName("Player Thread");
+    }
 }

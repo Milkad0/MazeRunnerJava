@@ -48,7 +48,18 @@ public class Human extends Characters {
         friction = 0.95f;
     }
     float xa, ya;
-
+    
+    @Override
+    public void run(){
+        while(level.finish==false){
+            try {
+                update();
+                sleep(15);
+            } catch (InterruptedException ex) {
+            }
+        }
+    }
+    
     public void update() {
             posX = (int) getPositionX()/16;
             posY = (int) (getPositionY()/16);
@@ -56,9 +67,6 @@ public class Human extends Characters {
         if (!isLadder()) {
             ya += level.gravity * mass;
         }
-        /*if (((int)level.getPacer().getPositionX()/16==(int)level.getPlayer().getPositionX()/16) && (int)level.getPacer().getPositionY()/16==(int)level.getPlayer().getPositionY()/16){;
-            level.finish = true;
-        }*/
         if(isPacer(this.x,this.y)){
             level.finish = true;
             power = 0;
@@ -69,7 +77,6 @@ public class Human extends Characters {
             level.succeed = true;
             power = 0;
             key = false;
-            System.out.println("END");
         }
        
         
@@ -169,10 +176,6 @@ public class Human extends Characters {
         for (int i = 0; i < xStep; i++) {
             if (!isSolidSquare(xa / xStep, 0) && !isFreezeSquare(xa / xStep, 0) && !isHyperSquare(xa / xStep, 0) && !isPacer(xa / xStep, 0)) {
                 x += xa / xStep;
-            } else if(isPacer(xa / xStep, 0)){
-                System.out.println("Touché par pacer");
-                run.stop();
-                xa = 0;
             } else {
                 xa = 0;
             }
@@ -182,13 +185,8 @@ public class Human extends Characters {
         for (int i = 0; i < yStep; i++) {
             if (!isSolidSquare(0, ya / yStep) && !isFreezeSquare(0, ya / yStep) && !isHyperSquare(0, ya / yStep) && !isPacer(0,ya / yStep)) {
                 y += ya / yStep;
-            } else if(isPacer(0, ya / yStep)){
-                System.out.println("Touché par pacer");
-                run.stop();
+            } else {
                 ya = 0;
-            }else {
-                ya = 0;
-
             }
         }
 
