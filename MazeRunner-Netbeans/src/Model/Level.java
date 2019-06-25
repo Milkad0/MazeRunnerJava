@@ -39,9 +39,12 @@ public class Level {
     Square[][] freezeSquare;
     Square[][] hyperSquare;
     Square[][] doorSquare;
+    Square[][] keySquare;
 
     List<Characters> tab_character = new ArrayList<Characters>();
     List<Square> tab_apple = new ArrayList<Square>();
+    List<Square> tab_key = new ArrayList<Square>();
+    
     static int tab_XHyperSquare[]={-1,-1,-1,-1,-1,-1,-1,-1,-1,-1};
     static int tab_YHyperSquare[]={-1,-1,-1,-1,-1,-1,-1,-1,-1,-1};
     static int posX_Door = -1;
@@ -50,7 +53,6 @@ public class Level {
     
     private static Human player = new Human(2, 5);
     private static Pacer pacer = new Pacer(17, 17);
-    //private static Apple apple = new Apple(4,5);
 
     public Level(int width, int height) {
 
@@ -96,6 +98,7 @@ public class Level {
         freezeSquare = new Square[width][height];
         hyperSquare = new Square[width][height];
         doorSquare = new Square [width][height];
+        keySquare = new Square [width][height];
 
         for (int x = 0; x < width; x++) {
             for (int y = 0; y < height; y++) {
@@ -170,6 +173,10 @@ public class Level {
                     posX_Door = x;
                     posY_Door = y;
                 }
+                if (pixels[x + y * width] == 0xFFff00DC) {
+                    keySquare[x][y] = new Square(x, y, Squares.KEY);
+                    noneSolidSquare[x][y] = new Square(x, y, Squares.EMPTY);
+                }
             }
         }
 
@@ -184,7 +191,10 @@ public class Level {
                     continue;
                 }
                 if (appleSquare[x][y] != null) {
-                    appleSquare[x][y].setSquare();
+                    appleSquare[x][y].setSquareApple();
+                }
+                if(keySquare[x][y] !=null){
+                    keySquare[x][y].setSquareKey();
                 }
                 addSquares(x, y);
             }
@@ -197,7 +207,7 @@ public class Level {
     public void addSquares(int x, int y) {
         if (solidSquare[x][y] != null) {
             Square.add(solidSquare[x][y]);
-        } else if (noneSolidSquare[x][y] != null&&appleSquare[x][y] == null) {
+        } else if (noneSolidSquare[x][y] != null&&appleSquare[x][y] == null&&keySquare[x][y] ==null) {
             Square.add(noneSolidSquare[x][y]);
         } else if (ladderSquare[x][y] != null) {
             Square.add(ladderSquare[x][y]);
@@ -210,6 +220,9 @@ public class Level {
             Square.add(hyperSquare[x][y]);
         }else if (doorSquare[x][y] != null) {
             Square.add(doorSquare[x][y]);
+        }else if (keySquare[x][y] != null) {
+            Square.add(noneSolidSquare[x][y]);
+            tab_key.add(keySquare[x][y]);
         }
     }
 
@@ -245,13 +258,29 @@ public class Level {
 
     }
     
+    public boolean removeSquareKey(int x, int y) {
+        
+        boolean test = false;
+        
+       if (keySquare[x][y] != null) { 
+            tab_key.remove(keySquare[x][y]);
+            keySquare[x][y] = null;
+            test = true;
+        }else{
+           test = false;
+       }
+       
+       return test;
+
+    }
+    
     public boolean addSquareApple(int x, int y) {
         
         boolean test = false;
         
        if (appleSquare[x][y] == null) { 
             appleSquare[x][y] = new Square(x, y, Squares.APPLE) ;
-            appleSquare[x][y].setSquare();
+            appleSquare[x][y].setSquareApple();
             tab_apple.add(appleSquare[x][y]);
             
             test = true;
@@ -282,6 +311,9 @@ public class Level {
         }
          for (Square squareApple : tab_apple){
             squareApple.render();
+        }
+         for (Square squareKey : tab_key){
+            squareKey.render();
         }
         
         
@@ -333,6 +365,13 @@ public class Level {
             return null;
         }
         return appleSquare[x][y];
+    }
+    
+    public Square getKeySquare(int x, int y) {
+        if (x < 0 || y < 0 || x >= width || y >= height) {
+            return null;
+        }
+        return keySquare[x][y];
     }
 
     public Square getFreezeSquare(int x, int y) {

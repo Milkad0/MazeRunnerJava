@@ -33,6 +33,8 @@ public class Human extends Characters {
     int power =0;
     public int  posX;
     public int posY;
+    boolean key = false;
+    
     public Human(int x, int y) {
         super(x, y);
         texture = Texture.human;
@@ -60,11 +62,14 @@ public class Human extends Characters {
         if(isPacer(this.x,this.y)){
             level.finish = true;
             power = 0;
+            key = false;
         }
         
-        if(isDoor(posX,posY)){
+        if(isDoor(posX,posY)&&key){
             level.succeed = true;
             power = 0;
+            key = false;
+            System.out.println("END");
         }
        
         
@@ -233,7 +238,10 @@ public class Human extends Characters {
 
            if(level.removeSquareApple(posX, posY)){
                power++;
-               System.out.println("Power : "+power);
+           }
+           
+           if(level.removeSquareKey(posX, posY)){
+               key=true;
            }
            
            
