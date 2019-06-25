@@ -40,7 +40,7 @@ public class Square {
    
 
     public enum Squares {
-        BRICK, EMPTY, FREEZE, APPLE, LADDER, GOAL, HYPER_0, HYPER_1,HYPER_2,HYPER_3,HYPER_4,HYPER_5,HYPER_6,HYPER_7,HYPER_8,HYPER_9
+        BRICK, EMPTY, FREEZE, APPLE, LADDER, GOAL, HYPER_0, HYPER_1,HYPER_2,HYPER_3,HYPER_4,HYPER_5,HYPER_6,HYPER_7,HYPER_8,HYPER_9,DOOR
     }
 
     public Square(int x, int y, Squares square) {
@@ -94,6 +94,9 @@ public class Square {
         } else if (square == Squares.HYPER_9) {
             yo = 0;
             xo = 14;
+        }else if (square == Squares.DOOR) {
+            yo = 0;
+            xo = 15;
         }
 
         if (hasSquareSet) {

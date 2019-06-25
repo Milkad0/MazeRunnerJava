@@ -27,7 +27,7 @@ public class Level {
 
     public int width, height;
     
-    public boolean finish;
+    public boolean finish,succeed;
 
     private int[] bounds = new int[4];
 
@@ -38,11 +38,14 @@ public class Level {
     Square[][] appleSquare;
     Square[][] freezeSquare;
     Square[][] hyperSquare;
+    Square[][] doorSquare;
 
     List<Characters> tab_character = new ArrayList<Characters>();
     List<Square> tab_apple = new ArrayList<Square>();
     static int tab_XHyperSquare[]={-1,-1,-1,-1,-1,-1,-1,-1,-1,-1};
     static int tab_YHyperSquare[]={-1,-1,-1,-1,-1,-1,-1,-1,-1,-1};
+    static int posX_Door = -1;
+    static int posY_Door = -1;
     
     
     private static Human player = new Human(2, 5);
@@ -92,6 +95,7 @@ public class Level {
         appleSquare = new Square[width][height];
         freezeSquare = new Square[width][height];
         hyperSquare = new Square[width][height];
+        doorSquare = new Square [width][height];
 
         for (int x = 0; x < width; x++) {
             for (int y = 0; y < height; y++) {
@@ -161,6 +165,11 @@ public class Level {
                     tab_XHyperSquare[9]=x;
                     tab_YHyperSquare[9]=y;
                 }
+                if (pixels[x + y * width] == 0xFF0026FF) {
+                    doorSquare[x][y] = new Square(x, y, Squares.DOOR);
+                    posX_Door = x;
+                    posY_Door = y;
+                }
             }
         }
 
@@ -199,6 +208,8 @@ public class Level {
             Square.add(freezeSquare[x][y]);
         } else if (hyperSquare[x][y] != null) {
             Square.add(hyperSquare[x][y]);
+        }else if (doorSquare[x][y] != null) {
+            Square.add(doorSquare[x][y]);
         }
     }
 
@@ -338,13 +349,23 @@ public class Level {
         return hyperSquare[x][y];
     }
      
-    public static int getXHyperSquare(int x){
+    public  int getXHyperSquare(int x){
 
         return tab_XHyperSquare[x];
     }
     
-    public static int getYHyperSquare(int y){
+    public  int getYHyperSquare(int y){
 
         return tab_YHyperSquare[y];
+    } 
+    
+    public  int getYDoor(){
+
+        return posY_Door ;
+    } 
+    
+    public  int getXDoor(){
+
+        return posX_Door ;
     } 
 }

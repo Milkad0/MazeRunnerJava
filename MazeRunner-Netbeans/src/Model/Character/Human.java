@@ -31,8 +31,8 @@ public class Human extends Characters {
     public boolean apple = false;
     char lastKey;
     int power =0;
-    int posX;
-    int posY;
+    public int  posX;
+    public int posY;
     public Human(int x, int y) {
         super(x, y);
         texture = Texture.human;
@@ -48,6 +48,8 @@ public class Human extends Characters {
     float xa, ya;
 
     public void update() {
+            posX = (int) getPositionX()/16;
+            posY = (int) (getPositionY()/16);
         
         if (!isLadder()) {
             ya += level.gravity * mass;
@@ -59,6 +61,13 @@ public class Human extends Characters {
             level.finish = true;
             power = 0;
         }
+        
+        if(isDoor(posX,posY)){
+            level.succeed = true;
+            power = 0;
+        }
+       
+        
         run.update();
         run.pause();
         climb.update();
@@ -192,9 +201,9 @@ public class Human extends Characters {
             int numFuturHyperSquare = -2;
             
             for (int numHyperSquare = 0; numHyperSquare < 9; numHyperSquare++) {
-                if((Level.getXHyperSquare(numHyperSquare)==posX)&&(Level.getYHyperSquare(numHyperSquare)==posY)){
+                if((level.getXHyperSquare(numHyperSquare)==posX)&&(level.getYHyperSquare(numHyperSquare)==posY)){
                     
-                    if(Level.getXHyperSquare(numHyperSquare+1)==-1){
+                    if(level.getXHyperSquare(numHyperSquare+1)==-1){
                     numFuturHyperSquare = 0;  
                     }else{
                     numFuturHyperSquare = numHyperSquare+1;
@@ -204,8 +213,8 @@ public class Human extends Characters {
             }
             
             if(numFuturHyperSquare != -2){
-                int x = Level.getXHyperSquare(numFuturHyperSquare);
-                int y = Level.getYHyperSquare(numFuturHyperSquare)-1;
+                int x = level.getXHyperSquare(numFuturHyperSquare);
+                int y = level.getYHyperSquare(numFuturHyperSquare)-1;
          
                 if((teleport==false)&&(x>0)&&(y>0)){
                  setPosition(x,y);
@@ -221,8 +230,7 @@ public class Human extends Characters {
             teleport=false;
         }
         
-            posX = (int) getPositionX()/16;
-            posY = (int) (getPositionY()/16);
+
            if(level.removeSquareApple(posX, posY)){
                power++;
                System.out.println("Power : "+power);

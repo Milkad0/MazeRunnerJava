@@ -206,6 +206,19 @@ public abstract class Characters {
         return false;
     }
     
+    public boolean isDoor(int xa, int ya){
+        boolean test = false;
+        
+        if(level.getXDoor()==xa&&level.getYDoor()==ya){
+            
+            test = true;
+        }
+        
+        return test;
+        
+        
+    }
+    
     //GETTER
 
     public float getX() {
