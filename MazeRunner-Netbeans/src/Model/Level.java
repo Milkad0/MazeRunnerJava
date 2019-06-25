@@ -223,7 +223,6 @@ public class Level {
         boolean test = false;
         
        if (appleSquare[x][y] != null) { 
-            int index = tab_apple.indexOf(appleSquare[x][y]);
             tab_apple.remove(appleSquare[x][y]);
             appleSquare[x][y] = null;
             test = true;
@@ -234,6 +233,25 @@ public class Level {
        return test;
 
     }
+    
+    public boolean addSquareApple(int x, int y) {
+        
+        boolean test = false;
+        
+       if (appleSquare[x][y] == null) { 
+            appleSquare[x][y] = new Square(x, y, Squares.APPLE) ;
+            appleSquare[x][y].setSquare();
+            tab_apple.add(appleSquare[x][y]);
+            
+            test = true;
+        }else{
+           test = false;
+       }
+       
+       return test;
+
+    }
+    
     public void update() {
         for (int i = 0; i < tab_character.size(); i++) {
             Characters e = tab_character.get(i);

@@ -31,6 +31,8 @@ public class Human extends Characters {
     public boolean apple = false;
     char lastKey;
     int power =0;
+    int posX;
+    int posY;
     public Human(int x, int y) {
         super(x, y);
         texture = Texture.human;
@@ -55,6 +57,7 @@ public class Human extends Characters {
         }*/
         if(isPacer(this.x,this.y)){
             level.finish = true;
+            power = 0;
         }
         run.update();
         run.pause();
@@ -218,12 +221,14 @@ public class Human extends Characters {
             teleport=false;
         }
         
-            int posX = (int) getPositionX()/16;
-            int posY = (int) (getPositionY()/16);
+            posX = (int) getPositionX()/16;
+            posY = (int) (getPositionY()/16);
            if(level.removeSquareApple(posX, posY)){
                power++;
-               System.out.println(power);
+               System.out.println("Power : "+power);
            }
+           
+           
         
         
        
