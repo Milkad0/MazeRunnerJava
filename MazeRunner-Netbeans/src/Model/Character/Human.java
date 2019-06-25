@@ -28,7 +28,9 @@ public class Human extends Characters {
     int testFreeze = 0;
     boolean teleport = false;
     boolean teleportEnd = false;
+    public boolean apple = false;
     char lastKey;
+    int power =0;
     public Human(int x, int y) {
         super(x, y);
         texture = Texture.human;
@@ -215,6 +217,15 @@ public class Human extends Characters {
         }else if(isBrick()){
             teleport=false;
         }
+        
+            int posX = (int) getPositionX()/16;
+            int posY = (int) (getPositionY()/16);
+           if(level.removeSquareApple(posX, posY)){
+               power++;
+               System.out.println(power);
+           }
+        
+        
        
     }
 

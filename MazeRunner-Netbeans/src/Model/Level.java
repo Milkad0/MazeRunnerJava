@@ -8,7 +8,6 @@ package Model;
 import Controller.Component;
 import Model.Character.Characters;
 import Model.Character.*;
-import Model.Square.Apple;
 import java.awt.image.BufferedImage;
 import Model.Square.Square;
 import Model.Square.Square.Squares;
@@ -107,6 +106,7 @@ public class Level {
                 }
                 if (pixels[x + y * width] == 0xFFff0000) {
                     appleSquare[x][y] = new Square(x, y, Squares.APPLE);
+                    noneSolidSquare[x][y] = new Square(x, y, Squares.EMPTY);
                 }
                 if (pixels[x + y * width] == 0xFF00ffff) {
                     freezeSquare[x][y] = new Square(x, y, Squares.FREEZE);
@@ -188,12 +188,13 @@ public class Level {
     public void addSquares(int x, int y) {
         if (solidSquare[x][y] != null) {
             Square.add(solidSquare[x][y]);
-        } else if (noneSolidSquare[x][y] != null) {
+        } else if (noneSolidSquare[x][y] != null&&appleSquare[x][y] == null) {
             Square.add(noneSolidSquare[x][y]);
         } else if (ladderSquare[x][y] != null) {
             Square.add(ladderSquare[x][y]);
         } else if (appleSquare[x][y] != null) {
-            Square.add(appleSquare[x][y]);
+            Square.add(noneSolidSquare[x][y]);
+            tab_apple.add(appleSquare[x][y]);
         } else if (freezeSquare[x][y] != null) {
             Square.add(freezeSquare[x][y]);
         } else if (hyperSquare[x][y] != null) {
@@ -217,7 +218,22 @@ public class Level {
         tab_character.remove(e);
 
     }
+    public boolean removeSquareApple(int x, int y) {
+        
+        boolean test = false;
+        
+       if (appleSquare[x][y] != null) { 
+            int index = tab_apple.indexOf(appleSquare[x][y]);
+            tab_apple.remove(appleSquare[x][y]);
+            appleSquare[x][y] = null;
+            test = true;
+        }else{
+           test = false;
+       }
+       
+       return test;
 
+    }
     public void update() {
         for (int i = 0; i < tab_character.size(); i++) {
             Characters e = tab_character.get(i);
@@ -226,12 +242,20 @@ public class Level {
             }
             e.update();
         }
+        
+        
     }
 
     public void render() {
+       
         for (Square square : Square) { //for each
             square.render();
         }
+         for (Square squareApple : tab_apple){
+            squareApple.render();
+        }
+        
+        
 
         for (int i = 0; i < tab_character.size(); i++) {
             Characters e = tab_character.get(i);
@@ -239,7 +263,7 @@ public class Level {
         }
     }
 
-
+//GETTER
     
     public static Human getPlayer() {
         return player;
