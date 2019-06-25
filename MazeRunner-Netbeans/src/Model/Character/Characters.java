@@ -64,7 +64,7 @@ public abstract class Characters {
         int x0 = (int) (xa + 0) / 16;
         int x1 = (int) (xa + 13) / 16;
         int y0 = (int) (ya + 0) / 16;
-        int y1 = (int) (ya + 0) / 16;
+        int y1 = (int) (ya + 13) / 16;
         
         if (((int)level.getPacer().getPositionX()/16 == x0) && ((int)level.getPacer().getPositionY()/16 == y0)) {
             return true;
