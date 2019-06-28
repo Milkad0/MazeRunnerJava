@@ -11,7 +11,7 @@ import Graphics.Color;
 import static Graphics.View.renderCharacters;
 import Model.Level;
 import Model.Square.Square;
-import Graphics.Texture;
+import Graphics.MyTexture;
 import org.lwjgl.input.Keyboard;
 
 /**
@@ -37,7 +37,7 @@ public class Human extends Characters {
     
     public Human(int x, int y) {
         super(x, y);
-        texture = Texture.human;
+        texture = MyTexture.human;
         run = new Animation(1, 2, 4, 5, true,false);
         jump = new Animation(1, 1, 1, 5, true,false);
         climb = new Animation(1, 2, 3, 5, true,false);

@@ -54,9 +54,9 @@ public class Level {
     private static Human player;
     private static Pacer pacer;
 
-    public Level(int width, int height) {
+    public Level(String Map) {
 
-        loadLevel("Map 1");
+        loadLevel(Map);
         spawner();
         startThread();
     }
@@ -294,8 +294,13 @@ public class Level {
 
     }
     
+    public void text(){
+        
+        
+    }
+    
     public void update() {
-        for (int i = 0; i < tab_character.size(); i++) {
+               for (int i = 0; i < tab_character.size(); i++) {
             Characters e = tab_character.get(i);
             if (e.getRemoved()) {
                 tab_character.remove(e);

@@ -18,13 +18,14 @@ import org.lwjgl.util.glu.GLU;
  */
 public class Component {
 
-    public boolean running = false;
+    public static boolean running = false;
     
     public static String title = "MazeRunner";
     public static float scale = 1 ;
     public static int width = Toolkit.getDefaultToolkit().getScreenSize().width /*(int) (Display.getWidth()/scale)*/;
     public static int height = Toolkit.getDefaultToolkit().getScreenSize().height /*(int) (Display.getHeight()/scale)*/;
-   
+    public static int realWidth = width;
+    public static int realHeigth = height;
     
     int time = 0;
     
@@ -48,18 +49,19 @@ public class Component {
         loop();
     }  
     
-    public void stop(){
+    public static void stop(){
         running = false;
     }
     
-    public void exit (){
+    public static void exit (){
         Display.destroy();
         System.exit(0);
     }
     
     public void loop(){
         
-        game.init();
+        //game.init();
+        StateManager.init();
         scale = (Display.getWidth()*3.54f)/1920;
         
         long timer = System.currentTimeMillis();
@@ -108,8 +110,9 @@ public class Component {
     
     public void tick (){
       time++;  
-        
-      game.update();
+      
+       StateManager.update();
+      //game.update();
     }
     
     public void render(){
@@ -117,8 +120,8 @@ public class Component {
         view2D(width,height);  
         glClear(GL_COLOR_BUFFER_BIT);
         
-
-        game.render();
+        StateManager.render();
+        //game.render();
     }
     
      public void display(){
@@ -127,7 +130,7 @@ public class Component {
         //Display.setDisplayModeAndFullscreen(Display.getDesktopDisplayMode());
         Display.setResizable(false);
         Display.setFullscreen(true);
-        Display.setLocation(-2, 0);
+        Display.setLocation(-3, 0);
         Display.setTitle(title);
         Display.create();
         

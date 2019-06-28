@@ -7,7 +7,7 @@ package Model.Character;
 
 import Model.Level;
 import Model.Square.Square;
-import Graphics.Texture;
+import Graphics.MyTexture;
 
 /**
  *
@@ -24,7 +24,7 @@ public abstract class Characters extends Thread{
     protected float xStart, yStart;
     protected int dir;
     protected boolean removed = false;
-    protected Texture texture;
+    protected MyTexture texture;
     protected Level level;
 
     protected float friction;
@@ -234,7 +234,7 @@ public abstract class Characters extends Thread{
         return removed;
     }
 
-    public Texture getTexture() {
+    public MyTexture getTexture() {
         return texture;
     }
 
