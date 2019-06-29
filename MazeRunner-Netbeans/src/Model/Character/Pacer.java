@@ -7,7 +7,7 @@ package Model.Character;
 
 import Graphics.Animation;
 import Graphics.Color;
-import Graphics.Texture;
+import Graphics.MyTexture;
 import static Graphics.View.renderCharacters;
 import Model.Level;
 import java.util.concurrent.TimeUnit;
@@ -26,7 +26,7 @@ public class Pacer extends Enemies{
 
     public Pacer(int x, int y) {
         super(x, y);
-        texture = Texture.pacer;
+        texture = MyTexture.pacer;
         run = new Animation(1, 1, 2, 5, true,false);
         freeze = new Animation(1, 1, 1, 5, true,false);
 

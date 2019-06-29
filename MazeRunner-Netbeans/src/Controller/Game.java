@@ -5,6 +5,7 @@
  */
 package Controller;
 
+import Graphics.UI;
 import Model.Level;
 import Model.Square.Square;
 import org.lwjgl.opengl.GL11;
@@ -16,11 +17,13 @@ import org.lwjgl.opengl.GL11;
 public class Game {
 
     Level level;
+    String[] Map ={"Map 1","Map 2","Map 3"};
+   
 
     public static float xScroll, yScroll;
 
     public Game() {
-        level = new Level(Component.width / 16, Component.height / 16);
+        level = new Level(Map[0]);
         xScroll = level.getBounds(0);
         yScroll = level.getBounds(1);
     }
@@ -37,12 +40,12 @@ public class Game {
     public void update() {
         //translateView(-0.5f, -0.5f);
         //System.out.println(Level.getPlayer().getX());
+        
         if (level.finish == false){
             level.update();
         }else{
-            level = new Level(Component.width / 16, Component.height / 16);
+            level = new Level(Map[0]);
         }
-
     }
 
     public void render() {

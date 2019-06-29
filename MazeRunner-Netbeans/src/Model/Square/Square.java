@@ -5,7 +5,7 @@
  */
 package Model.Square;
 
-import Graphics.Texture;
+import Graphics.MyTexture;
 import Controller.Component;
 import Controller.Game;
 import static Graphics.View.quadData;
@@ -132,7 +132,7 @@ public class Square {
         if (x0 + 1 < 0 || y0 + 1 < 0 || x0 > Component.width / 16 || y0 > Component.height / 16) {
             return;
         }
-        Texture.squares.bind();
+        MyTexture.squares.bind();
         glBegin(GL_QUADS);
 
         if ((xo == 3 || xo == 0) && yo == 0) {
@@ -146,7 +146,7 @@ public class Square {
         }
 
         glEnd();
-        Texture.squares.unbind();
+        MyTexture.squares.unbind();
     }
 //GETTER
     
