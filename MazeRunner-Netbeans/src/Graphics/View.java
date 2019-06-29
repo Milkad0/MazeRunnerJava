@@ -91,4 +91,9 @@ public class View {
         tex = loadTextureMenu("Texture/"+name+".png","PNG");
         return tex;
     }
+      public static Texture QuickLoadMenuTexturejpg(String name){
+        Texture tex = null;
+        tex = loadTextureMenu("Texture/"+name+".jpg","JPG");
+        return tex;
+    }
 }

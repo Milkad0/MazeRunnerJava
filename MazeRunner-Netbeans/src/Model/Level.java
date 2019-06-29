@@ -62,7 +62,7 @@ public class Level {
     }
 
     public void spawner() {
-        player = new Human(2, 5);
+        player = new Human(2, 4);
         pacer = new Pacer(17, 17);
         this.init();
         player.init(this);

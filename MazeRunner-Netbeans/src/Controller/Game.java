@@ -17,7 +17,7 @@ import org.lwjgl.opengl.GL11;
 public class Game {
 
     Level level;
-    String[] Map ={"Map 1","Map 2"};
+    String[] Map ={"Map 1","Map 2","Map 3"};
    
 
     public static float xScroll, yScroll;

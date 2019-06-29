@@ -31,14 +31,14 @@ public class MainMenu {
     //Level mainLevel;
     private Texture background;
     private UI menuUI;
-     private int width = 873;
-    private int height = 317;
+     private int width = 600;
+    private int height = 580;
     
     public MainMenu(){
       //mainLevel = new Level("Map 2");
       background = QuickLoadMenuTexture("mainmenu");
       menuUI = new UI();
-      menuUI.addButton("Play","PlayButton", 225, 130, 70,30);
+      menuUI.addButton("Play","PlayButton", 237, 130, 70,30);
       menuUI.addButton("Quit","QuitButton", 0, 50, 70,30);
       
       
