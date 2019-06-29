@@ -46,9 +46,7 @@ public class StateManager {
                     
                 break;
             case EXIT:
-                Component.stop();
-                Display.destroy();
-                System.exit(0);
+               
                 
                 break;
         }
@@ -67,6 +65,9 @@ public class StateManager {
                 game.update();
                 break;
             case EXIT:
+                
+                 Component.stop();
+                Component.exit();
                 
                 break;
         }
