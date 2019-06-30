@@ -20,7 +20,6 @@ public class LevelManager {
     
     public static int val = 0;
     public static Game game;
-    public static LevelSelectMenu LevelMenu;
     public static LevelState[] choiceLevel ={LevelState.LevelMenu,LevelState.MAP1,LevelState.MAP2,LevelState.MAP3,LevelState.MAP4,LevelState.MAP5,LevelState.MAP6,LevelState.MAP7,LevelState.MAP8,LevelState.MAP9,LevelState.MAP10};
     //public static Editor editor;
     
