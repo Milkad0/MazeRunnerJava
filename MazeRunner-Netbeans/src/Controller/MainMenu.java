@@ -38,8 +38,8 @@ public class MainMenu {
       //mainLevel = new Level("Map 2");
       background = QuickLoadMenuTexture("mainmenu");
       menuUI = new UI();
-      menuUI.addButton("Play","PlayButton", 237, 130, 70,30);
-      menuUI.addButton("Quit","QuitButton", 0, 50, 70,30);
+      menuUI.addButton("Play","PlayButton", 237, 130, 80,30);//30
+      menuUI.addButton("Quit","QuitButton", 0, 50, 80,30);
       
       
       
@@ -74,13 +74,13 @@ public class MainMenu {
             StateManager.setState(2);
         }
         if(UI.isKey()==1){
-            menuUI.replaceButton("Play", "PlayButton");
-            menuUI.replaceButton("Quit", "QuitButton2"); //Choix
+            menuUI.replaceButton("Play", "PlayButton3");
+            menuUI.replaceButton("Quit", "QuitButton4"); //Choix
          
     
       }else{
-            menuUI.replaceButton("Quit", "QuitButton");
-            menuUI.replaceButton("Play", "PlayButton2"); //Choix
+            menuUI.replaceButton("Quit", "QuitButton3");
+            menuUI.replaceButton("Play", "PlayButton4"); //Choix
            
         }
         

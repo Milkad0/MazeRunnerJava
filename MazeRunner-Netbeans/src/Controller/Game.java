@@ -23,7 +23,7 @@ public class Game {
     public static float xScroll, yScroll;
 
     public Game() {
-        level = new Level(Map[0]);
+        level = new Level(Map[2]);
         xScroll = level.getBounds(0);
         yScroll = level.getBounds(1);
     }
@@ -44,7 +44,7 @@ public class Game {
         if (level.finish == false){
             level.update();
         }else{
-            level = new Level(Map[0]);
+            level = new Level(Map[2]);
         }
     }
 
