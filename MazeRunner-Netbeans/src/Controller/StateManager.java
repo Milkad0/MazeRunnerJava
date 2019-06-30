@@ -23,6 +23,7 @@ public class StateManager {
     
     public static int val = 0;
     public static MainMenu mainMenu;
+    public static LevelManager LevelManag;
     public static Game game;
     public static GameState[] choiceMenu ={GameState.MAINMENU,GameState.GAME,GameState.EXIT};
     //public static Editor editor;
@@ -39,10 +40,7 @@ public class StateManager {
                     mainMenu.init();
                     break;
             case GAME:
-                if(game == null)
-                    
-                    //game = new Game();
-                    //game.init();
+ 
                     
                 break;
             case EXIT:
@@ -58,11 +56,14 @@ public class StateManager {
                     mainMenu.update();
                     break;
             case GAME:
-                if(game == null){
-                    game = new Game();
-                    game.init();
+               
+                
+                if(LevelManag==null){
+                    LevelManager.init();
                 }
-                game.update();
+                LevelManager.update();
+                
+                
                 break;
             case EXIT:
                 
@@ -79,9 +80,9 @@ public class StateManager {
                     mainMenu.render();
                     break;
             case GAME:
-                if(game != null){
-                game.render();
-                }
+                 
+               
+                LevelManager.render();
                 break;
             case EXIT:
                 
@@ -92,7 +93,7 @@ public class StateManager {
      
      public static void setState (int choice){
          val = choice;
-         System.out.println(val);
+     
      }
     
 }

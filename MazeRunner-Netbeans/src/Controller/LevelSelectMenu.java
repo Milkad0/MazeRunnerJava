@@ -5,33 +5,36 @@
  */
 package Controller;
 
-import static Controller.StateManager.val;
 import Graphics.UI;
-import static Graphics.View.*;
+import static Graphics.View.QuickLoadMenuTexture;
+import static Graphics.View.renderBackground;
 import org.newdawn.slick.opengl.Texture;
-
 
 /**
  *
  * @author Vincent
  */
-public class MainMenu {
-    
-    //Level mainLevel;
-    public static Texture background;
+public class LevelSelectMenu {
+     //private Texture background;
     private UI menuUI;
      private int width = 600;
     private int height = 580;
-    private int testVal=0;
     
-    public MainMenu(){
+    public LevelSelectMenu(){
       //mainLevel = new Level("Map 2");
-      background = QuickLoadMenuTexture("mainmenu");
+      //background = QuickLoadMenuTexture("mainmenu");
       menuUI = new UI();
-      menuUI.addButton("Play","PlayButton", 237, 130, 80,30);//30
-      menuUI.addButton("Quit","QuitButton", 0, 50, 80,30);
-      
-      
+      menuUI.addButton("Level1","Level1Select", 158,130, 35,30);//30
+      menuUI.addButton("Level2","Level1", 50, 0, 35,30);
+      menuUI.addButton("Level3","Level1", 50, 0, 35,30);
+      menuUI.addButton("Level4","Level1", 50, 0, 35,30);
+      menuUI.addButton("Level5","Level1", 50, 0, 35,30);
+      //
+      menuUI.addButton("Level6","Level1", -200,50, 35,30);//30
+      menuUI.addButton("Level7","Level1", 50, 0, 35,30);
+      menuUI.addButton("Level8","Level1", 50, 0, 35,30);
+      menuUI.addButton("Level9","Level1", 50, 0, 35,30);
+      menuUI.addButton("Level10","Level1", 50, 0, 35,30);
       
     }
     
@@ -46,7 +49,7 @@ public class MainMenu {
     
 
     public void render() {
-        renderBackground(background,0,0,width,height);
+        renderBackground(MainMenu.background,0,0,width,height);
         menuUI.draw();
         
         //GL11.glTranslatef(xScroll, yScroll, 0);
@@ -58,40 +61,8 @@ public class MainMenu {
     
     public void updateButtons(){
         
-        if(val==0){
-            testVal=0;
-            
-        StateManager.setState(UI.isKeyMenuConfirmed());
-        
-        if(UI.isKeyMenu()==1){
-            menuUI.replaceButton("Play", "PlayButton3");
-            menuUI.replaceButton("Quit", "QuitButton4"); //Choix
-         
-    
-      }else{
-            menuUI.replaceButton("Quit", "QuitButton3");
-            menuUI.replaceButton("Play", "PlayButton4"); //Choix
-           
-        }
-        }else if(val==1){
-            if(testVal==0){
-            menuUI.removeButton();
-            
-      menuUI.addButton("Level1","Level1Select", 158,130, 35,30);//30
-      menuUI.addButton("Level2","Level1", 50, 0, 35,30);
-      menuUI.addButton("Level3","Level1", 50, 0, 35,30);
-      menuUI.addButton("Level4","Level1", 50, 0, 35,30);
-      menuUI.addButton("Level5","Level1", 50, 0, 35,30);
-      //
-      menuUI.addButton("Level6","Level1", -200,50, 35,30);//30
-      menuUI.addButton("Level7","Level1", 50, 0, 35,30);
-      menuUI.addButton("Level8","Level1", 50, 0, 35,30);
-      menuUI.addButton("Level9","Level1", 50, 0, 35,30);
-      menuUI.addButton("Level10","Level1", 50, 0, 35,30);
-            testVal=1;
-        }
-            
         LevelManager.setLevel(UI.isKeyLevelMenuConfirmed());
+        
         
         if(UI.isKeyLevelMenu()==0){
             menuUI.replaceButton("Level1","Level1Select");
@@ -217,11 +188,8 @@ public class MainMenu {
            
         }
         
-        
-            
-        }
-        
     }
-}
     
+    
+}
 

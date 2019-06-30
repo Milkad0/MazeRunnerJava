@@ -39,7 +39,7 @@ public class Component {
     
       public  Component () {
       display();
-      game = new Game();
+      //game = new Game();
 }
       
    
