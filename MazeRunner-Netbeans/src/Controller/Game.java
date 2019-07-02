@@ -6,6 +6,8 @@
 package Controller;
 
 import Graphics.UI;
+import static Graphics.View.QuickLoadMenuTexture;
+import static Graphics.View.renderBackground;
 import Model.Level;
 import Model.Square.Square;
 import org.lwjgl.opengl.GL11;
@@ -18,13 +20,16 @@ public class Game {
 
     Level level;
     String Map1;
+    UI gameUI;
    
 
     public static float xScroll, yScroll;
 
     public Game(String Map) {
+       
         this.Map1 = Map;
         level = new Level(Map1);
+        gameUI = new UI();
         xScroll = level.getBounds(0);
         yScroll = level.getBounds(1);
     }
@@ -37,21 +42,33 @@ public class Game {
         //xScroll += xa;
         //yScroll += ya;
     }
+    
+    private void updateUI(){
+       
+       
+        
+    }
 
     public void update() {
         //translateView(-0.5f, -0.5f);
         //System.out.println(Level.getPlayer().getX());
         
         if (level.finish == false){
+            
             level.update();
+            
+            
         }else{
             level = new Level(Map1);
         }
+        
     }
 
     public void render() {
         GL11.glTranslatef(xScroll, yScroll, 0);
         level.render();
+        updateUI();
+        
 
     }
 }

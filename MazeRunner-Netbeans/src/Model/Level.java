@@ -40,6 +40,10 @@ public class Level {
     Square[][] hyperSquare;
     Square[][] doorSquare;
     Square[][] keySquare;
+    Square[][] graySquare;
+    Square[][] grayAppleSquare;
+    Square[][] grayKeySquare;
+    Square[][] grayTimeSquare;
 
     List<Characters> tab_character = new ArrayList<Characters>();
     List<Square> tab_apple = new ArrayList<Square>();
@@ -101,6 +105,10 @@ public class Level {
         hyperSquare = new Square[width][height];
         doorSquare = new Square [width][height];
         keySquare = new Square [width][height];
+        graySquare= new Square[width][height];
+        grayAppleSquare= new Square[width][height];
+        grayKeySquare= new Square[width][height];
+        grayTimeSquare= new Square[width][height];
 
         for (int x = 0; x < width; x++) {
             for (int y = 0; y < height; y++) {
@@ -178,6 +186,22 @@ public class Level {
                 if (pixels[x + y * width] == 0xFFff00DC) {
                     keySquare[x][y] = new Square(x, y, Squares.KEY);
                     noneSolidSquare[x][y] = new Square(x, y, Squares.EMPTY);
+                }
+                if (pixels[x + y * width] == 0xFFA0A0A0) {
+                    solidSquare[x][y] = new Square(x, y, Squares.GRAY);
+                    
+                }
+                if (pixels[x + y * width] == 0xFF7F0000) {
+                    grayAppleSquare[x][y] = new Square(x, y, Squares.GRAY_APPLE);
+                    
+                }
+                if (pixels[x + y * width] == 0xFF7F006E) {
+                    grayKeySquare[x][y] = new Square(x, y, Squares.GRAY_KEY);
+                    
+                }
+                if (pixels[x + y * width] == 0xFF007F7F) {
+                    grayTimeSquare[x][y] = new Square(x, y, Squares.GRAY_TIME);
+                    
                 }
             }
         }
