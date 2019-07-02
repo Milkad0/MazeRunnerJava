@@ -10,16 +10,13 @@ import static Graphics.View.QuickLoadMenuTexture;
 import static Graphics.View.renderBackground;
 import static com.sun.java.accessibility.util.AWTEventMonitor.addKeyListener;
 import java.awt.Font;
-import java.awt.KeyboardFocusManager;
-import java.awt.event.InputEvent;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.util.ArrayList;
-import org.lwjgl.LWJGLException;
 import org.lwjgl.input.Keyboard;
 import static org.lwjgl.input.Keyboard.enableRepeatEvents;
+import org.lwjgl.opengl.GL11;
 import org.newdawn.slick.TrueTypeFont;
-import org.newdawn.slick.opengl.Texture;
 
 
 /**
@@ -45,14 +42,14 @@ public class UI implements KeyListener {
     
     public UI(){
         buttonList = new ArrayList<Button>();
-        
-        //menuList = newArrayList<Menu>();
         awtFont = new Font("Times New Roman", Font.BOLD, 24);
         font = new TrueTypeFont(awtFont,false);
          addKeyListener(this);
          enableRepeatEvents(false);
          
     }
+    
+    
     
     public void addButton(String name, String texture, int x, int y, int width, int height){
         
@@ -217,7 +214,9 @@ public class UI implements KeyListener {
     }
     
     public void drawString(int x, int y, String text){
+        
         font.drawString(x,y,text);
+        
     }
 
     @Override

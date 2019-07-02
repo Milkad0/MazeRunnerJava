@@ -49,6 +49,7 @@ public class MainMenu {
         renderBackground(background,0,0,width,height);
         menuUI.draw();
         
+        
         //GL11.glTranslatef(xScroll, yScroll, 0);
         //mainLevel.render();
 
