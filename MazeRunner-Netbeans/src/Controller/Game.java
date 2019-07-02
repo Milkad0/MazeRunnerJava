@@ -17,13 +17,14 @@ import org.lwjgl.opengl.GL11;
 public class Game {
 
     Level level;
-    String[] Map ={"Map 1","Map 2","Map 3"};
+    String Map1;
    
 
     public static float xScroll, yScroll;
 
-    public Game() {
-        level = new Level(Map[2]);
+    public Game(String Map) {
+        this.Map1 = Map;
+        level = new Level(Map1);
         xScroll = level.getBounds(0);
         yScroll = level.getBounds(1);
     }
@@ -44,7 +45,7 @@ public class Game {
         if (level.finish == false){
             level.update();
         }else{
-            level = new Level(Map[2]);
+            level = new Level(Map1);
         }
     }
 
