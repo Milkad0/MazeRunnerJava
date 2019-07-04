@@ -26,6 +26,9 @@ public class MyTexture {
     public static MyTexture squares = loadTexture("/Texture/blocks1.png");
     public static MyTexture human = loadTexture("/Characters/Player/Human.png");
     public static MyTexture pacer = loadTexture("/Characters/Pacer/Pacer.png");
+    public static MyTexture rover = loadTexture("/Characters/Rover/Rover.png");
+    public static MyTexture jumper = loadTexture("/Characters/Jumper/Jumper.png");
+    
     int width, height;
     int id;
 
@@ -35,7 +38,6 @@ public class MyTexture {
         this.id = id;
 
     }
-  
 
     public static MyTexture loadTexture(String path) {
         BufferedImage image = null;

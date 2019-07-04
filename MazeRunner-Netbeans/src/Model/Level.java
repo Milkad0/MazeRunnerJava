@@ -57,6 +57,8 @@ public class Level {
     
     private static Human player;
     private static Pacer pacer;
+    private static Rover rover;
+    private static Jumper jumper;
 
     public Level(String Map) {
 
@@ -68,11 +70,17 @@ public class Level {
     public void spawner() {
         player = new Human(1, 4);
         pacer = new Pacer(17, 17);
+        rover = new Rover(13,13);
+        jumper = new Jumper(15,13);
         this.init();
         player.init(this);
         pacer.init(this);
+        rover.init(this);
+        jumper.init(this);
         addCharacters(player);
         addCharacters(pacer);
+        addCharacters(rover);
+        addCharacters(jumper);
 
     }
 
@@ -255,6 +263,8 @@ public class Level {
     public void init() {
         player.setPositionStart();
         pacer.setPositionStart();
+        rover.setPositionStart();
+        jumper.setPositionStart();
     }
 
 
@@ -320,18 +330,18 @@ public class Level {
     
     public void text(){
         
-        
     }
     
     public void update() {
-               for (int i = 0; i < tab_character.size(); i++) {
+        for (int i = 0; i < tab_character.size(); i++) {
             Characters e = tab_character.get(i);
             if (e.getRemoved()) {
                 tab_character.remove(e);
             }
+            /*
             if(e instanceof Pacer == false && e instanceof Human == false){
                 e.update();
-            }
+            }*/
         }       
     }
 
@@ -346,8 +356,6 @@ public class Level {
          for (Square squareKey : tab_key){
             squareKey.render();
         }
-        
-        
 
         for (int i = 0; i < tab_character.size(); i++) {
             Characters e = tab_character.get(i);
@@ -357,13 +365,21 @@ public class Level {
 
 //GETTER
     
-    public static Human getPlayer() {
+    public static Human getPlayer(){
         return player;
     }
     
-    public Pacer getPacer() {
+    public Pacer getPacer(){
         return pacer;
-    }   
+    }
+    
+    public Rover getRover(){
+        return rover;
+    }
+    
+    public Jumper getJumper(){
+        return jumper;
+    }
          
     public List<Characters> getTabCharacter(){
         return tab_character;
@@ -442,6 +458,10 @@ public class Level {
     public void startThread(){
         pacer.start();
         player.start();
+        rover.start();
+        jumper.start();
+        jumper.setName("Jumper Thread");
+        rover.setName("Rover Thread");
         pacer.setName("Pacer Thread");
         player.setName("Player Thread");
     }
