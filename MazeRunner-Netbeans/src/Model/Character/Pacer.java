@@ -10,8 +10,6 @@ import Graphics.Color;
 import Graphics.MyTexture;
 import static Graphics.View.renderCharacters;
 import Model.Level;
-import java.util.concurrent.TimeUnit;
-import java.util.logging.Logger;
 
 /**
  *
@@ -19,7 +17,7 @@ import java.util.logging.Logger;
  */
 public class Pacer extends Enemies{
 
-    public Animation run, freeze;
+    public Animation run;
 
     float speed = 2f;
     int test = 0;
@@ -28,9 +26,8 @@ public class Pacer extends Enemies{
         super(x, y);
         texture = MyTexture.pacer;
         run = new Animation(1, 1, 2, 5, true,false);
-        freeze = new Animation(1, 1, 1, 5, true,false);
 
-        mass = 0;
+        mass = 0.1f;
         friction = 0.95f;
     }
     float xa, ya;
@@ -41,8 +38,6 @@ public class Pacer extends Enemies{
         
         run.update();
         run.pause();
-        freeze.update();
-        freeze.stop();
         
         if (dir == 1){
             xa = -speed;

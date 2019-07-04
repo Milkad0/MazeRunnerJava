@@ -113,7 +113,6 @@ public class Human extends Characters {
             lastKey = 'S';
         }
         if (Keyboard.isKeyDown(Keyboard.KEY_Q) || Keyboard.isKeyDown(Keyboard.KEY_A) || Keyboard.isKeyDown(Keyboard.KEY_LEFT)) {
-            //System.out.println("A Key Pressed");
             xa -= speed;
             dir = 1;
             run.play();
@@ -126,9 +125,6 @@ public class Human extends Characters {
 
         }
         if (Keyboard.isKeyDown(Keyboard.KEY_D) || Keyboard.isKeyDown(Keyboard.KEY_RIGHT)) {
-
-            //System.out.println("D Key Pressed");
-
             xa += speed;
             dir = 0;
             run.play();
