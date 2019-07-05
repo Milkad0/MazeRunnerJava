@@ -103,6 +103,7 @@ public class Level {
         width = image.getWidth();
         height = image.getHeight();
         finish=false;
+        succeed=false;
 
         bounds[0] = -16;
         bounds[1] = -16;

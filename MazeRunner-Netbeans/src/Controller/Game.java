@@ -5,6 +5,7 @@
  */
 package Controller;
 
+import static Controller.StateManager.mainMenu;
 import Graphics.UI;
 import static Graphics.UI.initFont;
 import static Graphics.UI.initGL;
@@ -25,10 +26,9 @@ import org.lwjgl.opengl.GL11;
  */
 public class Game {
 
-    Level level;
+    public static Level level;
     String Map1;
     UI gameUI;
-
     public static float xScroll, yScroll;
 
     public Game(String Map) {
@@ -68,10 +68,11 @@ public class Game {
         
         
         
-        if (level.finish == false){
+        if (!level.finish&&!level.succeed){
             level.update();
                        
-        }else{
+            
+        }else if(level.finish&&!level.succeed){
             level = new Level(Map1);
             
         }
@@ -79,18 +80,15 @@ public class Game {
     }
 
     public void render() {
-        
-        GL11.glTranslatef(xScroll, yScroll, 0);
+   
+            
+           GL11.glTranslatef(xScroll, yScroll, 0);
         level.render();
         
          gameUI.drawString(515, 109, " : "+ power); 
          gameUI.drawString(515, 140, " : "+ numberkey);
-         gameUI.drawString(510, 190, minute+":"+seconde); 
+         gameUI.drawString(510, 190, minute+":"+seconde);  
         
-        
-        
-               
-         
 
         //updateUI();
         

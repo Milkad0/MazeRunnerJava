@@ -99,7 +99,9 @@ public class UI implements KeyListener{
     }
     
    
-
+    public static void resetKeyLevelMenu(){
+        ChoiceLevel=0;
+    }
 
      public static int isKeyLevelMenu(){
          int tailleMax = 9;
@@ -149,6 +151,7 @@ public class UI implements KeyListener{
     }
     
     public static int isKeyLevelMenuConfirmed(){
+        ChoiceLevelConfirmed=0;
          Keyboard.next();
          if(!Keyboard.getEventKeyState()){
            
@@ -214,7 +217,7 @@ public class UI implements KeyListener{
     }
     
     public static int isKeyMenuConfirmed(){
-        
+        ChoiceConfirmed = 0;
         
         if (Choice==0&&Keyboard.isKeyDown(Keyboard.KEY_RETURN)){
             

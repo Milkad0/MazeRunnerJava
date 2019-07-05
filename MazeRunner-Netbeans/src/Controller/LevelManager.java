@@ -5,7 +5,9 @@
  */
 package Controller;
 
+import static Controller.Game.level;
 import static Controller.StateManager.mainMenu;
+import Graphics.UI;
 import static Graphics.View.QuickLoadMenuTexture;
 import static Graphics.View.renderBackground;
 
@@ -16,16 +18,24 @@ import static Graphics.View.renderBackground;
  */
 public class LevelManager {
     
-   public static enum LevelState {
-        LevelMenu, MAP1, MAP2, MAP3, MAP4, MAP5, MAP6, MAP7, MAP8, MAP9, MAP10
-    }
+   
+   
+  
     
     public static int val = 0;
     public static Game game;
     public static LevelState[] choiceLevel ={LevelState.LevelMenu,LevelState.MAP1,LevelState.MAP2,LevelState.MAP3,LevelState.MAP4,LevelState.MAP5,LevelState.MAP6,LevelState.MAP7,LevelState.MAP8,LevelState.MAP9,LevelState.MAP10};
     //public static Editor editor;
     
+    public static enum LevelState {
+        LevelMenu, MAP1, MAP2, MAP3, MAP4, MAP5, MAP6, MAP7, MAP8, MAP9, MAP10
+    }
     
+     public void initValLevelManager(){
+       val=0;
+       game = null;
+       
+   }
     
     
     public static void init() {
@@ -82,7 +92,12 @@ public class LevelManager {
             default:
                    if(game!=null){
                     game.update();
-                    
+                    if(level.succeed){
+                        
+                        game = null;
+                        val = 0;
+                        UI.resetKeyLevelMenu();
+                    }
                    }
                 break;
         }
