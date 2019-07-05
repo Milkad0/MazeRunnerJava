@@ -70,6 +70,7 @@ public class Level {
 
         loadLevel(Map);
         spawner();
+        init_Chrono();
         startThread();
     }
 
@@ -495,7 +496,6 @@ milisec = System.currentTimeMillis() -  timeBefore;
 	minute++;
 	
 	}
-        System.out.println("Temps ecoule = " + minute + ":"+seconde) ; 
 } 
 
 // Arret du chrono 
