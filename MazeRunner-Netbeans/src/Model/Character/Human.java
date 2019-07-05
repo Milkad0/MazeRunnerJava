@@ -30,7 +30,8 @@ public class Human extends Characters {
     boolean teleportEnd = false;
     public boolean apple = false;
     char lastKey;
-    int power =0;
+    public static int power =0;
+    public static int numberkey = 0;
     public int  posX;
     public int posY;
     boolean key = false;
@@ -71,12 +72,14 @@ public class Human extends Characters {
             level.finish = true;
             power = 0;
             key = false;
+            numberkey=0;
         }
         
         if(isDoor(posX,posY)&&key){
             level.succeed = true;
             power = 0;
             key = false;
+            numberkey=0;
         }
        
         
@@ -113,6 +116,7 @@ public class Human extends Characters {
             lastKey = 'S';
         }
         if (Keyboard.isKeyDown(Keyboard.KEY_Q) || Keyboard.isKeyDown(Keyboard.KEY_A) || Keyboard.isKeyDown(Keyboard.KEY_LEFT)) {
+            //System.out.println("A Key Pressed");
             xa -= speed;
             dir = 1;
             run.play();
@@ -125,6 +129,9 @@ public class Human extends Characters {
 
         }
         if (Keyboard.isKeyDown(Keyboard.KEY_D) || Keyboard.isKeyDown(Keyboard.KEY_RIGHT)) {
+
+            //System.out.println("D Key Pressed");
+
             xa += speed;
             dir = 0;
             run.play();
@@ -236,6 +243,7 @@ public class Human extends Characters {
            
            if(level.removeSquareKey(posX, posY)){
                key=true;
+               numberkey=1;
            }
            
            
@@ -268,4 +276,5 @@ public class Human extends Characters {
     public void init(Level level) {
         this.level = level; //To change body of generated methods, choose Tools | Templates.
     }
+    
 }

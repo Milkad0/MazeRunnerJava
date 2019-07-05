@@ -6,6 +6,8 @@
 package Controller;
 
 import static Controller.StateManager.mainMenu;
+import static Graphics.View.QuickLoadMenuTexture;
+import static Graphics.View.renderBackground;
 
 
 /**
@@ -51,6 +53,7 @@ public class LevelManager {
                     break;
             case MAP2:
                if(game == null){
+                  
                     game = new Game("Map 2");
                     game.init();
                 }
@@ -79,6 +82,7 @@ public class LevelManager {
             default:
                    if(game!=null){
                     game.update();
+                    
                    }
                 break;
         }
