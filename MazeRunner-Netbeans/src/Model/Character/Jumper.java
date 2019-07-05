@@ -31,7 +31,7 @@ public class Jumper extends Enemies{
         texture = MyTexture.jumper;
         jump = new Animation(1, 1, 3, 2, true,false);
         freeze = new Animation(5, 5, 5, 5, true,false);
-        tempo = new Animation(1, 1, 1, 2, true,false);
+        tempo = new Animation(1, 1, 1, 2, false,false);
 
         mass = 0.1f;
         friction = 0.95f;
@@ -66,7 +66,9 @@ public class Jumper extends Enemies{
                 try {
                     jump.pause();
                     tempo.play();
+                   
                     sleep(randomPause*1000);
+                    
                 } catch (InterruptedException ex) {
                 }
                 ya -= randomSpeedY;
@@ -78,7 +80,9 @@ public class Jumper extends Enemies{
                 try {
                     jump.pause();
                     tempo.play();
+                    
                     sleep(randomPause*1000);
+                    
                 } catch (InterruptedException ex) {
                 }
                 ya -= randomSpeedY;
@@ -150,7 +154,11 @@ public class Jumper extends Enemies{
     public void render() {
         texture.bind();
         float sizeSpriteSheet = 7.0f;
+        if(jump.getPlaying()){
         renderCharacters(x, y, 16, 16, Color.WHITE, sizeSpriteSheet, jump.getCurrentFrame(), 0 + dir);
+        }else if(tempo.getPlaying()){
+         renderCharacters(x, y, 16, 16, Color.WHITE, sizeSpriteSheet, tempo.getCurrentFrame(), 0 + dir);   
+        }
         texture.unbind();
     }
 
