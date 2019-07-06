@@ -28,6 +28,12 @@ public class Level {
     public int width, height;
     
     public boolean finish,succeed;
+    
+    static long milisec = 0 ;
+    static long timeBefore = 0 ; 
+    public static int seconde = 0;
+    public static int minute = 0;
+    static boolean startChrono = false;
 
     private int[] bounds = new int[4];
 
@@ -64,6 +70,7 @@ public class Level {
 
         loadLevel(Map);
         spawner();
+        init_Chrono();
         startThread();
     }
 
@@ -96,6 +103,7 @@ public class Level {
         width = image.getWidth();
         height = image.getHeight();
         finish=false;
+        succeed=false;
 
         bounds[0] = -16;
         bounds[1] = -16;
@@ -257,7 +265,13 @@ public class Level {
         }else if (keySquare[x][y] != null) {
             Square.add(noneSolidSquare[x][y]);
             tab_key.add(keySquare[x][y]);
-        }
+        }else if (grayAppleSquare[x][y] != null) {
+            Square.add(grayAppleSquare[x][y]);
+        } else if (grayKeySquare[x][y] != null) {
+            Square.add(grayKeySquare[x][y]);
+        }else if (grayTimeSquare[x][y] != null) {
+            Square.add(grayTimeSquare[x][y]);
+    }
     }
 
     public void init() {
@@ -328,9 +342,6 @@ public class Level {
 
     }
     
-    public void text(){
-        
-    }
     
     public void update() {
         for (int i = 0; i < tab_character.size(); i++) {
@@ -356,6 +367,8 @@ public class Level {
          for (Square squareKey : tab_key){
             squareKey.render();
         }
+         
+         Go_Chrono();
 
         for (int i = 0; i < tab_character.size(); i++) {
             Characters e = tab_character.get(i);
@@ -465,4 +478,39 @@ public class Level {
         pacer.setName("Pacer Thread");
         player.setName("Player Thread");
     }
+    
+    static void Go_Chrono() { 
+    if(!startChrono){
+timeBefore = System.currentTimeMillis();
+startChrono=true;
+    }
+milisec = System.currentTimeMillis() -  timeBefore; 
+
+        if(milisec>1000)
+	{
+	timeBefore = timeBefore+milisec;
+	seconde++;
+	}
+	if(seconde==60)
+	{
+            seconde = 0;
+	minute++;
+	
+	}
+} 
+
+// Arret du chrono 
+static void Stop_Chrono() { 
+    long chrono2 = java.lang.System.currentTimeMillis() ; 
+    long temps = chrono2 - timeBefore ; 
+    System.out.println("Temps ecoule = " + temps + " ms") ; 
+    
+} 
+
+static void init_Chrono(){
+   seconde =0;
+    minute=0;
+    milisec=0; 
+    
+}
 }

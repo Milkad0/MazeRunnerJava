@@ -18,9 +18,10 @@ import static java.lang.Thread.sleep;
  */
 public class Jumper extends Enemies{
 
-    Animation run, jump, climb, freeze;
+    Animation tempo, jump, freeze;
     
-    float speed = 0.9f;
+    float speedX = 3f;
+    float speedY = 12f;
     int test = 0;
     boolean freezed = false;
     int testFreeze = 0;
@@ -28,10 +29,9 @@ public class Jumper extends Enemies{
     public Jumper(int x, int y) {
         super(x, y);
         texture = MyTexture.jumper;
-        run = new Animation(1, 1, 3, 2, true,false);
-        jump = new Animation(1, 3, 3, 2, true,false);
-        climb = new Animation(1, 1, 3, 5, true,false);
+        jump = new Animation(1, 1, 3, 2, true,false);
         freeze = new Animation(5, 5, 5, 5, true,false);
+        tempo = new Animation(1, 1, 1, 2, false,false);
 
         mass = 0.1f;
         friction = 0.95f;
@@ -43,26 +43,53 @@ public class Jumper extends Enemies{
         int minPause = 3;
         int maxPause = 8;
         int randomPause = minPause + (int)(Math.random() * ((maxPause - minPause) + 1));
+        int minSpeedY = 3;
+        int maxSpeedY = 10;
+        int randomSpeedY = minSpeedY + (int)(Math.random() * ((maxSpeedY - minSpeedY) + 1));
+        int minSpeedX = 1;
+        int maxSpeedX = 4;
+        int randomSpeedX = minSpeedX + (int)(Math.random() * ((maxSpeedX - minSpeedX) + 1));
+        
         
         ya += level.gravity * mass;
-        
-        run.update();
-        run.pause();
+
         jump.update();
         jump.pause();
-        climb.update();
-        climb.pause();
         freeze.update();
         freeze.pause();
-        
+        tempo.update();
+        tempo.pause();
+
         if (dir == 1){
-            xa = -speed;
-            run.play();
+            xa = -randomSpeedX;
+            if (isGrounded()) {
+                try {
+                    jump.pause();
+                    tempo.play();
+                   
+                    sleep(randomPause*1000);
+                    
+                } catch (InterruptedException ex) {
+                }
+                ya -= randomSpeedY;
+            }
+            jump.play();
         }else if (dir == 0){
-            xa = speed;
-            run.play();
+            xa = randomSpeedX;
+            if (isGrounded()) {
+                try {
+                    jump.pause();
+                    tempo.play();
+                    
+                    sleep(randomPause*1000);
+                    
+                } catch (InterruptedException ex) {
+                }
+                ya -= randomSpeedY;
+            }
+            jump.play();
         }
-        
+
         if (isFreezed() && freezed == false) {
             long timerBefore = System.currentTimeMillis();
             long duration = 0;
@@ -84,12 +111,6 @@ public class Jumper extends Enemies{
         } else {
             xa *= 0.5 + friction;
             freeze.pause();
-        }
-        
-        if (!isLadder()) {
-            ya *= friction;
-        } else {
-            ya = 0;
         }
 
         int xStep = (int) Math.abs(xa * 1000);
@@ -114,6 +135,7 @@ public class Jumper extends Enemies{
                 ya = 0;
             }
         }
+
     }
     
     
@@ -132,7 +154,11 @@ public class Jumper extends Enemies{
     public void render() {
         texture.bind();
         float sizeSpriteSheet = 7.0f;
-        renderCharacters(x, y, 16, 16, Color.WHITE, sizeSpriteSheet, run.getCurrentFrame(), 0 + dir);
+        if(jump.getPlaying()){
+        renderCharacters(x, y, 16, 16, Color.WHITE, sizeSpriteSheet, jump.getCurrentFrame(), 0 + dir);
+        }else if(tempo.getPlaying()){
+         renderCharacters(x, y, 16, 16, Color.WHITE, sizeSpriteSheet, tempo.getCurrentFrame(), 0 + dir);   
+        }
         texture.unbind();
     }
 

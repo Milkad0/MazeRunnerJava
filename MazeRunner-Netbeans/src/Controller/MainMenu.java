@@ -28,11 +28,8 @@ public class MainMenu {
       //mainLevel = new Level("Map 2");
       background = QuickLoadMenuTexture("mainmenu");
       menuUI = new UI();
-      menuUI.addButton("Play","PlayButton", 237, 130, 80,30);//30
-      menuUI.addButton("Quit","QuitButton", 0, 50, 80,30);
-      
-      
-      
+      menuUI.addButton("Play","PlayButton3", 237, 130, 80,30);//30
+      menuUI.addButton("Quit","QuitButton4", 0, 50, 80,30);   
     }
     
      public void init() {
@@ -93,6 +90,7 @@ public class MainMenu {
         }
             
         LevelManager.setLevel(UI.isKeyLevelMenuConfirmed());
+        //System.out.println(UI.isKeyLevelMenuConfirmed());
         
         if(UI.isKeyLevelMenu()==0){
             menuUI.replaceButton("Level1","Level1Select");

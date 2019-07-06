@@ -59,9 +59,9 @@ public class StateManager {
                
                 
                 if(LevelManag==null){
-                    LevelManager.init();
+                    LevelManag.init();
                 }
-                LevelManager.update();
+                LevelManag.update();
                 
                 
                 break;
@@ -82,7 +82,7 @@ public class StateManager {
             case GAME:
                  
                
-                LevelManager.render();
+                LevelManag.render();
                 break;
             case EXIT:
                 
