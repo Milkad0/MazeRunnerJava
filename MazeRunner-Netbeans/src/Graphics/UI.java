@@ -55,7 +55,9 @@ public class UI implements KeyListener{
     static int addCinq= 5;
     public static boolean valtest = false;
     static int i = 0;
-    
+    public static int ChoiceWinMenu=0;
+    public static int ChoiceWinMenuConfirmed=11;
+
     
     
     
@@ -101,6 +103,34 @@ public class UI implements KeyListener{
    
     public static void resetKeyLevelMenu(){
         ChoiceLevel=0;
+    }
+    
+    public static int isKeyWinMenu(){
+        
+        if (Keyboard.isKeyDown(Keyboard.KEY_D) || Keyboard.isKeyDown(Keyboard.KEY_RIGHT)) {
+            ChoiceWinMenu = 1;
+        }
+        
+        if (Keyboard.isKeyDown(Keyboard.KEY_Q) || Keyboard.isKeyDown(Keyboard.KEY_A) || Keyboard.isKeyDown(Keyboard.KEY_LEFT)) {
+            
+             ChoiceWinMenu = 0; 
+        }      
+        return ChoiceWinMenu;
+        
+    }
+    
+    public static int isKeyWinMenuConfirmed(){
+        
+        if (ChoiceWinMenu==0&&Keyboard.isKeyDown(Keyboard.KEY_RETURN)){
+             
+            ChoiceWinMenuConfirmed = 0;
+  
+        }
+        if(ChoiceWinMenu==1&&Keyboard.isKeyDown(Keyboard.KEY_RETURN)){
+            
+            ChoiceWinMenuConfirmed = 1;
+        }
+        return ChoiceWinMenuConfirmed;
     }
 
      public static int isKeyLevelMenu(){

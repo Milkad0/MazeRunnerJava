@@ -18,36 +18,36 @@ import org.newdawn.slick.opengl.Texture;
 public class WinMenu {
     
     //Level mainLevel;
-    public static Texture background;
-    private UI menuUI;
-     private int width = 200;
-    private int height = 300;
+    public static Texture backgroundw;
+    private UI menuUII;
+     private int width = 590;
+    private int height = 580;
     private int testVal=0;
     
     public WinMenu(){
       //mainLevel = new Level("Map 2");
-      background = QuickLoadMenuTexture("mainmenu");
-      menuUI = new UI();
-      menuUI.addButton("Play","PlayButton", 237, 130, 80,30);//30
-      menuUI.addButton("Quit","QuitButton", 0, 50, 80,30);
+      backgroundw = QuickLoadMenuTexture("WinMenu");
+      menuUII = new UI();
+      menuUII.addButton("Back","BackButton", 190, 225, 80,30);
+      menuUII.addButton("Next","NextButton", 90, 0, 80,30);
       
       
       
     }
     
      public void init() {
-       // mainLevel.init();
+      
     }
     public void update() {
        updateButtons();
-        //mainLevel.update();
+        
         
     }
     
 
     public void render() {
-        renderBackground(background,0,0,width,height);
-        menuUI.draw();
+        renderBackground(backgroundw,0,0,width,height);
+        menuUII.draw();
         
         //GL11.glTranslatef(xScroll, yScroll, 0);
         //mainLevel.render();
@@ -58,7 +58,18 @@ public class WinMenu {
     
     public void updateButtons(){
         
-       
+       LevelManager.setLevel(UI.isKeyWinMenuConfirmed());
+        
+        if(UI.isKeyWinMenu()==1){
+            menuUII.replaceButton("Back", "BackButton");
+            menuUII.replaceButton("Next", "NextButton2"); //Choix
+         
+    
+      }else{
+            menuUII.replaceButton("Back", "BackButton2");
+            menuUII.replaceButton("Next", "NextButton"); //Choix
+           
+        }
         
         
             
