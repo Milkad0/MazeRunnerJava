@@ -5,9 +5,14 @@
  */
 package Controller;
 
+import static Controller.LevelManager.totalpower;
 import static Controller.StateManager.val;
 import Graphics.UI;
 import static Graphics.View.*;
+import static Model.Character.Human.numberkey;
+import static Model.Character.Human.power;
+import static Model.Level.minute;
+import static Model.Level.seconde;
 import org.newdawn.slick.opengl.Texture;
 
 
@@ -36,7 +41,10 @@ public class WinMenu {
     }
     
      public void init() {
-      
+         
+         menuUII.initGL();
+         menuUII.initFont(25, false, false);
+               
     }
     public void update() {
        updateButtons();
@@ -46,8 +54,18 @@ public class WinMenu {
     
 
     public void render() {
+        
+        
         renderBackground(backgroundw,0,0,width,height);
         menuUII.draw();
+        menuUII.drawString(-50, -117, ":   "+totalpower);
+        if(Controller.LevelManager.lastminute==0){
+        menuUII.drawString(-50, -70, ":   "+ Controller.LevelManager.lastseconde+"s");   
+        }else{
+        menuUII.drawString(-50, -70, ":   "+Controller.LevelManager.lastminute+"m"+ Controller.LevelManager.lastseconde+"s"); 
+        }
+        
+        
         
         //GL11.glTranslatef(xScroll, yScroll, 0);
         //mainLevel.render();

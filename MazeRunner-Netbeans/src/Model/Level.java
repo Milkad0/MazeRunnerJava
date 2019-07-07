@@ -497,12 +497,17 @@ milisec = System.currentTimeMillis() -  timeBefore;
 	minute++;
 	
 	}
+        
+        Controller.LevelManager.lastminute = minute;
+        Controller.LevelManager.lastseconde = seconde;
 } 
 
 // Arret du chrono 
 static void Stop_Chrono() { 
     long chrono2 = java.lang.System.currentTimeMillis() ; 
     long temps = chrono2 - timeBefore ; 
+    
+    
     System.out.println("Temps ecoule = " + temps + " ms") ; 
     
 } 

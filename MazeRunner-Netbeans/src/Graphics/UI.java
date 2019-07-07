@@ -6,6 +6,8 @@
 package Graphics;
 
 
+import static Controller.LevelManager.totalpower;
+import static Controller.LevelManager.valLv;
 import static Graphics.View.QuickLoadMenuTexture;
 import static Graphics.View.renderBackground;
 import static com.sun.java.accessibility.util.AWTEventMonitor.addKeyListener;
@@ -44,9 +46,9 @@ public class UI implements KeyListener{
     
    // private ArrayList<Menu> menuList;
     private ArrayList<Button> buttonList;
-   // private TrueTypeFont font;
+    private TrueTypeFont font;
     static UnicodeFont uf = null;
-   // private Font awtFont;
+    private Font awtFont;
     public static int Choice=0;
     public static int ChoiceLevel=0;
     public static int ChoiceConfirmed=0;
@@ -63,8 +65,8 @@ public class UI implements KeyListener{
     
     public UI(){
         buttonList = new ArrayList<Button>();
-        //awtFont = new Font("Times New Roman", Font.BOLD, 20);
-        //font = new TrueTypeFont(awtFont,true);
+        awtFont = new Font("/src/Font/OpenSans/OpenSans-Bold.ttf", Font.BOLD, 20);
+        font = new TrueTypeFont(awtFont,true);
          
         
          addKeyListener(this);
@@ -73,7 +75,10 @@ public class UI implements KeyListener{
     }
     
  
-    
+    public void drawText(int x, int y, String text){
+        font.drawString(x,y,text);
+        
+    }
     
     public void addButton(String name, String texture, int x, int y, int width, int height){
         
@@ -103,6 +108,11 @@ public class UI implements KeyListener{
    
     public static void resetKeyLevelMenu(){
         ChoiceLevel=0;
+        ChoiceLevelConfirmed=0;
+        valtest = false;
+        ChoiceWinMenuConfirmed=11;
+        ChoiceWinMenu=0;
+        
     }
     
     public static int isKeyWinMenu(){
@@ -120,15 +130,25 @@ public class UI implements KeyListener{
     }
     
     public static int isKeyWinMenuConfirmed(){
+         Keyboard.next();
+         Keyboard.getEventKeyState();
         
         if (ChoiceWinMenu==0&&Keyboard.isKeyDown(Keyboard.KEY_RETURN)){
              
             ChoiceWinMenuConfirmed = 0;
+            totalpower=0;
   
         }
         if(ChoiceWinMenu==1&&Keyboard.isKeyDown(Keyboard.KEY_RETURN)){
+            int valtest = valLv+1;
+            if(valtest > 10){  
+              ChoiceWinMenuConfirmed = 0;
+            }else{
             
-            ChoiceWinMenuConfirmed = 1;
+            ChoiceWinMenuConfirmed = valtest;
+            }
+            totalpower=0;
+           
         }
         return ChoiceWinMenuConfirmed;
     }
@@ -181,12 +201,15 @@ public class UI implements KeyListener{
     }
     
     public static int isKeyLevelMenuConfirmed(){
-        ChoiceLevelConfirmed=0;
+        
+        //ChoiceLevelConfirmed=0;
          Keyboard.next();
          if(!Keyboard.getEventKeyState()){
            
           valtest = true;
+          
         }
+        
        
      
         if (valtest&&ChoiceLevel==0&&Keyboard.isKeyDown(Keyboard.KEY_RETURN)){
@@ -194,11 +217,11 @@ public class UI implements KeyListener{
             ChoiceLevelConfirmed = 1;
   
         }
-        if(ChoiceLevel==1&&Keyboard.isKeyDown(Keyboard.KEY_RETURN)){
+        if(valtest&&ChoiceLevel==1&&Keyboard.isKeyDown(Keyboard.KEY_RETURN)){
             
             ChoiceLevelConfirmed = 2;
         }
-        if (ChoiceLevel==2&&Keyboard.isKeyDown(Keyboard.KEY_RETURN)){
+        if (valtest&&ChoiceLevel==2&&Keyboard.isKeyDown(Keyboard.KEY_RETURN)){
             
             ChoiceLevelConfirmed = 3;
         }
@@ -283,7 +306,7 @@ public class UI implements KeyListener{
         try {
             uf = new UnicodeFont("/src/Font/OpenSans/OpenSans-Bold.ttf", size, bold, italic);
             uf.addAsciiGlyphs();
-            uf.getEffects().add(new ColorEffect(java.awt.Color.BLACK));
+            uf.getEffects().add(new ColorEffect(java.awt.Color.WHITE));
             uf.loadGlyphs();
         } catch (SlickException e) {
 

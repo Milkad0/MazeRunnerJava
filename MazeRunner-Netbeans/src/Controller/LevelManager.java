@@ -21,8 +21,11 @@ public class LevelManager {
    
    
   
-    
+    public static int totalpower=0;
+    public static int lastminute=0;
+    public static int lastseconde =0;
     public static int val = 0;
+    public static int valLv;
     public static Game game;
     public static WinMenu winmenu;
     public static LevelState[] choiceLevel ={LevelState.LevelMenu,LevelState.MAP1,LevelState.MAP2,LevelState.MAP3,LevelState.MAP4,LevelState.MAP5,LevelState.MAP6,LevelState.MAP7,LevelState.MAP8,LevelState.MAP9,LevelState.MAP10, LevelState.WinMenu,LevelState.GameOverMenu};
@@ -144,6 +147,9 @@ public class LevelManager {
             case LevelMenu:
             //LevelMenu.update();
                 mainMenu.update();
+                if(winmenu != null){
+                winmenu =null;
+                }
             break;
             
             case WinMenu:
@@ -156,16 +162,24 @@ public class LevelManager {
                 
             case GameOverMenu:
                 
-                
+                if(winmenu != null){
+                winmenu =null;
+                }
                 break;
             
             default:
+                
                    if(game!=null){
-                    game.update();
+                    if(winmenu != null){
+                        winmenu =null;
+                    }
+                    winmenu =null;
                     if(level.succeed){
                         
                         game = null;
+                        valLv = val;
                         val = 11;
+                        
                         UI.resetKeyLevelMenu();
                         
                     }
