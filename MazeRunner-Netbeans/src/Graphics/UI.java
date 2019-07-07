@@ -118,6 +118,15 @@ public class UI implements KeyListener{
         ChoiceGameOverMenu=0;
         
     }
+  
+    public static void resetValtest(){
+        
+        valtest = false;
+        ChoiceLevel=0;
+       
+        
+    }
+    
     
     public static int isKeyWinMenu(){
         
@@ -199,7 +208,7 @@ public class UI implements KeyListener{
        Keyboard.next();
        
         if ((Keyboard.isKeyDown(Keyboard.KEY_S))||(Keyboard.isKeyDown(Keyboard.KEY_DOWN))){ 
-            if(ChoiceLevel+5<=tailleMax){
+            if(ChoiceLevel+5<=tailleMax&&ChoiceLevel!=-1){
             ChoiceLevel=ChoiceLevel+addCinq;
             addCinq=0;
             }
@@ -221,10 +230,12 @@ public class UI implements KeyListener{
         
         if (Keyboard.isKeyDown(Keyboard.KEY_Q) || Keyboard.isKeyDown(Keyboard.KEY_A) || Keyboard.isKeyDown(Keyboard.KEY_LEFT)) {
             
-            if(ChoiceLevel-1>=0){
+            if(ChoiceLevel-1>=-1){
            ChoiceLevel=ChoiceLevel-addUn;
             addUn=0;
-            }   
+            }
+            
+            
         }
         
         
@@ -240,15 +251,18 @@ public class UI implements KeyListener{
     
     public static int isKeyLevelMenuConfirmed(){
         
-        //ChoiceLevelConfirmed=0;
+        ChoiceLevelConfirmed=0;
          Keyboard.next();
          if(!Keyboard.getEventKeyState()){
            
           valtest = true;
           
         }
-        
-       
+        if (valtest&&ChoiceLevel==-1&&Keyboard.isKeyDown(Keyboard.KEY_RETURN)){
+             
+            ChoiceLevelConfirmed = -1;
+  
+        }
      
         if (valtest&&ChoiceLevel==0&&Keyboard.isKeyDown(Keyboard.KEY_RETURN)){
              
@@ -309,12 +323,19 @@ public class UI implements KeyListener{
     
     public static int isKeyMenuConfirmed(){
         ChoiceConfirmed = 0;
+        Keyboard.next();
         
-        if (Choice==0&&Keyboard.isKeyDown(Keyboard.KEY_RETURN)){
+        if(!Keyboard.getEventKeyState()){
+           
+          valtest = true;
+          
+        }
+        
+        if (valtest&&Choice==0&&Keyboard.isKeyDown(Keyboard.KEY_RETURN)){
             
             ChoiceConfirmed = 1;
         }
-        if(Choice==1&&Keyboard.isKeyDown(Keyboard.KEY_RETURN)){
+        if(valtest&&Choice==1&&Keyboard.isKeyDown(Keyboard.KEY_RETURN)){
             
             ChoiceConfirmed = 2;
         }

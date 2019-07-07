@@ -7,6 +7,7 @@ package Controller;
 
 import static Controller.Game.level;
 import static Controller.StateManager.mainMenu;
+import static Controller.StateManager.val;
 import Graphics.UI;
 import static Graphics.View.QuickLoadMenuTexture;
 import static Graphics.View.renderBackground;
@@ -254,7 +255,14 @@ public class LevelManager {
      
      
      public static void setLevel (int choice){
-         val = choice;
+         
+         if(choice==-1){
+             StateManager.val = 0;
+         }else{
+             val = choice;
+         }
+         
+      
         
      }
 }
