@@ -28,6 +28,7 @@ public class LevelManager {
     public static int valLv;
     public static Game game;
     public static WinMenu winmenu;
+    public static GameOverMenu gameovermenu;
     public static LevelState[] choiceLevel ={LevelState.LevelMenu,LevelState.MAP1,LevelState.MAP2,LevelState.MAP3,LevelState.MAP4,LevelState.MAP5,LevelState.MAP6,LevelState.MAP7,LevelState.MAP8,LevelState.MAP9,LevelState.MAP10, LevelState.WinMenu,LevelState.GameOverMenu};
     //public static Editor editor;
     
@@ -134,9 +135,10 @@ public class LevelManager {
                 break;  
                 
             case GameOverMenu:
-               if(game == null){
+               if(gameovermenu == null){
                     
-                    game.init();
+                    gameovermenu = new GameOverMenu();
+                    gameovermenu.init();
                 }
                 break; 
         }
@@ -150,6 +152,9 @@ public class LevelManager {
                 if(winmenu != null){
                 winmenu =null;
                 }
+                if(gameovermenu != null){
+                        gameovermenu =null;
+                    }
             break;
             
             case WinMenu:
@@ -161,10 +166,13 @@ public class LevelManager {
                 break;
                 
             case GameOverMenu:
-                
-                if(winmenu != null){
-                winmenu =null;
+                if(gameovermenu == null){
+                   gameovermenu = new GameOverMenu();
+                   gameovermenu.init();
                 }
+                gameovermenu.update();
+                
+                
                 break;
             
             default:
@@ -173,15 +181,22 @@ public class LevelManager {
                     if(winmenu != null){
                         winmenu =null;
                     }
+                    if(gameovermenu != null){
+                        gameovermenu =null;
+                    }
                     winmenu =null;
-                    if(level.succeed){
-                        
+                    if(level.succeed){  
                         game = null;
                         valLv = val;
                         val = 11;
-                        
-                        UI.resetKeyLevelMenu();
-                        
+                        UI.resetKeyLevelMenu();   
+                    }
+                    
+                    if(level.finish){  
+                        game = null;
+                        valLv = val;
+                        val = 12;
+                        UI.resetKeyLevelMenu();   
                     }
                    }
                 break;
@@ -226,9 +241,9 @@ public class LevelManager {
                 break;
                 
             case GameOverMenu:
-                
-                
-                
+                if(gameovermenu!=null){
+                gameovermenu.render();
+                }
                 break;
         }
          

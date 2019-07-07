@@ -59,6 +59,8 @@ public class UI implements KeyListener{
     static int i = 0;
     public static int ChoiceWinMenu=0;
     public static int ChoiceWinMenuConfirmed=11;
+    public static int ChoiceGameOverMenu=0;
+    public static int ChoiceGameOverMenuConfirmed=12;
 
     
     
@@ -112,6 +114,8 @@ public class UI implements KeyListener{
         valtest = false;
         ChoiceWinMenuConfirmed=11;
         ChoiceWinMenu=0;
+        ChoiceGameOverMenuConfirmed=12;
+        ChoiceGameOverMenu=0;
         
     }
     
@@ -151,6 +155,40 @@ public class UI implements KeyListener{
            
         }
         return ChoiceWinMenuConfirmed;
+    }
+    
+        public static int isKeyGameOverMenu(){
+        
+        if (Keyboard.isKeyDown(Keyboard.KEY_D) || Keyboard.isKeyDown(Keyboard.KEY_RIGHT)) {
+            ChoiceGameOverMenu = 1;
+        }
+        
+        if (Keyboard.isKeyDown(Keyboard.KEY_Q) || Keyboard.isKeyDown(Keyboard.KEY_A) || Keyboard.isKeyDown(Keyboard.KEY_LEFT)) {
+            
+             ChoiceGameOverMenu = 0; 
+        }      
+        return ChoiceGameOverMenu;
+        
+    }
+        public static int isKeyGameOverMenuConfirmed(){
+         Keyboard.next();
+         Keyboard.getEventKeyState();
+        
+        if (ChoiceGameOverMenu==0&&Keyboard.isKeyDown(Keyboard.KEY_RETURN)){
+             
+            ChoiceGameOverMenuConfirmed = 0;
+            totalpower=0;
+  
+        }
+        if(ChoiceGameOverMenu==1&&Keyboard.isKeyDown(Keyboard.KEY_RETURN)){
+            
+            
+            ChoiceGameOverMenuConfirmed = valLv;
+            
+            totalpower=0;
+           
+        }
+        return ChoiceGameOverMenuConfirmed;
     }
 
      public static int isKeyLevelMenu(){

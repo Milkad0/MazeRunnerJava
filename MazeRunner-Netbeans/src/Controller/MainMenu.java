@@ -20,7 +20,7 @@ public class MainMenu {
     //Level mainLevel;
     public static Texture background;
     private UI menuUI;
-     private int width = 600;
+     private int width = 590;
     private int height = 580;
     private int testVal=0;
     
@@ -28,7 +28,7 @@ public class MainMenu {
       //mainLevel = new Level("Map 2");
       background = QuickLoadMenuTexture("mainmenu");
       menuUI = new UI();
-      menuUI.addButton("Play","PlayButton3", 237, 130, 80,30);//30
+      menuUI.addButton("Play","PlayButton3", 230, 130, 80,30);//30
       menuUI.addButton("Quit","QuitButton4", 0, 50, 80,30);   
     }
     

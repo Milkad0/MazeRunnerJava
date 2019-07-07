@@ -72,9 +72,6 @@ public class Game {
             level.update();
                        
             
-        }else if(level.finish&&!level.succeed){
-            level = new Level(Map1);
-            
         }
         
     }
