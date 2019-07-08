@@ -214,25 +214,6 @@ public class LevelManager {
                 }
                 break;
             
-            case MAP1:
-                if(game != null){
-                game.render();
-                }
-                    
-                    break;
-            case MAP2:
-               if(game != null){
-                game.render();
-                }
-                 
-                    
-                break;
-            case MAP3:
-               if(game != null){
-                game.render();
-                }
-                
-                break;
                 
             case WinMenu:
                 if(winmenu!=null){
@@ -246,6 +227,13 @@ public class LevelManager {
                 gameovermenu.render();
                 }
                 break;
+                
+            default :
+                if(game != null){
+                game.render();
+                }
+                break;
+                
         }
          
               

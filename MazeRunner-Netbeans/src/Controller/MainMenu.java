@@ -105,7 +105,6 @@ public class MainMenu {
         }
         LevelManager.setLevel(UI.isKeyLevelMenuConfirmed());
         
-        
         //System.out.println(UI.isKeyLevelMenuConfirmed());
         
         if(UI.isKeyLevelMenu()==-1){
