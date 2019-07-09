@@ -59,28 +59,6 @@ public abstract class Characters extends Thread{
         this.y = this.xStart;
     }
     
-    public boolean isRover(float xa, float ya) {
-        
-        //à checker
-        int x0 = (int) (xa + 3.8f) / 16;
-        int x1 = (int) (xa + 13) / 16;
-        int y0 = (int) (ya + 2) / 16;
-        int y1 = (int) (ya + 10.8) / 16;
-        
-        if (((int)level.getRover().getPositionX()/16 == x0) && ((int)level.getRover().getPositionY()/16 == y0)) {
-            return true;
-        }else if (((int)level.getRover().getPositionX()/16 == x1) && ((int)level.getRover().getPositionY()/16 == y0)) {
-            return true;
-        }else if (((int)level.getRover().getPositionX()/16 == x0) && ((int)level.getRover().getPositionY()/16 == y1)) {
-            return true;
-        }else if (((int)level.getRover().getPositionX()/16 == x1) && ((int)level.getRover().getPositionY()/16 == y1)) {
-            return true;
-        }else{
-            return false;    
-        }
-    }
-    
-    
     public boolean isPacer(float xa, float ya) {
         
         //à checker

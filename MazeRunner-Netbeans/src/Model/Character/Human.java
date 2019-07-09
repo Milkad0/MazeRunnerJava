@@ -76,13 +76,6 @@ public class Human extends Characters {
             numberkey=0;
         }
         
-        if(isRover(this.x,this.y)){
-            level.finish = true;
-            power = 0;
-            key = false;
-            numberkey=0;
-        }
-        
         if(isDoor(posX,posY)&&key){
             level.succeed = true;
             power = 0;
@@ -90,6 +83,7 @@ public class Human extends Characters {
             numberkey=0;
         }
        
+        
         run.update();
         run.pause();
         climb.update();
@@ -173,7 +167,7 @@ public class Human extends Characters {
                 }
 
             }
-            
+
         } else if (!isFreezed()) {
             freeze.pause();
             freezed = false;
@@ -184,7 +178,7 @@ public class Human extends Characters {
 
         int xStep = (int) Math.abs(xa * 1000);
         for (int i = 0; i < xStep; i++) {
-            if (!isSolidSquare(xa / xStep, 0) && !isFreezeSquare(xa / xStep, 0) && !isHyperSquare(xa / xStep, 0) && !isPacer(xa / xStep, 0) && !isRover(xa / xStep, 0)) {
+            if (!isSolidSquare(xa / xStep, 0) && !isFreezeSquare(xa / xStep, 0) && !isHyperSquare(xa / xStep, 0) && !isPacer(xa / xStep, 0)) {
                 x += xa / xStep;
             } else {
                 xa = 0;
@@ -193,7 +187,7 @@ public class Human extends Characters {
 
         int yStep = (int) Math.abs(ya * 1000);
         for (int i = 0; i < yStep; i++) {
-            if (!isSolidSquare(0, ya / yStep) && !isFreezeSquare(0, ya / yStep) && !isHyperSquare(0, ya / yStep) && !isPacer(0,ya / yStep) && !isRover(0,ya / yStep)) {
+            if (!isSolidSquare(0, ya / yStep) && !isFreezeSquare(0, ya / yStep) && !isHyperSquare(0, ya / yStep) && !isPacer(0,ya / yStep)) {
                 y += ya / yStep;
             } else {
                 ya = 0;
@@ -252,7 +246,11 @@ public class Human extends Characters {
            if(level.removeSquareKey(posX, posY)){
                key=true;
                numberkey=1;
-           }  
+           }
+           
+           
+        
+        
        
     }
 
