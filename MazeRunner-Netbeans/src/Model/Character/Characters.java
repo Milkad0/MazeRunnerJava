@@ -59,25 +59,38 @@ public abstract class Characters extends Thread{
         this.y = this.xStart;
     }
     
-    public boolean isPacer(float xa, float ya) {
+    public boolean isEnnemie(float xa, float ya) {
         
-        //à checker
+        //à revoir ...
         int x0 = (int) (xa + 3.8f) / 16;
         int x1 = (int) (xa + 13) / 16;
         int y0 = (int) (ya + 2) / 16;
         int y1 = (int) (ya + 10.8) / 16;
         
-        if (((int)level.getPacer().getPositionX()/16 == x0) && ((int)level.getPacer().getPositionY()/16 == y0)) {
-            return true;
-        }else if (((int)level.getPacer().getPositionX()/16 == x1) && ((int)level.getPacer().getPositionY()/16 == y0)) {
-            return true;
-        }else if (((int)level.getPacer().getPositionX()/16 == x0) && ((int)level.getPacer().getPositionY()/16 == y1)) {
-            return true;
-        }else if (((int)level.getPacer().getPositionX()/16 == x1) && ((int)level.getPacer().getPositionY()/16 == y1)) {
-            return true;
-        }else{
-            return false;    
+        int size = level.getTabCharacter().size();
+        for (int i = 0 ; i < size ; i++){
+            if(level.getTabCharacter().get(i) instanceof Pacer || level.getTabCharacter().get(i) instanceof Rover || level.getTabCharacter().get(i) instanceof Jumper){
+                
+                if(((int)level.getTabCharacter().get(i).getPositionX()/16 == (int)x/16) && ((int)level.getTabCharacter().get(i).getPositionY()/16 == y0)){
+                    return true;
+                }else if(((int)level.getTabCharacter().get(i).getPositionX()/16 == (int)x/16) && ((int)level.getTabCharacter().get(i).getPositionY()/16 == y1)){
+                    return true;
+                }else if(((int)level.getTabCharacter().get(i).getPositionX()/16 == (int)x/16) && ((int)level.getTabCharacter().get(i).getPositionY()/16 == (int)y/16)){
+                    return true;
+                }
+                /*
+                if (((int)level.getTabCharacter().get(i).getPositionX()/16 == x0) && ((int)level.getTabCharacter().get(i).getPositionY()/16 == y0)) {
+                    return true;
+                }else if (((int)level.getTabCharacter().get(i).getPositionX()/16 == x1) && ((int)level.getTabCharacter().get(i).getPositionY()/16 == y0)) {
+                    return true;
+                }else if (((int)level.getTabCharacter().get(i).getPositionX()/16 == x0) && ((int)level.getTabCharacter().get(i).getPositionY()/16 == y1)) {
+                    return true;
+                }else if (((int)level.getTabCharacter().get(i).getPositionX()/16 == x1) && ((int)level.getTabCharacter().get(i).getPositionY()/16 == y1)) {
+                    return true;
+                }*/
+            }
         }
+        return false;
     }
 
     public boolean isLadder() {

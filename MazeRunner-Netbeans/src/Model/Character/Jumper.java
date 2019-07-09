@@ -55,14 +55,12 @@ public class Jumper extends Enemies{
 
         jump.update();
         jump.pause();
-        freeze.update();
-        freeze.pause();
         tempo.update();
         tempo.pause();
 
         if (dir == 1){
             xa = -randomSpeedX;
-            if (isGrounded()) {
+            if (isGrounded() || isFreezed()) {
                 try {
                     jump.pause();
                     tempo.play();
@@ -76,7 +74,7 @@ public class Jumper extends Enemies{
             jump.play();
         }else if (dir == 0){
             xa = randomSpeedX;
-            if (isGrounded()) {
+            if (isGrounded() || isFreezed()) {
                 try {
                     jump.pause();
                     tempo.play();
@@ -90,32 +88,10 @@ public class Jumper extends Enemies{
             jump.play();
         }
 
-        if (isFreezed() && freezed == false) {
-            long timerBefore = System.currentTimeMillis();
-            long duration = 0;
-            int random_duration = (int) (1 + (Math.random() * (3 - 1)));
-            freeze.play();
-            testFreeze++;
-            if (testFreeze == 2) {
-                freezed = true;
-                testFreeze = 0;
-                while ((duration < random_duration * 1000) && (freeze.getPlaying())) {
-
-                    duration = System.currentTimeMillis() - timerBefore;
-                }
-            }
-
-        } else if (!isFreezed()) {
-            freeze.pause();
-            freezed = false;
-        } else {
-            xa *= 0.5 + friction;
-            freeze.pause();
-        }
 
         int xStep = (int) Math.abs(xa * 1000);
         for (int i = 0; i < xStep; i++) {
-            if (!isSolidSquare(xa / xStep, 0) && !isFreezeSquare(xa / xStep, 0) && !isHyperSquare(xa / xStep, 0)) {
+            if (!isSolidSquare(xa / xStep, 0) && !isFreezeSquare(xa / xStep, 0)  && !isHyperSquare(xa / xStep, 0)) {
                 x += xa / xStep;
             } else {
                 xa = 0;
