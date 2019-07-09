@@ -104,7 +104,7 @@ public class Human extends Characters {
                 climb.play();
 
             }
-            lastKey = 'W';
+            
 
         }
         if (Keyboard.isKeyDown(Keyboard.KEY_S) || Keyboard.isKeyDown(Keyboard.KEY_DOWN)) {
@@ -114,7 +114,8 @@ public class Human extends Characters {
                 dir = 2;
                 climb.play();
             }
-            lastKey = 'S';
+            
+            
         }
         if (Keyboard.isKeyDown(Keyboard.KEY_Q) || Keyboard.isKeyDown(Keyboard.KEY_A) || Keyboard.isKeyDown(Keyboard.KEY_LEFT)) {
             //System.out.println("A Key Pressed");
@@ -143,6 +144,35 @@ public class Human extends Characters {
             lastKey = 'D';
 
         }
+        
+        if (Keyboard.isKeyDown(Keyboard.KEY_Q)) {
+
+            //System.out.println("D Key Pressed");
+            level.finish = true;
+            power = 0;
+            key = false;
+            numberkey = 0;
+            
+            
+
+        }
+        
+        if(lastKey=='D'&&Keyboard.isKeyDown(Keyboard.KEY_SPACE)&&power>0){
+            boolean dig = false;
+            dig = level.removeSolidSquare(posX+1,posY+1);
+            if(dig){
+                power--;
+            }
+        }
+        
+        if(lastKey=='A'&&Keyboard.isKeyDown(Keyboard.KEY_SPACE)&&power>0){
+            boolean dig = false;
+            dig = level.removeSolidSquare(posX-1,posY+1);
+            if(dig){
+                power--;
+            }
+        }
+        
 
         if (isFreezed() && freezed == false) {
             if(lastKey=='A'){
@@ -248,6 +278,7 @@ public class Human extends Characters {
                numberkey=1;
            }
            
+        
            
         
         

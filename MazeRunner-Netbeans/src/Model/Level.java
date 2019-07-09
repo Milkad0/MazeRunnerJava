@@ -54,6 +54,7 @@ public class Level {
     List<Characters> tab_character = new ArrayList<Characters>();
     List<Square> tab_apple = new ArrayList<Square>();
     List<Square> tab_key = new ArrayList<Square>();
+    List<Square> tab_brique = new ArrayList<Square>();
     
     static int tab_XHyperSquare[]={-1,-1,-1,-1,-1,-1,-1,-1,-1,-1};
     static int tab_YHyperSquare[]={-1,-1,-1,-1,-1,-1,-1,-1,-1,-1};
@@ -130,6 +131,7 @@ public class Level {
             for (int y = 0; y < height; y++) {
                 if (pixels[x + y * width] == 0xFFffffff) {
                     solidSquare[x][y] = new Square(x, y, Squares.BRICK);
+                    noneSolidSquare[x][y] = new Square(x, y, Squares.EMPTY);
                 }
                 if (pixels[x + y * width] == 0xFF000000) {
                     noneSolidSquare[x][y] = new Square(x, y, Squares.EMPTY);
@@ -204,7 +206,7 @@ public class Level {
                     noneSolidSquare[x][y] = new Square(x, y, Squares.EMPTY);
                 }
                 if (pixels[x + y * width] == 0xFFA0A0A0) {
-                    solidSquare[x][y] = new Square(x, y, Squares.GRAY);
+                    graySquare[x][y] = new Square(x, y, Squares.GRAY);
                     
                 }
                 if (pixels[x + y * width] == 0xFF7F0000) {
@@ -248,8 +250,9 @@ public class Level {
 
     public void addSquares(int x, int y) {
         if (solidSquare[x][y] != null) {
-            Square.add(solidSquare[x][y]);
-        } else if (noneSolidSquare[x][y] != null&&appleSquare[x][y] == null&&keySquare[x][y] ==null) {
+            Square.add(noneSolidSquare[x][y]);
+            tab_brique.add(solidSquare[x][y]);
+        } else if (noneSolidSquare[x][y] != null&&appleSquare[x][y] == null&&keySquare[x][y] ==null&&solidSquare[x][y] ==null) {
             Square.add(noneSolidSquare[x][y]);
         } else if (ladderSquare[x][y] != null) {
             Square.add(ladderSquare[x][y]);
@@ -271,6 +274,8 @@ public class Level {
             Square.add(grayKeySquare[x][y]);
         }else if (grayTimeSquare[x][y] != null) {
             Square.add(grayTimeSquare[x][y]);
+        }else if (graySquare[x][y] != null) {
+            Square.add(graySquare[x][y]);
     }
     }
 
@@ -324,6 +329,24 @@ public class Level {
 
     }
     
+    public boolean removeSolidSquare(int x, int y) {
+        
+        boolean test = false;
+        
+       if (solidSquare[x][y] != null) { 
+            tab_brique.remove(solidSquare[x][y]);
+            solidSquare[x][y] = null;
+            if(!tab_brique.contains(solidSquare[x][y])){
+            test = true;
+            }
+        }else{
+           test = false;
+       }
+       
+       return test;
+
+    }    
+    
     public boolean addSquareApple(int x, int y) {
         
         boolean test = false;
@@ -367,6 +390,10 @@ public class Level {
          for (Square squareKey : tab_key){
             squareKey.render();
         }
+         for (Square squareBrique : tab_brique){
+            squareBrique.render();
+        }
+         
          
          Go_Chrono();
 
@@ -377,6 +404,18 @@ public class Level {
     }
 
 //GETTER
+    
+    public  Boolean getTabBrique(int x, int y){
+        boolean getTabBriqueSol=false;
+        
+        if(solidSquare[x][y]!= null){
+            
+            if(tab_brique.indexOf(solidSquare[x][y])!=-1){
+                getTabBriqueSol=true;
+            }  
+        }
+        return getTabBriqueSol;
+    }
     
     public static Human getPlayer(){
         return player;
