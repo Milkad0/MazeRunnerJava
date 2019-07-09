@@ -7,6 +7,7 @@ package Controller;
 
 import static Controller.Game.xScroll;
 import static Controller.Game.yScroll;
+import static Controller.LevelManager.val;
 import Graphics.UI;
 import org.lwjgl.opengl.Display;
 import org.lwjgl.opengl.GL11;
@@ -61,7 +62,12 @@ public class StateManager {
                 if(LevelManag==null){
                     LevelManag.init();
                 }
+                
                 LevelManag.update();
+                if(LevelManager.val ==-1){
+                    val=0;
+                    LevelManag = null;
+                }
                 
                 
                 break;
@@ -93,6 +99,8 @@ public class StateManager {
      
      public static void setState (int choice){
          val = choice;
+         
+         
      
      }
     

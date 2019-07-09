@@ -66,8 +66,10 @@ public class Component {
         
         long timer = System.currentTimeMillis();
         
-        long timeBefore = System.nanoTime();
-        double elapsed = 0;
+        long timeBeforeTick = System.nanoTime();
+        long timeBeforeFrame = System.nanoTime();
+        double elapsedTick = 0;
+        double elapsedFrame = 0;
         double nanoSeconds = 1000000000.0/60.0; //update 60 per 1 seconde
        
         int ticks = 0;
@@ -77,24 +79,26 @@ public class Component {
             if(Display.isCloseRequested()){
                 stop();
             }
-            Display.update();
+           
             width = (int) (Display.getWidth()/scale);
             height = (int) (Display.getHeight()/scale);
             tick = false;
             render = false;
             
             long timeNow = System.nanoTime();
-            elapsed = timeNow-timeBefore;
-            
-            if(elapsed>nanoSeconds){
-                timeBefore += nanoSeconds;
+            elapsedTick = timeNow-timeBeforeTick;
+            elapsedFrame = timeNow-timeBeforeFrame;
+            if(elapsedTick>nanoSeconds){
+                timeBeforeTick += nanoSeconds;
                 tick = true;
                 ticks++;
-            }else {
+            }else if(elapsedFrame>nanoSeconds){
+                timeBeforeFrame += nanoSeconds;
                 render = true;
                 frames++;
+                 Display.update();
             }
-            if (tick) tick();
+            if (tick) update();
             if (render) render();
             
             //Get time in secondes
@@ -108,7 +112,7 @@ public class Component {
         exit();
     }
     
-    public void tick (){
+    public void update (){
       time++;  
       
        StateManager.update();

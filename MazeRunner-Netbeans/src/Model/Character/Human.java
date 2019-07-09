@@ -6,6 +6,7 @@
 package Model.Character;
 
 import Controller.Component;
+import static Controller.LevelManager.totalpower;
 import Graphics.Animation;
 import Graphics.Color;
 import static Graphics.View.renderCharacters;
@@ -238,6 +239,7 @@ public class Human extends Characters {
         
 
            if(level.removeSquareApple(posX, posY)){
+               totalpower++;
                power++;
            }
            

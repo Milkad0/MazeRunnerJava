@@ -7,6 +7,8 @@ package Controller;
 
 import static Controller.StateManager.val;
 import Graphics.UI;
+import static Graphics.UI.resetKeyLevelMenu;
+import static Graphics.UI.resetValtest;
 import static Graphics.View.*;
 import org.newdawn.slick.opengl.Texture;
 
@@ -20,15 +22,16 @@ public class MainMenu {
     //Level mainLevel;
     public static Texture background;
     private UI menuUI;
-     private int width = 600;
+     private int width = 590;
     private int height = 580;
     private int testVal=0;
+    private int testVal2=0;
     
     public MainMenu(){
       //mainLevel = new Level("Map 2");
       background = QuickLoadMenuTexture("mainmenu");
       menuUI = new UI();
-      menuUI.addButton("Play","PlayButton3", 237, 130, 80,30);//30
+      menuUI.addButton("Play","PlayButton3", 230, 130, 80,30);//30
       menuUI.addButton("Quit","QuitButton4", 0, 50, 80,30);   
     }
     
@@ -58,7 +61,15 @@ public class MainMenu {
         
         if(val==0){
             testVal=0;
-            
+            if(testVal2==0){
+               resetValtest(); 
+            menuUI.removeButton();
+            menuUI.addButton("Play","PlayButton3", 230, 130, 80,30);//30
+            menuUI.addButton("Quit","QuitButton4", 0, 50, 80,30);  
+      
+            testVal2=1;
+        }
+
         StateManager.setState(UI.isKeyMenuConfirmed());
         
         if(UI.isKeyMenu()==1){
@@ -72,7 +83,9 @@ public class MainMenu {
            
         }
         }else if(val==1){
+            testVal2=0;
             if(testVal==0){
+                resetValtest();
             menuUI.removeButton();
             
       menuUI.addButton("Level1","Level1Select", 158,130, 35,30);//30
@@ -86,13 +99,29 @@ public class MainMenu {
       menuUI.addButton("Level8","Level1", 50, 0, 35,30);
       menuUI.addButton("Level9","Level1", 50, 0, 35,30);
       menuUI.addButton("Level10","Level1", 50, 0, 35,30);
+      
+      menuUI.addButton("Menu","MenuButton", -300, -50, 80,30); 
             testVal=1;
         }
-            
         LevelManager.setLevel(UI.isKeyLevelMenuConfirmed());
+        
         //System.out.println(UI.isKeyLevelMenuConfirmed());
         
-        if(UI.isKeyLevelMenu()==0){
+        if(UI.isKeyLevelMenu()==-1){
+            menuUI.replaceButton("Level1","Level1");
+            menuUI.replaceButton("Level2","Level2");
+            menuUI.replaceButton("Level3","Level3");
+            menuUI.replaceButton("Level4","Level4");
+            menuUI.replaceButton("Level5","Level5");
+            menuUI.replaceButton("Level6","Level6");
+            menuUI.replaceButton("Level7","Level7"); 
+            menuUI.replaceButton("Level8","Level8");
+            menuUI.replaceButton("Level9","Level9");
+            menuUI.replaceButton("Level10","Level10");
+            menuUI.replaceButton("Menu","MenuButton2"); 
+         
+    
+        }else if(UI.isKeyLevelMenu()==0){
             menuUI.replaceButton("Level1","Level1Select");
             menuUI.replaceButton("Level2","Level2");
             menuUI.replaceButton("Level3","Level3");
@@ -103,6 +132,7 @@ public class MainMenu {
             menuUI.replaceButton("Level8","Level8");
             menuUI.replaceButton("Level9","Level9");
             menuUI.replaceButton("Level10","Level10");
+            menuUI.replaceButton("Menu","MenuButton"); 
          
     
         }else if(UI.isKeyLevelMenu()==1){
