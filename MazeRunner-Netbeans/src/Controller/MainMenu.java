@@ -4,8 +4,7 @@
  * and open the template in the editor.
  */
 package Controller;
-
-import static Controller.LevelManager.LevelCheck;
+import static Controller.Component.LevelCheck;
 import static Controller.StateManager.val;
 import Graphics.UI;
 import static Graphics.UI.resetKeyLevelMenu;

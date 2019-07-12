@@ -7,6 +7,16 @@
 package Controller;
 import Model.Square.Square;
 import java.awt.Toolkit;
+import java.io.File;
+import java.io.FileFilter;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
+import java.util.ArrayList;
+import java.util.Collection;
 import org.lwjgl.LWJGLException;
 import org.lwjgl.opengl.Display;
 import org.lwjgl.opengl.DisplayMode;
@@ -26,6 +36,7 @@ public class Component {
     public static int height = Toolkit.getDefaultToolkit().getScreenSize().height /*(int) (Display.getHeight()/scale)*/;
     public static int realWidth = width;
     public static int realHeigth = height;
+    public static boolean[] LevelCheck={true,false,false,false,false,false,false,false,false,false,false};
     
     int time = 0;
     
@@ -44,7 +55,8 @@ public class Component {
       
    
       
-    public void start(){
+    public void start() throws IOException, Exception{
+        LevelCheck = Charger_level();
         running = true;
         loop();
     }  
@@ -53,12 +65,13 @@ public class Component {
         running = false;
     }
     
-    public static void exit (){
+    public static void exit () throws Exception{
+        Sauvegarder(LevelCheck);
         Display.destroy();
         System.exit(0);
     }
     
-    public void loop(){
+    public void loop() throws Exception{
         
         //game.init();
         StateManager.init();
@@ -159,7 +172,43 @@ public class Component {
         
     }
     
-    public static void main(String[] args) {
+    public static void Sauvegarder(boolean[] Level) throws Exception {
+        String  monFichier = "Save\\level.dat";
+        FileOutputStream fos;
+        ObjectOutputStream oos;
+        fos = new FileOutputStream(monFichier);
+        oos = new ObjectOutputStream(fos);
+        oos.writeObject(Level);
+        oos.flush();
+        oos.close();
+    }
+    
+        public static boolean[] Charger_level() throws FileNotFoundException, IOException {
+        boolean[] TabLevel={true,false,false,false,false,false,false,false,false,false,false};
+        String Chemin_fichier = "Save\\level.dat";
+        File f = new File(Chemin_fichier);
+
+        if(!f.exists()){
+            
+        }else{
+                FileInputStream fis;
+                ObjectInputStream ois;
+                fis = new FileInputStream(f);
+                System.out.println("1"+fis);
+                ois = new ObjectInputStream(fis);
+                System.out.println("2"+ois);
+                ois.close();
+
+        }
+            
+     
+
+        return TabLevel;
+    }
+
+
+    
+    public static void main(String[] args) throws Exception {
         Component main = new Component();
         
         main.start();

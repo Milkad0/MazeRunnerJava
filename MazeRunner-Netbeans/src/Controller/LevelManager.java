@@ -5,6 +5,7 @@
  */
 package Controller;
 
+import static Controller.Component.LevelCheck;
 import static Controller.Game.level;
 import static Controller.StateManager.mainMenu;
 import static Controller.StateManager.val;
@@ -30,7 +31,7 @@ public class LevelManager {
     public static Game game;
     public static WinMenu winmenu;
     public static GameOverMenu gameovermenu;
-    public static boolean[] LevelCheck={true,false,false,false,false,false,false,false,false,false,false};
+    
     public static LevelState[] choiceLevel ={LevelState.LevelMenu,LevelState.MAP1,LevelState.MAP2,LevelState.MAP3,LevelState.MAP4,LevelState.MAP5,LevelState.MAP6,LevelState.MAP7,LevelState.MAP8,LevelState.MAP9,LevelState.MAP10, LevelState.WinMenu,LevelState.GameOverMenu};
     //public static Editor editor;
     
