@@ -5,6 +5,7 @@
  */
 package Controller;
 
+import static Controller.LevelManager.LevelCheck;
 import static Controller.StateManager.val;
 import Graphics.UI;
 import static Graphics.UI.resetKeyLevelMenu;
@@ -109,139 +110,582 @@ public class MainMenu {
         
         if(UI.isKeyLevelMenu()==-1){
             menuUI.replaceButton("Level1","Level1");
+            if(LevelCheck[1]){
             menuUI.replaceButton("Level2","Level2");
+            }else{
+            menuUI.replaceButton("Level2","Level2NotAv");    
+            }
+            if(LevelCheck[2]){
             menuUI.replaceButton("Level3","Level3");
+            }else{
+            menuUI.replaceButton("Level3","Level3NotAv");    
+            }
+            
+            if(LevelCheck[3]){
             menuUI.replaceButton("Level4","Level4");
+            }else{
+            menuUI.replaceButton("Level4","Level4NotAv");    
+            }
+            
+            if(LevelCheck[4]){
             menuUI.replaceButton("Level5","Level5");
+            }else{
+            menuUI.replaceButton("Level5","Level5NotAv");    
+            }
+            
+            if(LevelCheck[5]){
             menuUI.replaceButton("Level6","Level6");
-            menuUI.replaceButton("Level7","Level7"); 
+            }else{
+            menuUI.replaceButton("Level6","Level6NotAv");    
+            }
+            
+            if(LevelCheck[6]){
+            menuUI.replaceButton("Level7","Level7");
+            }else{
+            menuUI.replaceButton("Level7","Level7NotAv");    
+            }
+            
+            if(LevelCheck[7]){
             menuUI.replaceButton("Level8","Level8");
+            }else{
+            menuUI.replaceButton("Level8","Level8NotAv");    
+            }
+            
+            if(LevelCheck[8]){
             menuUI.replaceButton("Level9","Level9");
+            }else{
+            menuUI.replaceButton("Level9","Level9NotAv");    
+            }
+            
+            if(LevelCheck[9]){
             menuUI.replaceButton("Level10","Level10");
+            }else{
+            menuUI.replaceButton("Level10","Level10NotAv");    
+            }
+            
             menuUI.replaceButton("Menu","MenuButton2"); 
          
     
         }else if(UI.isKeyLevelMenu()==0){
             menuUI.replaceButton("Level1","Level1Select");
+            if(LevelCheck[1]){
             menuUI.replaceButton("Level2","Level2");
+            }else{
+            menuUI.replaceButton("Level2","Level2NotAv");    
+            }
+            if(LevelCheck[2]){
             menuUI.replaceButton("Level3","Level3");
+            }else{
+            menuUI.replaceButton("Level3","Level3NotAv");    
+            }
+            
+            if(LevelCheck[3]){
             menuUI.replaceButton("Level4","Level4");
+            }else{
+            menuUI.replaceButton("Level4","Level4NotAv");    
+            }
+            
+            if(LevelCheck[4]){
             menuUI.replaceButton("Level5","Level5");
+            }else{
+            menuUI.replaceButton("Level5","Level5NotAv");    
+            }
+            
+            if(LevelCheck[5]){
             menuUI.replaceButton("Level6","Level6");
-            menuUI.replaceButton("Level7","Level7"); 
+            }else{
+            menuUI.replaceButton("Level6","Level6NotAv");    
+            }
+            
+            if(LevelCheck[6]){
+            menuUI.replaceButton("Level7","Level7");
+            }else{
+            menuUI.replaceButton("Level7","Level7NotAv");    
+            }
+            
+            if(LevelCheck[7]){
             menuUI.replaceButton("Level8","Level8");
+            }else{
+            menuUI.replaceButton("Level8","Level8NotAv");    
+            }
+            
+            if(LevelCheck[8]){
             menuUI.replaceButton("Level9","Level9");
+            }else{
+            menuUI.replaceButton("Level9","Level9NotAv");    
+            }
+            
+            if(LevelCheck[9]){
             menuUI.replaceButton("Level10","Level10");
+            }else{
+            menuUI.replaceButton("Level10","Level10NotAv");    
+            }
             menuUI.replaceButton("Menu","MenuButton"); 
          
     
         }else if(UI.isKeyLevelMenu()==1){
             menuUI.replaceButton("Level1","Level1");
             menuUI.replaceButton("Level2","Level2Select");
+            if(LevelCheck[2]){
             menuUI.replaceButton("Level3","Level3");
+            }else{
+            menuUI.replaceButton("Level3","Level3NotAv");    
+            }
+            
+            if(LevelCheck[3]){
             menuUI.replaceButton("Level4","Level4");
+            }else{
+            menuUI.replaceButton("Level4","Level4NotAv");    
+            }
+            
+            if(LevelCheck[4]){
             menuUI.replaceButton("Level5","Level5");
+            }else{
+            menuUI.replaceButton("Level5","Level5NotAv");    
+            }
+            
+            if(LevelCheck[5]){
             menuUI.replaceButton("Level6","Level6");
-            menuUI.replaceButton("Level7","Level7"); 
+            }else{
+            menuUI.replaceButton("Level6","Level6NotAv");    
+            }
+            
+            if(LevelCheck[6]){
+            menuUI.replaceButton("Level7","Level7");
+            }else{
+            menuUI.replaceButton("Level7","Level7NotAv");    
+            }
+            
+            if(LevelCheck[7]){
             menuUI.replaceButton("Level8","Level8");
+            }else{
+            menuUI.replaceButton("Level8","Level8NotAv");    
+            }
+            
+            if(LevelCheck[8]){
             menuUI.replaceButton("Level9","Level9");
+            }else{
+            menuUI.replaceButton("Level9","Level9NotAv");    
+            }
+            
+            if(LevelCheck[9]){
             menuUI.replaceButton("Level10","Level10");
+            }else{
+            menuUI.replaceButton("Level10","Level10NotAv");    
+            }
+            
             
 
         }else if(UI.isKeyLevelMenu()==2){
             menuUI.replaceButton("Level1","Level1");
+            if(LevelCheck[1]){
             menuUI.replaceButton("Level2","Level2");
+            }else{
+            menuUI.replaceButton("Level2","Level2NotAv");    
+            }
             menuUI.replaceButton("Level3","Level3Select");
+            
+            if(LevelCheck[3]){
             menuUI.replaceButton("Level4","Level4");
+            }else{
+            menuUI.replaceButton("Level4","Level4NotAv");    
+            }
+            
+            if(LevelCheck[4]){
             menuUI.replaceButton("Level5","Level5");
+            }else{
+            menuUI.replaceButton("Level5","Level5NotAv");    
+            }
+            
+            if(LevelCheck[5]){
             menuUI.replaceButton("Level6","Level6");
-            menuUI.replaceButton("Level7","Level7"); 
+            }else{
+            menuUI.replaceButton("Level6","Level6NotAv");    
+            }
+            
+            if(LevelCheck[6]){
+            menuUI.replaceButton("Level7","Level7");
+            }else{
+            menuUI.replaceButton("Level7","Level7NotAv");    
+            }
+            
+            if(LevelCheck[7]){
             menuUI.replaceButton("Level8","Level8");
+            }else{
+            menuUI.replaceButton("Level8","Level8NotAv");    
+            }
+            
+            if(LevelCheck[8]){
             menuUI.replaceButton("Level9","Level9");
+            }else{
+            menuUI.replaceButton("Level9","Level9NotAv");    
+            }
+            
+            if(LevelCheck[9]){
             menuUI.replaceButton("Level10","Level10");
+            }else{
+            menuUI.replaceButton("Level10","Level10NotAv");    
+            }
+            
            
         }else if(UI.isKeyLevelMenu()==3){
             menuUI.replaceButton("Level1","Level1");
-            menuUI.replaceButton("Level2","Level2"); 
+            if(LevelCheck[1]){
+            menuUI.replaceButton("Level2","Level2");
+            }else{
+            menuUI.replaceButton("Level2","Level2NotAv");    
+            } 
+            if(LevelCheck[2]){
             menuUI.replaceButton("Level3","Level3");
-            menuUI.replaceButton("Level4","Level4Select");
+            }else{
+            menuUI.replaceButton("Level3","Level3NotAv");    
+            }
+            //
+            menuUI.replaceButton("Level4","Level4Select");      
+            
+            if(LevelCheck[4]){
             menuUI.replaceButton("Level5","Level5");
+            }else{
+            menuUI.replaceButton("Level5","Level5NotAv");    
+            }
+            
+            if(LevelCheck[5]){
             menuUI.replaceButton("Level6","Level6");
-            menuUI.replaceButton("Level7","Level7"); 
+            }else{
+            menuUI.replaceButton("Level6","Level6NotAv");    
+            }
+            
+            if(LevelCheck[6]){
+            menuUI.replaceButton("Level7","Level7");
+            }else{
+            menuUI.replaceButton("Level7","Level7NotAv");    
+            }
+            
+            if(LevelCheck[7]){
             menuUI.replaceButton("Level8","Level8");
+            }else{
+            menuUI.replaceButton("Level8","Level8NotAv");    
+            }
+            
+            if(LevelCheck[8]){
             menuUI.replaceButton("Level9","Level9");
+            }else{
+            menuUI.replaceButton("Level9","Level9NotAv");    
+            }
+            
+            if(LevelCheck[9]){
             menuUI.replaceButton("Level10","Level10");
+            }else{
+            menuUI.replaceButton("Level10","Level10NotAv");    
+            }
            
         }else if(UI.isKeyLevelMenu()==4){
             menuUI.replaceButton("Level1","Level1");
-            menuUI.replaceButton("Level2","Level2"); 
+            if(LevelCheck[1]){
+            menuUI.replaceButton("Level2","Level2");
+            }else{
+            menuUI.replaceButton("Level2","Level2NotAv");    
+            } 
+            if(LevelCheck[2]){
             menuUI.replaceButton("Level3","Level3");
+            }else{
+            menuUI.replaceButton("Level3","Level3NotAv");    
+            }
+            
+            if(LevelCheck[3]){
             menuUI.replaceButton("Level4","Level4");
+            }else{
+            menuUI.replaceButton("Level4","Level4NotAv");    
+            }
+            //
             menuUI.replaceButton("Level5","Level5Select");
+            //
+            
+            if(LevelCheck[5]){
             menuUI.replaceButton("Level6","Level6");
-            menuUI.replaceButton("Level7","Level7"); 
+            }else{
+            menuUI.replaceButton("Level6","Level6NotAv");    
+            }
+            
+            if(LevelCheck[6]){
+            menuUI.replaceButton("Level7","Level7");
+            }else{
+            menuUI.replaceButton("Level7","Level7NotAv");    
+            }
+            
+            if(LevelCheck[7]){
             menuUI.replaceButton("Level8","Level8");
+            }else{
+            menuUI.replaceButton("Level8","Level8NotAv");    
+            }
+            
+            if(LevelCheck[8]){
             menuUI.replaceButton("Level9","Level9");
+            }else{
+            menuUI.replaceButton("Level9","Level9NotAv");    
+            }
+            
+            if(LevelCheck[9]){
             menuUI.replaceButton("Level10","Level10");
+            }else{
+            menuUI.replaceButton("Level10","Level10NotAv");    
+            }
            
         }else if(UI.isKeyLevelMenu()==5){
             menuUI.replaceButton("Level1","Level1");
-            menuUI.replaceButton("Level2","Level2"); 
+            if(LevelCheck[1]){
+            menuUI.replaceButton("Level2","Level2");
+            }else{
+            menuUI.replaceButton("Level2","Level2NotAv");    
+            } 
+            if(LevelCheck[2]){
             menuUI.replaceButton("Level3","Level3");
+            }else{
+            menuUI.replaceButton("Level3","Level3NotAv");    
+            }
+            
+            if(LevelCheck[3]){
             menuUI.replaceButton("Level4","Level4");
+            }else{
+            menuUI.replaceButton("Level4","Level4NotAv");    
+            }
+            
+            if(LevelCheck[4]){
             menuUI.replaceButton("Level5","Level5");
+            }else{
+            menuUI.replaceButton("Level5","Level5NotAv");    
+            }
+            //
             menuUI.replaceButton("Level6","Level6Select");
-            menuUI.replaceButton("Level7","Level7"); 
+            //
+            
+            if(LevelCheck[6]){
+            menuUI.replaceButton("Level7","Level7");
+            }else{
+            menuUI.replaceButton("Level7","Level7NotAv");    
+            }
+            
+            if(LevelCheck[7]){
             menuUI.replaceButton("Level8","Level8");
+            }else{
+            menuUI.replaceButton("Level8","Level8NotAv");    
+            }
+            
+            if(LevelCheck[8]){
             menuUI.replaceButton("Level9","Level9");
+            }else{
+            menuUI.replaceButton("Level9","Level9NotAv");    
+            }
+            
+            if(LevelCheck[9]){
             menuUI.replaceButton("Level10","Level10");
+            }else{
+            menuUI.replaceButton("Level10","Level10NotAv");    
+            }
            
         }else if(UI.isKeyLevelMenu()==6){
             menuUI.replaceButton("Level1","Level1");
-            menuUI.replaceButton("Level2","Level2"); 
+            if(LevelCheck[1]){
+            menuUI.replaceButton("Level2","Level2");
+            }else{
+            menuUI.replaceButton("Level2","Level2NotAv");    
+            }
+            if(LevelCheck[2]){
             menuUI.replaceButton("Level3","Level3");
+            }else{
+            menuUI.replaceButton("Level3","Level3NotAv");    
+            }
+            
+            if(LevelCheck[3]){
             menuUI.replaceButton("Level4","Level4");
+            }else{
+            menuUI.replaceButton("Level4","Level4NotAv");    
+            }
+            
+            if(LevelCheck[4]){
             menuUI.replaceButton("Level5","Level5");
+            }else{
+            menuUI.replaceButton("Level5","Level5NotAv");    
+            }
+            
+            if(LevelCheck[5]){
             menuUI.replaceButton("Level6","Level6");
+            }else{
+            menuUI.replaceButton("Level6","Level6NotAv");    
+            }
+
+            //
             menuUI.replaceButton("Level7","Level7Select"); 
+            //
+
+            if(LevelCheck[7]){
             menuUI.replaceButton("Level8","Level8");
+            }else{
+            menuUI.replaceButton("Level8","Level8NotAv");    
+            }
+            
+            if(LevelCheck[8]){
             menuUI.replaceButton("Level9","Level9");
+            }else{
+            menuUI.replaceButton("Level9","Level9NotAv");    
+            }
+            
+            if(LevelCheck[9]){
             menuUI.replaceButton("Level10","Level10");
+            }else{
+            menuUI.replaceButton("Level10","Level10NotAv");    
+            }
            
         }else if(UI.isKeyLevelMenu()==7){
             menuUI.replaceButton("Level1","Level1");
-            menuUI.replaceButton("Level2","Level2"); 
+            if(LevelCheck[1]){
+            menuUI.replaceButton("Level2","Level2");
+            }else{
+            menuUI.replaceButton("Level2","Level2NotAv");    
+            } 
+            if(LevelCheck[2]){
             menuUI.replaceButton("Level3","Level3");
+            }else{
+            menuUI.replaceButton("Level3","Level3NotAv");    
+            }
+            
+            if(LevelCheck[3]){
             menuUI.replaceButton("Level4","Level4");
+            }else{
+            menuUI.replaceButton("Level4","Level4NotAv");    
+            }
+            
+            if(LevelCheck[4]){
             menuUI.replaceButton("Level5","Level5");
+            }else{
+            menuUI.replaceButton("Level5","Level5NotAv");    
+            }
+            
+            if(LevelCheck[5]){
             menuUI.replaceButton("Level6","Level6");
-            menuUI.replaceButton("Level7","Level7"); 
+            }else{
+            menuUI.replaceButton("Level6","Level6NotAv");    
+            }
+            
+            if(LevelCheck[6]){
+            menuUI.replaceButton("Level7","Level7");
+            }else{
+            menuUI.replaceButton("Level7","Level7NotAv");    
+            }
+            //
             menuUI.replaceButton("Level8","Level8Select");
+            //
+            if(LevelCheck[8]){
             menuUI.replaceButton("Level9","Level9");
+            }else{
+            menuUI.replaceButton("Level9","Level9NotAv");    
+            }
+            
+            if(LevelCheck[9]){
             menuUI.replaceButton("Level10","Level10");
+            }else{
+            menuUI.replaceButton("Level10","Level10NotAv");    
+            }
            
         }else if(UI.isKeyLevelMenu()==8){
             menuUI.replaceButton("Level1","Level1");
-            menuUI.replaceButton("Level2","Level2"); 
+            if(LevelCheck[1]){
+            menuUI.replaceButton("Level2","Level2");
+            }else{
+            menuUI.replaceButton("Level2","Level2NotAv");    
+            } 
+            if(LevelCheck[2]){
             menuUI.replaceButton("Level3","Level3");
+            }else{
+            menuUI.replaceButton("Level3","Level3NotAv");    
+            }
+            
+            if(LevelCheck[3]){
             menuUI.replaceButton("Level4","Level4");
+            }else{
+            menuUI.replaceButton("Level4","Level4NotAv");    
+            }
+            
+            if(LevelCheck[4]){
             menuUI.replaceButton("Level5","Level5");
+            }else{
+            menuUI.replaceButton("Level5","Level5NotAv");    
+            }
+            
+            if(LevelCheck[5]){
             menuUI.replaceButton("Level6","Level6");
-            menuUI.replaceButton("Level7","Level7"); 
+            }else{
+            menuUI.replaceButton("Level6","Level6NotAv");    
+            }
+            
+            if(LevelCheck[6]){
+            menuUI.replaceButton("Level7","Level7");
+            }else{
+            menuUI.replaceButton("Level7","Level7NotAv");    
+            }
+            
+            if(LevelCheck[7]){
             menuUI.replaceButton("Level8","Level8");
+            }else{
+            menuUI.replaceButton("Level8","Level8NotAv");    
+            }
+            //
             menuUI.replaceButton("Level9","Level9Select");
+            //
+            if(LevelCheck[9]){
             menuUI.replaceButton("Level10","Level10");
+            }else{
+            menuUI.replaceButton("Level10","Level10NotAv");    
+            }
            
         }else if(UI.isKeyLevelMenu()==9){
             menuUI.replaceButton("Level1","Level1");
-            menuUI.replaceButton("Level2","Level2"); 
+            if(LevelCheck[1]){
+            menuUI.replaceButton("Level2","Level2");
+            }else{
+            menuUI.replaceButton("Level2","Level2NotAv");    
+            } 
+            if(LevelCheck[2]){
             menuUI.replaceButton("Level3","Level3");
+            }else{
+            menuUI.replaceButton("Level3","Level3NotAv");    
+            }
+            
+            if(LevelCheck[3]){
             menuUI.replaceButton("Level4","Level4");
+            }else{
+            menuUI.replaceButton("Level4","Level4NotAv");    
+            }
+            
+            if(LevelCheck[4]){
             menuUI.replaceButton("Level5","Level5");
+            }else{
+            menuUI.replaceButton("Level5","Level5NotAv");    
+            }
+            
+            if(LevelCheck[5]){
             menuUI.replaceButton("Level6","Level6");
-            menuUI.replaceButton("Level7","Level7"); 
+            }else{
+            menuUI.replaceButton("Level6","Level6NotAv");    
+            }
+            
+            if(LevelCheck[6]){
+            menuUI.replaceButton("Level7","Level7");
+            }else{
+            menuUI.replaceButton("Level7","Level7NotAv");    
+            }
+            
+            if(LevelCheck[7]){
             menuUI.replaceButton("Level8","Level8");
+            }else{
+            menuUI.replaceButton("Level8","Level8NotAv");    
+            }
+            
+            if(LevelCheck[8]){
             menuUI.replaceButton("Level9","Level9");
+            }else{
+            menuUI.replaceButton("Level9","Level9NotAv");    
+            }
             menuUI.replaceButton("Level10","Level10Select");
            
         }

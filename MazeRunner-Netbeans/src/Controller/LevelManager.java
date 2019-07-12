@@ -30,12 +30,14 @@ public class LevelManager {
     public static Game game;
     public static WinMenu winmenu;
     public static GameOverMenu gameovermenu;
+    public static boolean[] LevelCheck={true,false,false,false,false,false,false,false,false,false,false};
     public static LevelState[] choiceLevel ={LevelState.LevelMenu,LevelState.MAP1,LevelState.MAP2,LevelState.MAP3,LevelState.MAP4,LevelState.MAP5,LevelState.MAP6,LevelState.MAP7,LevelState.MAP8,LevelState.MAP9,LevelState.MAP10, LevelState.WinMenu,LevelState.GameOverMenu};
     //public static Editor editor;
     
     public static enum LevelState {
         LevelMenu, MAP1, MAP2, MAP3, MAP4, MAP5, MAP6, MAP7, MAP8, MAP9, MAP10, WinMenu, GameOverMenu
     }
+    
     
      public void initValLevelManager(){
        val=0;
@@ -60,69 +62,71 @@ public class LevelManager {
                 break;
             
             case MAP1:
-                if(game == null){
+                
+                if(game == null&&LevelCheck[val-1]){
+                    
                     game = new Game("Map 1");
-                    game.init();
+                    game.init();  
                 }
                     break;
             case MAP2:
-               if(game == null){
+               if(game == null&&LevelCheck[val-1]){
                   
                     game = new Game("Map 2");
                     game.init();
-                }   
+                }  
                 break;
             case MAP3:
-               if(game == null){
+               if(game == null&&LevelCheck[val-1]){
                     game = new Game("Map 3");
                     game.init();
                 }
                 break;
                 
             case MAP4:
-               if(game == null){
+               if(game == null&&LevelCheck[val-1]){
                     game = new Game("Map 4");
                     game.init();
                 }
                 break;
                 
             case MAP5:
-               if(game == null){
+               if(game == null&&LevelCheck[val-1]){
                     game = new Game("Map 5");
                     game.init();
                 }
                 break;
                 
             case MAP6:
-               if(game == null){
+               if(game == null&&LevelCheck[val-1]){
                     game = new Game("Map 6");
                     game.init();
                 }
                 break;
                 
             case MAP7:
-               if(game == null){
+               if(game == null&&LevelCheck[val-1]){
                     game = new Game("Map 7");
                     game.init();
                 }
                 break;
                 
             case MAP8:
-               if(game == null){
+               if(game == null&&LevelCheck[val-1]){
                     game = new Game("Map 8");
                     game.init();
                 }
                 break;
                 
             case MAP9:
-               if(game == null){
+               if(game == null&&LevelCheck[val-1]){
                     game = new Game("Map 9");
                     game.init();
                 }
                 break;
                 
             case MAP10:
-               if(game == null){
+               if(game == null&&LevelCheck[val-1]){
                     game = new Game("Map 10");
                     game.init();
                 }
@@ -186,7 +190,9 @@ public class LevelManager {
                         gameovermenu =null;
                     }
                     winmenu =null;
-                    if(level.succeed){  
+                    if(level.succeed){
+                       
+                        LevelCheck[val]=true;
                         game = null;
                         valLv = val;
                         val = 11;
@@ -231,6 +237,9 @@ public class LevelManager {
             default :
                 if(game != null){
                 game.render();
+                }else if(!LevelCheck[val-1]){
+                   mainMenu.render();
+                   val=0;
                 }
                 break;
                 
