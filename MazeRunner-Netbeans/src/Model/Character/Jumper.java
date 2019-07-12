@@ -49,6 +49,9 @@ public class Jumper extends Enemies{
         int minSpeedX = 1;
         int maxSpeedX = 4;
         int randomSpeedX = minSpeedX + (int)(Math.random() * ((maxSpeedX - minSpeedX) + 1));
+        int minDropNumber = 1;
+        int maxDropNumber = 20;
+        int randomDropRate = minDropNumber + (int)(Math.random() * ((maxDropNumber - minDropNumber) + 1));
         
         
         ya += level.gravity * mass;
@@ -61,6 +64,9 @@ public class Jumper extends Enemies{
         if (dir == 1){
             xa = -randomSpeedX;
             if (isGrounded() || isFreezed()) {
+                if(randomDropRate == 10){
+                    level.addSquareApple((int)this.x/16, (int)this.y/16);
+                }
                 try {
                     jump.pause();
                     tempo.play();
@@ -75,6 +81,9 @@ public class Jumper extends Enemies{
         }else if (dir == 0){
             xa = randomSpeedX;
             if (isGrounded() || isFreezed()) {
+                if(randomDropRate == 10){
+                    level.addSquareApple((int)this.x/16, (int)this.y/16);
+                }
                 try {
                     jump.pause();
                     tempo.play();

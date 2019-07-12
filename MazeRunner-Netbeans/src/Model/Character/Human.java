@@ -180,6 +180,7 @@ public class Human extends Characters {
             }else{
             dir = 0;
             }
+            
 
             long timerBefore = System.currentTimeMillis();
             long duration = 0;
@@ -194,6 +195,12 @@ public class Human extends Characters {
                 while ((duration < random_duration * 1000) && (freeze.getPlaying())) {
 
                     duration = System.currentTimeMillis() - timerBefore;
+                    if(isEnnemie(this.x,this.y)){
+                        level.finish = true;
+                        power = 0;
+                        key = false;
+                        numberkey=0;
+                    }
                 }
 
             }
