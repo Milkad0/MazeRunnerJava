@@ -36,6 +36,7 @@ public class Human extends Characters {
     public int  posX;
     public int posY;
     boolean key = false;
+    boolean dig = false;
     
     public Human(int x, int y) {
         super(x, y);
@@ -157,17 +158,33 @@ public class Human extends Characters {
 
         }
         
-        if(lastKey=='D'&&Keyboard.isKeyDown(Keyboard.KEY_SPACE)&&power>0){
-            boolean dig = false;
+        if(lastKey=='D'&&Keyboard.isKeyDown(Keyboard.KEY_SPACE)&&Keyboard.isKeyDown(Keyboard.KEY_DOWN)&&power>0){
+            dig = false;
             dig = level.removeSolidSquare(posX+1,posY+1);
             if(dig){
                 power--;
             }
         }
         
-        if(lastKey=='A'&&Keyboard.isKeyDown(Keyboard.KEY_SPACE)&&power>0){
-            boolean dig = false;
+        if(lastKey=='A'&&Keyboard.isKeyDown(Keyboard.KEY_SPACE)&&Keyboard.isKeyDown(Keyboard.KEY_DOWN)&&power>0){
+            dig = false;
             dig = level.removeSolidSquare(posX-1,posY+1);
+            if(dig){
+                power--;
+            }
+        }
+        
+        if(lastKey=='D'&&Keyboard.isKeyDown(Keyboard.KEY_SPACE)&&!Keyboard.isKeyDown(Keyboard.KEY_DOWN)&&power>0){
+            dig = false;
+            dig = level.removeSolidSquare(posX+1,posY);
+            if(dig){
+                power--;
+            }
+        }
+        
+        if(lastKey=='A'&&Keyboard.isKeyDown(Keyboard.KEY_SPACE)&&!Keyboard.isKeyDown(Keyboard.KEY_DOWN)&&power>0){
+            dig = false;
+            dig = level.removeSolidSquare(posX-1,posY);
             if(dig){
                 power--;
             }
