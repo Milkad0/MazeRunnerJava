@@ -76,22 +76,9 @@ public class Level {
     }
 
     public void spawner() {
-        player = new Human(1, 4);
-        pacer = new Pacer(17, 17);
-        rover = new Rover(13,13);
-        jumper = new Jumper(15,13);
         this.init();
-        player.init(this);
-        pacer.init(this);
-        rover.init(this);
-        jumper.init(this);
-        addCharacters(player);
-        addCharacters(pacer);
-        addCharacters(rover);
-        addCharacters(jumper);
-
     }
-
+//B6FF00
     public void loadLevel(String name) {
 
         int[] pixels;
@@ -129,6 +116,30 @@ public class Level {
 
         for (int x = 0; x < width; x++) {
             for (int y = 0; y < height; y++) {
+                if (pixels[x + y * width] == 0xFFB6FF00) {
+                    player = new Human(x,y);
+                    player.init(this);
+                    addCharacters(player);
+                    noneSolidSquare[x][y] = new Square(x, y, Squares.EMPTY);
+                }
+                if (pixels[x + y * width] == 0xFF4CFF00) {
+                    pacer = new Pacer(x,y);
+                    pacer.init(this);
+                    addCharacters(pacer);
+                    noneSolidSquare[x][y] = new Square(x, y, Squares.EMPTY);
+                }
+                if (pixels[x + y * width] == 0xFF00FF21 ) {
+                    jumper = new Jumper(x,y);
+                    jumper.init(this);
+                    addCharacters(jumper);
+                    noneSolidSquare[x][y] = new Square(x, y, Squares.EMPTY);
+                }
+                if (pixels[x + y * width] == 0xFF00FF90 ) {
+                    rover = new Rover(x,y);
+                    rover.init(this);
+                    addCharacters(rover);
+                    noneSolidSquare[x][y] = new Square(x, y, Squares.EMPTY);
+                }
                 if (pixels[x + y * width] == 0xFFffffff) {
                     solidSquare[x][y] = new Square(x, y, Squares.BRICK);
                     noneSolidSquare[x][y] = new Square(x, y, Squares.EMPTY);
@@ -280,10 +291,12 @@ public class Level {
     }
 
     public void init() {
-        player.setPositionStart();
-        pacer.setPositionStart();
-        rover.setPositionStart();
-        jumper.setPositionStart();
+        
+        for (Characters Mobs : tab_character) { //for each
+            if(Mobs!=null){
+            Mobs.setPositionStart();
+            }
+        }
     }
 
 
@@ -508,14 +521,15 @@ public class Level {
     } 
     
     public void startThread(){
-        pacer.start();
-        player.start();
-        rover.start();
-        jumper.start();
-        jumper.setName("Jumper Thread");
-        rover.setName("Rover Thread");
-        pacer.setName("Pacer Thread");
-        player.setName("Player Thread");
+        
+        
+        for (Characters Mobs : tab_character) { //for each
+            if(Mobs!=null){
+            Mobs.start();
+            Mobs.setName(Mobs+" Thread");
+            }
+        }
+        
     }
     
     static void Go_Chrono() { 

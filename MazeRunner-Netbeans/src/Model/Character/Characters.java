@@ -56,7 +56,7 @@ public abstract class Characters extends Thread{
     
     public void setPositionStart(){
         this.x = this.xStart;
-        this.y = this.xStart;
+        this.y = this.yStart;
     }
     
     public boolean isEnnemie(float xa, float ya) {
