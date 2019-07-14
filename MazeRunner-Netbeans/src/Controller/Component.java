@@ -183,7 +183,7 @@ public class Component {
         oos.close();
     }
     
-        public static boolean[] Charger_level() throws FileNotFoundException, IOException {
+        public static boolean[] Charger_level() throws FileNotFoundException, IOException, ClassNotFoundException {
         boolean[] TabLevel={true,false,false,false,false,false,false,false,false,false,false};
         String Chemin_fichier = "Save\\level.dat";
         File f = new File(Chemin_fichier);
@@ -194,9 +194,11 @@ public class Component {
                 FileInputStream fis;
                 ObjectInputStream ois;
                 fis = new FileInputStream(f);
-                System.out.println("1"+fis);
+                //System.out.println("1"+fis);
                 ois = new ObjectInputStream(fis);
-                System.out.println("2"+ois);
+                //System.out.println("2"+ois);
+                TabLevel = (boolean []) ois.readObject();
+                //System.out.println("3"+TabLevel);
                 ois.close();
 
         }
