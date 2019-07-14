@@ -33,8 +33,10 @@ public class Human extends Characters {
     char lastKey;
     public static int power =0;
     public static int numberkey = 0;
-    public int  posX;
-    public int posY;
+    public static int  posX;
+    public static int posY;
+    public static float  FposX;
+    public static float FposY;
     boolean key = false;
     boolean dig = false;
     
@@ -64,8 +66,10 @@ public class Human extends Characters {
     }
     
     public void update() {
-            posX = (int) getPositionX()/16;
-            posY = (int) (getPositionY()/16);
+            FposX = getPositionX()/16;
+            FposY = getPositionY()/16;
+            posX = (int) FposX ;
+            posY = (int) FposY;
         
         if (!isLadder()) {
             ya += level.gravity * mass;

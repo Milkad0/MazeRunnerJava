@@ -9,6 +9,7 @@ import Graphics.Animation;
 import Graphics.Color;
 import Graphics.MyTexture;
 import static Graphics.View.renderCharacters;
+import static Model.Character.Human.FposX;
 import Model.Level;
 
 /**
@@ -23,6 +24,11 @@ public class Rover extends Enemies{
     int test = 0;
     boolean freezed = false;
     int testFreeze = 0;
+    public float Xdiff;
+    public static float Xpos;
+    public float ladderXdiff;
+    public int posXLadder = -1;
+    public int Ydiff;
 
     public Rover(int x, int y) {
         super(x, y);
@@ -38,7 +44,7 @@ public class Rover extends Enemies{
     
     public void update() {
 
-        ya += level.gravity * mass;
+        
         
         run.update();
         run.pause();
@@ -46,13 +52,57 @@ public class Rover extends Enemies{
         climb.pause();
         freeze.update();
         freeze.pause();
+        Xpos = getPositionX()/16;
+        Xdiff= Human.FposX-Xpos;
+        Ydiff= (int) (Human.posY-getPositionY()/16);
+        //System.out.println(Ydiff);
         
-        if (dir == 1){
+        if (xa!=0) {
+            ya += level.gravity * mass;
+        }
+        
+        //System.out.println(isLadder());
+        if(Ydiff<0){
+             posXLadder = level.getXLadder((int)(getPositionY()/16)); 
+          }else{
+              posXLadder = level.getXLadder((int)(getPositionY()/16)+1);
+          }
+        if(Ydiff!=0&&posXLadder!=-1){
+          
+          
+          ladderXdiff=  posXLadder  - getPositionX()/16;
+          //System.out.println(ladderXdiff);
+          if (ladderXdiff<-0.05){
+            dir = 1;
             xa = -speed;
             run.play();
-        }else if (dir == 0){
+        }else if (ladderXdiff>0.05){
+            dir = 0;
             xa = speed;
             run.play();
+        }else{
+            xa=0;
+            if(Ydiff<0){
+            ya -= 0.03f;
+            }else{
+            ya += 0.03f;
+            }
+        }
+        
+            
+            
+        }else{
+        if (Xdiff<-0.05){
+            dir = 1;
+            xa = -speed;
+            run.play();
+        }else if (Xdiff>0.05){
+            dir = 0;
+            xa = speed;
+            run.play();
+        }else{
+            xa =0;
+        }
         }
         
         if (isFreezed() && freezed == false) {
@@ -78,11 +128,9 @@ public class Rover extends Enemies{
             freeze.pause();
         }
         
-        if (!isLadder()) {
-            ya *= friction;
-        } else {
-            ya = 0;
-        }
+       
+            
+        
 
         int xStep = (int) Math.abs(xa * 1000);
         for (int i = 0; i < xStep; i++) {
@@ -90,11 +138,8 @@ public class Rover extends Enemies{
                 x += xa / xStep;
             } else {
                 xa = 0;
-                if(dir == 0){
-                    dir = 1;
-                }else{
-                    dir = 0;
-                }
+
+                
             }
         }
 

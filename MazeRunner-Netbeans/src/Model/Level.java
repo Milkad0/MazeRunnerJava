@@ -8,10 +8,12 @@ package Model;
 import Controller.Component;
 import Model.Character.Characters;
 import Model.Character.*;
+import static Model.Character.Rover.Xpos;
 import java.awt.image.BufferedImage;
 import Model.Square.Square;
 import Model.Square.Square.Squares;
 import java.io.IOException;
+import static java.lang.Math.abs;
 import java.util.ArrayList;
 import java.util.List;
 import javax.imageio.ImageIO;
@@ -55,6 +57,9 @@ public class Level {
     List<Square> tab_apple = new ArrayList<Square>();
     List<Square> tab_key = new ArrayList<Square>();
     List<Square> tab_brique = new ArrayList<Square>();
+    List<Integer> tab_XLadderSquare = new ArrayList<Integer>();
+    List<Integer> tab_YLadderSquare = new ArrayList<Integer>();
+    
     
     static int tab_XHyperSquare[]={-1,-1,-1,-1,-1,-1,-1,-1,-1,-1};
     static int tab_YHyperSquare[]={-1,-1,-1,-1,-1,-1,-1,-1,-1,-1};
@@ -149,6 +154,8 @@ public class Level {
                 }
                 if (pixels[x + y * width] == 0xFFff6A00) {
                     ladderSquare[x][y] = new Square(x, y, Squares.LADDER);
+                    tab_XLadderSquare.add(x);
+                    tab_YLadderSquare.add(y);
                 }
                 if (pixels[x + y * width] == 0xFFff0000) {
                     appleSquare[x][y] = new Square(x, y, Squares.APPLE);
@@ -509,6 +516,30 @@ public class Level {
 
         return tab_YHyperSquare[y];
     } 
+    
+    public int getXLadder(int y){
+        int posXLadder=-1;
+        float posXRover = Xpos;
+        float compare=10000;
+        
+        
+        for(int i=0; i<tab_YLadderSquare.size();i++){
+        
+           if(tab_YLadderSquare.get(i)==y){
+               
+               if(compare>abs(tab_XLadderSquare.get(i)-posXRover)){
+                   compare = abs(tab_XLadderSquare.get(i)-posXRover);
+                   posXLadder = tab_XLadderSquare.get(i);
+               }
+           } 
+        }
+        return posXLadder;
+        
+    }
+    
+    public int getYLadder(int y){
+        return tab_YLadderSquare.get(y);
+    }
     
     public  int getYDoor(){
 

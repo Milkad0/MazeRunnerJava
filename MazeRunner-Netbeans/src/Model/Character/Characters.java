@@ -59,6 +59,8 @@ public abstract class Characters extends Thread{
         this.y = this.yStart;
     }
     
+    
+    
     public boolean isEnnemie(float xa, float ya) {
         
         //à revoir ...
