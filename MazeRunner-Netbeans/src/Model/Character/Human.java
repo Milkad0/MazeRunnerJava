@@ -150,19 +150,16 @@ public class Human extends Characters {
 
         }
         
-        if (Keyboard.isKeyDown(Keyboard.KEY_Q)) {
+        if (Keyboard.isKeyDown(Keyboard.KEY_ESCAPE)) {
 
-            //System.out.println("D Key Pressed");
             level.finish = true;
             power = 0;
             key = false;
             numberkey = 0;
-            
-            
 
         }
         
-        if(lastKey=='D'&&Keyboard.isKeyDown(Keyboard.KEY_SPACE)&&Keyboard.isKeyDown(Keyboard.KEY_DOWN)&&power>0){
+        if(lastKey=='D'&&Keyboard.isKeyDown(Keyboard.KEY_SPACE)&&power>0){
             dig = false;
             dig = level.removeSolidSquare(posX+1,posY+1);
             if(dig){
@@ -170,7 +167,7 @@ public class Human extends Characters {
             }
         }
         
-        if(lastKey=='A'&&Keyboard.isKeyDown(Keyboard.KEY_SPACE)&&Keyboard.isKeyDown(Keyboard.KEY_DOWN)&&power>0){
+        if(lastKey=='A'&&Keyboard.isKeyDown(Keyboard.KEY_SPACE)&&power>0){
             dig = false;
             dig = level.removeSolidSquare(posX-1,posY+1);
             if(dig){
@@ -178,7 +175,11 @@ public class Human extends Characters {
             }
         }
         
-        if(lastKey=='D'&&Keyboard.isKeyDown(Keyboard.KEY_SPACE)&&!Keyboard.isKeyDown(Keyboard.KEY_DOWN)&&power>0){
+        if(power<0){
+            power =0;
+        }
+        
+       /* if(lastKey=='D'&&Keyboard.isKeyDown(Keyboard.KEY_SPACE)&&!Keyboard.isKeyDown(Keyboard.KEY_DOWN)&&power>0){
             dig = false;
             dig = level.removeSolidSquare(posX+1,posY);
             if(dig){
@@ -192,7 +193,7 @@ public class Human extends Characters {
             if(dig){
                 power--;
             }
-        }
+        }*/
         
 
         if (isFreezed() && freezed == false) {

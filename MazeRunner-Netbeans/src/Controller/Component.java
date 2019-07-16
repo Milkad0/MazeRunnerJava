@@ -212,6 +212,8 @@ public class Component {
     
     public static void main(String[] args) throws Exception {
         Component main = new Component();
+        System.setProperty("org.lwjgl.librarypath", new File("natives").getAbsolutePath());
+
         
         main.start();
     }
