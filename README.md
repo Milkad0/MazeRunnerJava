@@ -50,6 +50,19 @@ cd MazeRunnerJava
   ```sh
  Lib\Slick2D\src
   ```
+  - Change the native folder into Run
+  
+  Right Click on the project "MazeRunner"
+  
+  Select "Properties"
+  
+  Select "Run"
+  
+  And then complete the VM option with this :
+  
+  ```sh
+  -Djava.library.path=C:\Users\<name of user>...\MazeRunner\Lib\lwjgl-2.9.3\native\<os>
+  ```
   
   - Run the project (MazeRunner)
 
