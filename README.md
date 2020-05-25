@@ -70,7 +70,7 @@ cd MazeRunnerJava
 
 To play at this game you only need to use the directionals, space and escape keys
 
-![](imgReadMe/Clavier.PNG)
+![](imgReadMe/Clavier.png)
 
 #### Goal
 
