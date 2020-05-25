@@ -105,5 +105,7 @@ He has unlimited endurance
 
 ![](imgReadMe/Pacer.gif)
 
+## Collaborators
 
+Vincent ETHEVE - Quentin BESNOIT - Victor BRIERE
 
