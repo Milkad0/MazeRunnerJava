@@ -51,7 +51,7 @@ public class StateManager {
         }
     }
     
-    public static void update(){
+    public static void update() throws Exception{
         switch(choiceMenu[val]){
             case MAINMENU:
                     mainMenu.update();

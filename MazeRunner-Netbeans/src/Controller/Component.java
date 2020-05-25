@@ -125,7 +125,7 @@ public class Component {
         exit();
     }
     
-    public void update (){
+    public void update () throws Exception{
       time++;  
       
        StateManager.update();
