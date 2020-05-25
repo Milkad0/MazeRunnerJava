@@ -2,7 +2,7 @@
 
 
 
-![](img/ExampleApp.PNG)
+![](imgReadMe/Game.PNG)
 
 ## Getting Started
 
@@ -70,19 +70,19 @@ cd MazeRunnerJava
 
 To play at this game you only need to use the directionals, space and escape keys
 
-![](img/ExampleApp.PNG)
+![](imgReadMe/Clavier.PNG)
 
 #### Goal
 
 Take the key and open the door
 
-![](img/ExampleApp.PNG)
+![](imgReadMe/ExampleApp.PNG)
 
 #### Power
 
 Eat an apple to be able to break a bloc
 
-![](img/ExampleApp.PNG)
+![](imgReadMe/ExampleApp.PNG)
 
 #### Ennemies
 
@@ -90,19 +90,19 @@ Eat an apple to be able to break a bloc
 
 He will try to catch you !
 
-![](img/ExampleApp.PNG)
+![](imgReadMe/Rover.gif)
 
 - Jumper
 
 He jumps when he wants to ...
 
-![](img/ExampleApp.PNG)
+![](imgReadMe/ExampleApp.PNG)
 
 - Pacer
 
 He has unlimited endurance
 
-![](img/ExampleApp.PNG)
+![](imgReadMe/ExampleApp.PNG)
 
 
 
