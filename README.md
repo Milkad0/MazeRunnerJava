@@ -50,7 +50,7 @@ cd MazeRunnerJava
   ```sh
  Lib\Slick2D\src
   ```
-  - Change the native folder into Run
+  - Change the native folder
   
   Right Click on the project "MazeRunner"
   
@@ -67,4 +67,42 @@ cd MazeRunnerJava
   - Run the project (MazeRunner)
 
 ### Command
+
+To play at this game you only need to use the directionals, space and escape keys
+
+![](img/ExampleApp.PNG)
+
+#### Goal
+
+Take the key and open the door
+
+![](img/ExampleApp.PNG)
+
+#### Power
+
+Eat an apple to be able to break a bloc
+
+![](img/ExampleApp.PNG)
+
+#### Ennemies
+
+- Rover
+
+He will try to catch you !
+
+![](img/ExampleApp.PNG)
+
+- Jumper
+
+He jumps when he wants to ...
+
+![](img/ExampleApp.PNG)
+
+- Pacer
+
+He has unlimited endurance
+
+![](img/ExampleApp.PNG)
+
+
 
