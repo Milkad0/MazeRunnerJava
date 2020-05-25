@@ -76,13 +76,13 @@ To play at this game you only need to use the directionals, space and escape key
 
 Take the key and open the door
 
-![](imgReadMe/ExampleApp.PNG)
+![](imgReadMe/Key.gif)
 
 #### Power
 
 Eat an apple to be able to break a bloc
 
-![](imgReadMe/ExampleApp.PNG)
+![](imgReadMe/Power.gif)
 
 #### Ennemies
 
@@ -95,14 +95,15 @@ He will try to catch you !
 - Jumper
 
 He jumps when he wants to ...
+(Legend says he drops apples)
 
-![](imgReadMe/ExampleApp.PNG)
+![](imgReadMe/Jumper.gif)
 
 - Pacer
 
 He has unlimited endurance
 
-![](imgReadMe/ExampleApp.PNG)
+![](imgReadMe/Pacer.gif)
 
 
 
