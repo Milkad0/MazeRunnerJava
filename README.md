@@ -107,5 +107,5 @@ He has unlimited endurance
 
 ## Collaborators
 
-Vincent ETHEVE - Quentin BESNOIT - Victor BRIERE
+Vincent ETHEVE - Quentin BENOIST - Victor BRIERE
 
